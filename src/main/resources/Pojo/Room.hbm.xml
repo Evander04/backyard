@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-may-2017 9:26:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Room" table="room" catalog="backyard" optimistic-lock="version">
+        <id name="idRoom" type="java.lang.Integer">
+            <column name="IdRoom" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="Pojo.Category" fetch="select">
+            <column name="IdCategory" />
+        </many-to-one>
+        <property name="capacity" type="java.lang.Integer">
+            <column name="capacity" />
+        </property>
+        <property name="price" type="java.lang.Long">
+            <column name="price" precision="10" scale="0" />
+        </property>
+        <property name="statusRoom" type="java.lang.Integer">
+            <column name="statusRoom" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="typeRoom" type="java.lang.Boolean">
+            <column name="typeRoom" />
+        </property>
+        <property name="erasedStatus" type="java.lang.Boolean">
+            <column name="erasedStatus" />
+        </property>
+        <set name="detailreservationrooms" table="detailreservationroom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdRoom" />
+            </key>
+            <one-to-many class="Pojo.Detailreservationroom" />
+        </set>
+    </class>
+</hibernate-mapping>

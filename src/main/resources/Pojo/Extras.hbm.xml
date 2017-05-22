@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-may-2017 9:26:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Extras" table="extras" catalog="backyard" optimistic-lock="version">
+        <id name="idExtras" type="java.lang.Integer">
+            <column name="IdExtras" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="reservation" class="Pojo.Reservation" fetch="select">
+            <column name="IdReservation" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="70" />
+        </property>
+        <property name="rode" type="java.lang.Long">
+            <column name="rode" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

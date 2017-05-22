@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-may-2017 9:26:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Pojo.Reservation" table="reservation" catalog="backyard" optimistic-lock="version">
+        <id name="idReservation" type="java.lang.Integer">
+            <column name="IdReservation" />
+            <generator class="identity" />
+        </id>
+        <property name="registrationDate" type="date">
+            <column name="registrationDate" length="10" />
+        </property>
+        <property name="reservationDate" type="date">
+            <column name="reservationDate" length="10" />
+        </property>
+        <property name="rode" type="java.lang.Long">
+            <column name="rode" precision="10" scale="0" />
+        </property>
+        <set name="detailreservationrooms" table="detailreservationroom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdReservation" />
+            </key>
+            <one-to-many class="Pojo.Detailreservationroom" />
+        </set>
+        <set name="detailreservationclients" table="detailreservationclient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdReservation" />
+            </key>
+            <one-to-many class="Pojo.Detailreservationclient" />
+        </set>
+        <set name="extrases" table="extras" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdReservation" />
+            </key>
+            <one-to-many class="Pojo.Extras" />
+        </set>
+    </class>
+</hibernate-mapping>
