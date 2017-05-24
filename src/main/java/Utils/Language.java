@@ -5,16 +5,20 @@
  */
 package Utils;
 
+import java.io.IOException;
+
 /**
  *
  * @author Evander R
  */
 public class Language {
 
-    public final int config = 1;
+    ConfigFile cf= new ConfigFile();
+    public final int config;
     public String var = "";
 
-    public Language() {
+    public Language() throws IOException {
+        this.config = cf.findByID(1).getLanguage();
     }
 
     public String getTitulo() {
