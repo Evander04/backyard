@@ -31,6 +31,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevaReservaMenuItem = new javax.swing.JMenuItem();
@@ -47,9 +48,17 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jLabel1.setFont(new java.awt.Font("The Black Box", 1, 320)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BACKYARD");
+        desktopPane.add(jLabel1);
+        jLabel1.setBounds(320, 160, 750, 370);
+
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
+        fileMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
 
+        NuevaReservaMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevaReservaMenuItem.setMnemonic('o');
         NuevaReservaMenuItem.setText("Nueva Reserva");
         NuevaReservaMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +68,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevaReservaMenuItem);
 
+        NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevoEmpleadoMenuItem.setMnemonic('s');
         NuevoEmpleadoMenuItem.setText("Nuevo Empleado");
         NuevoEmpleadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +78,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoEmpleadoMenuItem);
 
+        NuevoClienteMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevoClienteMenuItem.setMnemonic('a');
         NuevoClienteMenuItem.setText("Nuevo Cliente");
         NuevoClienteMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +88,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoClienteMenuItem);
 
+        SalirMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         SalirMenuItem.setMnemonic('x');
         SalirMenuItem.setText("Salir");
         SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +102,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         editMenu.setMnemonic('e');
         editMenu.setText("Ayuda");
+        editMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
 
         VerReservasMenuItem.setMnemonic('t');
         VerReservasMenuItem.setText("Ver las reservas");
@@ -200,6 +213,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
