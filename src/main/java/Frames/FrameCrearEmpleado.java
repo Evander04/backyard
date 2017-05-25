@@ -65,14 +65,10 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextCorreoEmpleado = new javax.swing.JTextField();
         jTextIDEmpleado = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
-        jXImageView1 = new org.jdesktop.swingx.JXImageView();
-        jButton2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jBtnGuardarEmpleado = new javax.swing.JButton();
         jBtnModificarEmpleado = new javax.swing.JButton();
         jBtnCancelarCreacionEmpleado = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -99,7 +95,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,39 +269,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jXImageView1Layout = new javax.swing.GroupLayout(jXImageView1);
-        jXImageView1.setLayout(jXImageView1Layout);
-        jXImageView1Layout.setHorizontalGroup(
-            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jXImageView1Layout.setVerticalGroup(
-            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 164, Short.MAX_VALUE)
-        );
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Más-26.png"))); // NOI18N
-        jButton2.setText("Agregar Foto");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXImageView1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(64, 64, 64))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jXImageView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(0, 15, Short.MAX_VALUE))
-        );
-
         jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Save as-26.png"))); // NOI18N
         jBtnGuardarEmpleado.setText("Guardar");
         jBtnGuardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -347,22 +310,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("The Black Box", 1, 36)); // NOI18N
         jLabel13.setText("BACKYARD");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(19, 19, 19))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel13)
-                .addGap(0, 10, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -379,11 +326,9 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel13)))
+                .addGap(0, 52, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,11 +343,10 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -425,21 +369,21 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean isOkEmp() {
-        return !(this.jTextIDEmpleado.getText().isEmpty()
-                || this.jTextPrimerNombreEmpleado.getText().isEmpty()
-                || this.jTextSegundoNombreEmpleado.getText().isEmpty()
-                || this.jTextPrimerApellidoEmpleado.getText().isEmpty()
-                || this.jTextSegundoApellidoEmpleado.getText().isEmpty()
-                || this.jTextCedulaEmpleado.getText().isEmpty())
-                || this.jFTextTelefonoEmpleado.getText().isEmpty()
-                || this.jTextCorreoEmpleado.getText().isEmpty()
-                || this.jTextSalarioEmpleado.getText().isEmpty()
-                || this.jTextAreaDireccionEmpleado.getText().isEmpty();
-    }
 
     private void jBtnGuardarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarEmpleadoActionPerformed
         // TODO add your handling code here:
+       try {
+                Employee emp = new Employee(Integer.parseInt(this.jTextIDEmpleado.getText()),
+                        this..getText(), this.ProvjFormattedTextFieldTelf.getText(),
+                        this.ProvjTextFieldAgente.getText(), this.ProvjTextAreaDescrip.getText(),
+                        this.ProvjTextAreaDescrip.getText());
+                ProvFile.create(Prov);
+                JOptionPane.showMessageDialog(rootPane, "Proveedor agregado corectamente", "Successful", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+      
+        
         
     }//GEN-LAST:event_jBtnGuardarEmpleadoActionPerformed
 
@@ -449,7 +393,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnGuardarEmpleado;
     private javax.swing.JButton jBtnModificarEmpleado;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCBTipoEmpleado;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFTextTelefonoEmpleado;
@@ -471,9 +414,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDireccionEmpleado;
     private javax.swing.JTextField jTextCedulaEmpleado;
@@ -485,6 +426,5 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextSalarioEmpleado;
     private javax.swing.JTextField jTextSegundoApellidoEmpleado;
     private javax.swing.JTextField jTextSegundoNombreEmpleado;
-    private org.jdesktop.swingx.JXImageView jXImageView1;
     // End of variables declaration//GEN-END:variables
 }
