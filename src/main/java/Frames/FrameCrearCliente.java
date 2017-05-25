@@ -73,7 +73,6 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Meiryo UI", 3, 14)); // NOI18N
         jLabel7.setText("Correo:");
 
-        jBtnGuardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Save as-26.png"))); // NOI18N
         jBtnGuardarCliente.setText("Guardar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

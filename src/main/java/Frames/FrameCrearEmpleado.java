@@ -10,13 +10,16 @@ import Pojo.Clients;
 import Pojo.Employee;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.*;
 
 /**
  *
  * @author Obed
  */
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
-
+private SessionFactory sf;
     /**
      * Creates new form FrameCrearEmpleado
      */
@@ -39,7 +42,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -76,18 +78,14 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Telefono", "Correo" }));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Búsqueda-26.png"))); // NOI18N
         jButton1.setText("Buscar");
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Circled User Male-26.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,14 +98,12 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -269,7 +265,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Save as-26.png"))); // NOI18N
         jBtnGuardarEmpleado.setText("Guardar");
         jBtnGuardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,10 +272,8 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             }
         });
 
-        jBtnModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Monitor-26.png"))); // NOI18N
         jBtnModificarEmpleado.setText("Modificar");
 
-        jBtnCancelarCreacionEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/Circled Left 2-26.png"))); // NOI18N
         jBtnCancelarCreacionEmpleado.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -372,19 +365,29 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
     private void jBtnGuardarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarEmpleadoActionPerformed
         // TODO add your handling code here:
-       try {
-                Employee emp = new Employee(Integer.parseInt(this.jTextIDEmpleado.getText()),
-                        this..getText(), this.ProvjFormattedTextFieldTelf.getText(),
-                        this.ProvjTextFieldAgente.getText(), this.ProvjTextAreaDescrip.getText(),
-                        this.ProvjTextAreaDescrip.getText());
-                ProvFile.create(Prov);
-                JOptionPane.showMessageDialog(rootPane, "Proveedor agregado corectamente", "Successful", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-      
-        
-        
+        try {
+            Session s = sf.openSession();
+            Transaction t = s.beginTransaction();
+            Employee e = new Employee();
+            e.setFirstName(this.jTextIDEmpleado.getText());
+            e.setSecondName(this.jTextSegundoNombreEmpleado.getText());
+            e.setSurname(this.jTextPrimerNombreEmpleado.getText());
+            e.setSecondSurname(this.jTextIDEmpleado.getText());
+            e.setDocIdentity(this.jTextCedulaEmpleado.getText());
+            e.setPhone(this.jFTextTelefonoEmpleado.getText());
+            e.setEmail(this.jTextCorreoEmpleado.getText());
+            e.setSalary(Long.parseLong(this.jTextSalarioEmpleado.getText()));
+            e.setAddress(this.jTextAreaDireccionEmpleado.getText());
+            e.setIdEmployee(Integer.parseInt(this.jTextIDEmpleado.getText()));
+            e.setTypeEmployee(Integer.parseInt(this.jCBTipoEmpleado.getSelectedItem().toString()));
+            s.save(e);
+            t.commit();
+            s.close();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_jBtnGuardarEmpleadoActionPerformed
 
 
@@ -399,7 +402,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

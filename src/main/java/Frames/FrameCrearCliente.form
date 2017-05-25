@@ -494,9 +494,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBtnGuardarCliente">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Frames/Save as-26.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
         </Component>
