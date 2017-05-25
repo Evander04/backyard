@@ -28,6 +28,30 @@ public class Language {
         }
         return var;
     }
+    
+    public String getName(){
+        switch (config){
+            case 0:
+                var = "Nombre:";
+                break;
+            case 1:
+                var = "Name:";
+                break;
+        }
+        return var;
+    }
+    
+    public String getLastname(){
+        switch(config){
+        case 0:
+            var = "Apellido:";
+            break;
+        case 1:
+            var = "Lastname";
+            break;
+        }
+        return var;
+    }
 
     public String getMensaje() {
         switch (config) {
