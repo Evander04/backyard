@@ -5,12 +5,13 @@
  */
 package Frames;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Obed
  */
 public class PrincipalBackyard extends javax.swing.JFrame {
-
     /**
      * Creates new form NewMDIApplication
      */
@@ -44,6 +45,8 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         setExtendedState(6);
         setSize(new java.awt.Dimension(1400, 700));
 
+        desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
 
@@ -58,6 +61,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         NuevoEmpleadoMenuItem.setMnemonic('s');
         NuevoEmpleadoMenuItem.setText("Nuevo Empleado");
+        NuevoEmpleadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoEmpleadoMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(NuevoEmpleadoMenuItem);
 
         NuevoClienteMenuItem.setMnemonic('a');
@@ -115,12 +123,36 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     private void NuevaReservaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaReservaMenuItemActionPerformed
         // TODO add your handling code here:
+        FrameCrearReserva fcr = new FrameCrearReserva();
+        desktopPane.add(fcr);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fcr.getSize();
+        fcr.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fcr.show();
+//            fcr.setVisible(true);
+//            fcr.show();
     }//GEN-LAST:event_NuevaReservaMenuItemActionPerformed
 
     private void NuevoClienteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoClienteMenuItemActionPerformed
         // TODO add your handling code here:
-       
+
+        FrameCrearCliente fcc = new FrameCrearCliente();
+        desktopPane.add(fcc);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fcc.getSize();
+        fcc.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fcc.show();
     }//GEN-LAST:event_NuevoClienteMenuItemActionPerformed
+
+    private void NuevoEmpleadoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoEmpleadoMenuItemActionPerformed
+        // TODO add your handling code here:
+        FrameCrearEmpleado fce = new FrameCrearEmpleado();
+        desktopPane.add(fce);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fce.getSize();
+        fce.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fce.show();
+    }//GEN-LAST:event_NuevoEmpleadoMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
