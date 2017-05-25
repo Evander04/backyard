@@ -49,7 +49,9 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
+        fileMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
 
+        NuevaReservaMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevaReservaMenuItem.setMnemonic('o');
         NuevaReservaMenuItem.setText("Nueva Reserva");
         NuevaReservaMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +61,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevaReservaMenuItem);
 
+        NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevoEmpleadoMenuItem.setMnemonic('s');
         NuevoEmpleadoMenuItem.setText("Nuevo Empleado");
         NuevoEmpleadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +71,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoEmpleadoMenuItem);
 
+        NuevoClienteMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         NuevoClienteMenuItem.setMnemonic('a');
         NuevoClienteMenuItem.setText("Nuevo Cliente");
         NuevoClienteMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +81,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoClienteMenuItem);
 
+        SalirMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
         SalirMenuItem.setMnemonic('x');
         SalirMenuItem.setText("Salir");
         SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +95,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         editMenu.setMnemonic('e');
         editMenu.setText("Ayuda");
+        editMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
 
         VerReservasMenuItem.setMnemonic('t');
         VerReservasMenuItem.setText("Ver las reservas");
@@ -129,8 +135,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         Dimension FrameSize = fcr.getSize();
         fcr.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
         fcr.show();
-//            fcr.setVisible(true);
-//            fcr.show();
+
     }//GEN-LAST:event_NuevaReservaMenuItemActionPerformed
 
     private void NuevoClienteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoClienteMenuItemActionPerformed
