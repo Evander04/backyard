@@ -38,8 +38,15 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
         jBTAgregar = new javax.swing.JButton();
         jBTCancelar = new javax.swing.JButton();
         jFTFMonto = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
+        setClosable(true);
         setTitle("Agregar Extra");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Descripción:");
 
@@ -60,6 +67,11 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
         });
 
         jFTFMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
+        jFTFMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFTFMontoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -100,21 +112,40 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
                 .addGap(21, 21, 21))
         );
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "NOMBRE", "NACIONALIDAD", "FECHA DE RESERVA", "FECHA DE REGISTRO"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,7 +158,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,18 +171,34 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
 
     private void jBTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTAgregarActionPerformed
         // TODO add your handling code here:
+        if (validaNull()){
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS", "ATENCION",JOptionPane.ERROR_MESSAGE);
+        }else {
         Extras ex = new Extras();
         NewExtras nex = new NewExtras();
-        int selection = 0;
         ex.setIdExtras(1);
         //ex.setReservation(reservation);
         ex.setDescription(this.jTextFDescripcion.toString());
         ex.setRode(Long.parseLong(this.jFTFMonto.toString()));
-        nex.save(ex, selection);
-        JOptionPane.showMessageDialog(null, "EXTRA CORECTAMENTE GUARDADO", "☻☻ TRANQUILO PRIX ☺☺", JOptionPane.INFORMATION_MESSAGE);
-        clearfield();
+        nex.save(ex, 0);
+       clearfield();
+        JOptionPane.showMessageDialog(null, "SE GUARDO CORECTEAMENTE", "EN HORA BUENA", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jBTAgregarActionPerformed
 
+    private void jFTFMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFTFMontoActionPerformed
+
+ public boolean validaNull(){
+     boolean val = false;
+     if (this.jTextFDescripcion.getText().equals("")){
+         val = true;
+     }else if (this.jFTFMonto.getText().equals("")){
+         val = true;
+     }
+     return val;
+ }
  private void clearfield(){
     jTextFDescripcion.setText("");
     jFTFMonto.setText("");
@@ -165,6 +212,8 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFDescripcion;
     // End of variables declaration//GEN-END:variables
 }

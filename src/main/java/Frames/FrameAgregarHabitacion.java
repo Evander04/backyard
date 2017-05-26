@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Frames;
+import Controllers.NewCategory;
 import Controllers.NewRoom;
+import Pojo.Category;
 import Pojo.Room;
 import javax.swing.JOptionPane;
 /**
@@ -18,6 +20,10 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
      */
     public FrameAgregarHabitacion() {
         initComponents();
+        NewCategory nc= new NewCategory();
+        for (Category c : nc.findAll()) {
+           this.jCBCategoria.addItem(c.getCategoryType().toString());
+        }
     }
 
     /**
@@ -42,9 +48,16 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jCBTipo = new javax.swing.JComboBox<>();
         jFTFCapacidad = new javax.swing.JFormattedTextField();
         jFTFPrecio = new javax.swing.JFormattedTextField();
+        jLCategoria = new javax.swing.JLabel();
+        jCBCategoria = new javax.swing.JComboBox<>();
 
+        setClosable(true);
         setTitle("Crear Habitacion");
         setToolTipText("");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLCapacidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLCapacidad.setText("Capacidad:");
@@ -84,17 +97,21 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
 
         jFTFPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#######"))));
 
+        jLCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLCategoria.setText("Categoria:");
+
+        jCBCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBCategoriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jBTGuardar)
-                        .addGap(99, 99, 99)
-                        .addComponent(jBTCancelar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,17 +121,25 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                                     .addComponent(jLPrecio, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFTFCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                    .addComponent(jFTFPrecio)))
+                                    .addComponent(jFTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFTFPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLDescripcion)
-                                    .addComponent(jLabel1))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLCategoria))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jCBCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCBTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 123, Short.MAX_VALUE))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(jBTGuardar)
+                        .addGap(99, 99, 99)
+                        .addComponent(jBTCancelar)))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +160,11 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jCBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLCategoria)
+                    .addComponent(jCBCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBTGuardar)
                     .addComponent(jBTCancelar))
@@ -147,16 +176,16 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,10 +209,11 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
 
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
         // TODO add your handling code here:
+        if (validaNull()){
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS","ATENCION", JOptionPane.ERROR_MESSAGE);
+        }else{
         NewRoom nr = new NewRoom();
-          int selection = 0;
         Room ro = new Room();
-        ro.setIdRoom(1);
  //     ro.setCategory(category);
         ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
         ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
@@ -191,23 +221,41 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         ro.setDescription(this.jTextADescripcion.getText());
         ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
         ro.setErasedStatus(true);
-        nr.save(ro, selection);
-        JOptionPane.showMessageDialog(null, "HABITACION CORECTAMENTE GUARDADA", "☻☻TODO TRANQUILO PRIX ☺☺", JOptionPane.INFORMATION_MESSAGE);
+        nr.save(ro, 0);
         clearfield();
+        JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE", "EXITO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jBTGuardarActionPerformed
+
+    private void jCBCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBCategoriaActionPerformed
+        // TODO add your handling code here:       
+    }//GEN-LAST:event_jCBCategoriaActionPerformed
 
 private void clearfield(){
     jFTFCapacidad.setText("");
     jFTFPrecio.setText("");
     jTextADescripcion.setText("");
 }
+public boolean validaNull(){
+    boolean val = false;
+    if(this.jFTFCapacidad.getText().equals("")){
+    val = true;
+    } else if (this.jFTFPrecio.getText().equals("")){
+    val = true;
+    } else if (this.jTextADescripcion.getText().equals("")){
+        val = true;
+    }
+    return val;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBTCancelar;
     private javax.swing.JButton jBTGuardar;
+    private javax.swing.JComboBox<String> jCBCategoria;
     private javax.swing.JComboBox<String> jCBTipo;
     private javax.swing.JFormattedTextField jFTFCapacidad;
     private javax.swing.JFormattedTextField jFTFPrecio;
     private javax.swing.JLabel jLCapacidad;
+    private javax.swing.JLabel jLCategoria;
     private javax.swing.JLabel jLDescripcion;
     private javax.swing.JLabel jLPrecio;
     private javax.swing.JLabel jLabel1;

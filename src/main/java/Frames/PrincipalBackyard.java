@@ -48,6 +48,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
         NuevoClienteMenuItem = new javax.swing.JMenuItem();
+        NuevaHabitacionMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        NuevoExtraMenuItem = new javax.swing.JMenuItem();
+        NuevaCategoriaMenuItem = new javax.swing.JMenuItem();
         SalirMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         NuevaReservaMenuItem = new javax.swing.JMenuItem();
@@ -92,6 +96,34 @@ public class PrincipalBackyard extends javax.swing.JFrame {
             }
         });
         fileMenu.add(NuevoClienteMenuItem);
+
+        NuevaHabitacionMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaHabitacionMenuItem.setText("Nueva Habitación");
+        NuevaHabitacionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaHabitacionMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(NuevaHabitacionMenuItem);
+        fileMenu.add(jSeparator1);
+
+        NuevoExtraMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevoExtraMenuItem.setText("Nuevo Extra");
+        NuevoExtraMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoExtraMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(NuevoExtraMenuItem);
+
+        NuevaCategoriaMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaCategoriaMenuItem.setText("Nueva Categoria");
+        NuevaCategoriaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaCategoriaMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(NuevaCategoriaMenuItem);
 
         SalirMenuItem.setBackground(new java.awt.Color(255, 255, 255));
         SalirMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -214,6 +246,36 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fce.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void NuevaHabitacionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaHabitacionMenuItemActionPerformed
+        // TODO add your handling code here:
+        FrameAgregarHabitacion fah = new FrameAgregarHabitacion();
+        desktopPane.add(fah);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fah.getSize();
+        fah.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fah.show();
+    }//GEN-LAST:event_NuevaHabitacionMenuItemActionPerformed
+
+    private void NuevoExtraMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoExtraMenuItemActionPerformed
+        // TODO add your handling code here:
+        FrameAgregarExtra fae = new FrameAgregarExtra();
+        desktopPane.add(fae);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fae.getSize();
+        fae.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fae.show();
+    }//GEN-LAST:event_NuevoExtraMenuItemActionPerformed
+
+    private void NuevaCategoriaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCategoriaMenuItemActionPerformed
+        // TODO add your handling code here:
+        FrameAgregarCategoria fac = new FrameAgregarCategoria();
+        desktopPane.add(fac);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fac.getSize();
+        fac.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fac.show();
+    }//GEN-LAST:event_NuevaCategoriaMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,9 +314,12 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem GenerarReportesMenuItem;
+    private javax.swing.JMenuItem NuevaCategoriaMenuItem;
+    private javax.swing.JMenuItem NuevaHabitacionMenuItem;
     private javax.swing.JMenuItem NuevaReservaMenuItem;
     private javax.swing.JMenuItem NuevoClienteMenuItem;
     private javax.swing.JMenuItem NuevoEmpleadoMenuItem;
+    private javax.swing.JMenuItem NuevoExtraMenuItem;
     private javax.swing.JMenuItem SalirMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
@@ -264,6 +329,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
