@@ -11,6 +11,8 @@ import Utils.Hash;
 import Utils.NewHibernateUtil;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,24 +24,24 @@ public class LoginController {
     NewUsers userController = new NewUsers();
     Hash hash= new Hash();
 
-    public Boolean access(String user, String password) throws NoSuchAlgorithmException {
+    public Boolean access(String user, String password)  {
+        Boolean val= false;
+        try{
         Users u = findUserLogin(user);
         if (u != null) {
             if (u.getPass().equals(hash.Sha512(password))) {
-                return true;
+                val= true;
             } else {
-                return false;
+                val= false;
             }
         } else {
-            return false;
+            val= false;
         }
-    } 
-    public int typeUser(String user){
-        NewEmployee ne= new NewEmployee();
-        Employee e= ne.findEmployeeByUser(user);
-        return e.getTypeEmployee();
-       
-    }
+        }catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return val;
+    }     
     
      public Users findUserLogin(String user){
        Users u= new Users();       

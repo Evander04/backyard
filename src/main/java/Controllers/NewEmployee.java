@@ -50,7 +50,7 @@ public class NewEmployee {
     public List<Employee> findAll() {
         conect.open();
         List<Employee> list = new ArrayList<>();
-        SQLQuery query = conect.getSession().createSQLQuery("select * from Category where erasedStatus=1");
+        SQLQuery query = conect.getSession().createSQLQuery("select * from Employee where erasedStatus=1");
         query.addEntity(Employee.class);
         for (Iterator i = query.list().iterator(); i.hasNext();) {
             Employee c = (Employee) i.next();

@@ -6,6 +6,11 @@
 package Frames;
 
 import Controllers.LoginController;
+import Controllers.NewEmployee;
+import Controllers.NewUsers;
+import Pojo.Employee;
+import Pojo.Users;
+import Utils.Hash;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,13 +22,26 @@ import javax.swing.JOptionPane;
  */
 public class FrameLogin extends javax.swing.JFrame {
 
-    LoginController logController= new LoginController();
-    
+    LoginController logController = new LoginController();
+    Hash h= new Hash();
     /**
-     * Creates new form FrameLogin
+     * Creates new form NewJFrame
      */
-    public FrameLogin() {
-        initComponents();
+    public FrameLogin(){
+       // try {
+            initComponents();
+//            NewUsers nu= new NewUsers();
+//            Employee e= new Employee();
+//            e.setIdEmployee(3);
+//            Users u= new Users();
+//            u.setEmployee(e);
+//            u.setUserName("admin");
+//            u.setPass(h.Sha512("admin"));
+//            nu.save(u,0);
+       // } catch (NoSuchAlgorithmException ex) {
+         //   Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
+        //}       
+        
     }
 
     /**
@@ -99,14 +117,16 @@ public class FrameLogin extends javax.swing.JFrame {
                         .addComponent(jCheckBox1)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,6 +136,25 @@ public class FrameLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (this.TextUser.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite el usuario", "Atención", JOptionPane.ERROR_MESSAGE);
+        } else if (this.TextPass.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite la contraseña", "Atención", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {                
+//                NewEmployee ne= new NewEmployee();
+//                Employee e=ne.findEmployeeByUser(this.TextUser.getText());
+//                System.out.println(e.getFirstName());
+                PrincipalBackyard pb = new PrincipalBackyard();
+                pb.show();                
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Atención", "Credenciales incorrectas", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
         if ((evt.getStateChange() == 1) ? true : false) {
             this.TextPass.setEchoChar((char) 0); //password = JPasswordField
@@ -124,29 +163,6 @@ public class FrameLogin extends javax.swing.JFrame {
             this.TextPass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.TextUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Atención","digite el usuario",JOptionPane.ERROR_MESSAGE);
-        }
-        else if (this.TextPass.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Atención","digite la contraseña",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            try {
-                if (logController.access(this.TextUser.getText(),this.TextPass.getText())) {
-                    PrincipalBackyard pb= new PrincipalBackyard();
-                    pb.show();
-                    this.dispose();
-                }
-                else{
-                    
-                }
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +189,7 @@ public class FrameLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

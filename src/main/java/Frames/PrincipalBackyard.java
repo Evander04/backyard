@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import Pojo.Employee;
 import java.awt.Dimension;
 
 /**
@@ -13,14 +14,25 @@ import java.awt.Dimension;
  */
 public class PrincipalBackyard extends javax.swing.JFrame {
 
+    FrameLogin l = new FrameLogin();
+    Employee employee;
     /**
      * Creates new form NewMDIApplication
      */
-    public PrincipalBackyard() {
+    public PrincipalBackyard(Employee e) {
+        initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setResizable(false);  
+        this.employee=e;
+//        this.textuser.setText(e.getFirstName());
+    }
+    public PrincipalBackyard(){
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +55,8 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
@@ -125,6 +139,18 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         jMenu2.setText("Configuraciones");
         jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+
+        jMenuItem1.setText("Idioma");
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem2.setText("Usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         menuBar.add(jMenu2);
 
         setJMenuBar(menuBar);
@@ -179,6 +205,15 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fce.show();
     }//GEN-LAST:event_NuevoEmpleadoMenuItemActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FrameUsuario fce = new FrameUsuario();
+        desktopPane.add(fce);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fce.getSize();
+        fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fce.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +262,8 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
