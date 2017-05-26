@@ -12,6 +12,7 @@ import java.awt.Dimension;
  * @author Obed
  */
 public class PrincipalBackyard extends javax.swing.JFrame {
+
     /**
      * Creates new form NewMDIApplication
      */
@@ -33,35 +34,32 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        NuevaReservaMenuItem = new javax.swing.JMenuItem();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
         NuevoClienteMenuItem = new javax.swing.JMenuItem();
         SalirMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        VerReservasMenuItem = new javax.swing.JMenuItem();
+        NuevaReservaMenuItem = new javax.swing.JMenuItem();
         GenerarReportesMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bienvenido");
         setExtendedState(6);
+        setResizable(false);
         setSize(new java.awt.Dimension(1400, 700));
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        menuBar.setBackground(new java.awt.Color(255, 255, 255));
+
+        fileMenu.setBackground(new java.awt.Color(255, 255, 255));
         fileMenu.setMnemonic('f');
-        fileMenu.setText("Archivo");
-        fileMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
+        fileMenu.setText("Nuevo");
+        fileMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        NuevaReservaMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
-        NuevaReservaMenuItem.setMnemonic('o');
-        NuevaReservaMenuItem.setText("Nueva Reserva");
-        NuevaReservaMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NuevaReservaMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(NuevaReservaMenuItem);
-
-        NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         NuevoEmpleadoMenuItem.setMnemonic('s');
         NuevoEmpleadoMenuItem.setText("Nuevo Empleado");
         NuevoEmpleadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +69,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoEmpleadoMenuItem);
 
-        NuevoClienteMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        NuevoClienteMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         NuevoClienteMenuItem.setMnemonic('a');
         NuevoClienteMenuItem.setText("Nuevo Cliente");
         NuevoClienteMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +79,8 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         });
         fileMenu.add(NuevoClienteMenuItem);
 
-        SalirMenuItem.setFont(new java.awt.Font("Dotum", 1, 12)); // NOI18N
+        SalirMenuItem.setBackground(new java.awt.Color(255, 255, 255));
+        SalirMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         SalirMenuItem.setMnemonic('x');
         SalirMenuItem.setText("Salir");
         SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -94,18 +93,39 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         menuBar.add(fileMenu);
 
         editMenu.setMnemonic('e');
-        editMenu.setText("Ayuda");
-        editMenu.setFont(new java.awt.Font("Dotum", 3, 14)); // NOI18N
+        editMenu.setText("Operaciones");
+        editMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        VerReservasMenuItem.setMnemonic('t');
-        VerReservasMenuItem.setText("Ver las reservas");
-        editMenu.add(VerReservasMenuItem);
+        NuevaReservaMenuItem.setBackground(new java.awt.Color(255, 255, 255));
+        NuevaReservaMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaReservaMenuItem.setMnemonic('o');
+        NuevaReservaMenuItem.setText("Reservar");
+        NuevaReservaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaReservaMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(NuevaReservaMenuItem);
 
+        GenerarReportesMenuItem.setBackground(new java.awt.Color(255, 255, 255));
+        GenerarReportesMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         GenerarReportesMenuItem.setMnemonic('y');
-        GenerarReportesMenuItem.setText("Reportes");
+        GenerarReportesMenuItem.setText("Facturar");
         editMenu.add(GenerarReportesMenuItem);
 
         menuBar.add(editMenu);
+
+        jMenu1.setText("Central Estadística");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(jMenu1);
+
+        jMenu3.setText("Reportes");
+        jMenu3.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(jMenu3);
+
+        jMenu2.setText("Configuraciones");
+        jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(jMenu2);
 
         setJMenuBar(menuBar);
 
@@ -117,7 +137,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
         );
 
         pack();
@@ -133,7 +153,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         desktopPane.add(fcr);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fcr.getSize();
-        fcr.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fcr.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         fcr.show();
 
     }//GEN-LAST:event_NuevaReservaMenuItemActionPerformed
@@ -145,7 +165,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         desktopPane.add(fcc);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fcc.getSize();
-        fcc.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fcc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         fcc.show();
     }//GEN-LAST:event_NuevoClienteMenuItemActionPerformed
 
@@ -155,7 +175,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         desktopPane.add(fce);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fce.getSize();
-        fce.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         fce.show();
     }//GEN-LAST:event_NuevoEmpleadoMenuItemActionPerformed
 
@@ -201,10 +221,12 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoClienteMenuItem;
     private javax.swing.JMenuItem NuevoEmpleadoMenuItem;
     private javax.swing.JMenuItem SalirMenuItem;
-    private javax.swing.JMenuItem VerReservasMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
