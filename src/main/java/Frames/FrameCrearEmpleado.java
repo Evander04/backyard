@@ -75,6 +75,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setTitle("Agregar Cliente");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hotel_finder_21775.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -86,6 +87,8 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Telefono", "Correo" }));
 
         jButton1.setBackground(new java.awt.Color(187, 187, 187));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         jButton1.setText("Buscar");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,9 +117,11 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jTextAreaDireccionEmpleado.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDireccionEmpleado);
 
-        jLabel10.setText("Direccion:");
+        jLabel10.setText("Dirección:");
 
         jBtnGuardarEmpleado.setBackground(new java.awt.Color(187, 187, 187));
+        jBtnGuardarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         jBtnGuardarEmpleado.setText("Guardar");
         jBtnGuardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +130,8 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         });
 
         jBtnCancelarCreacionEmpleado.setBackground(new java.awt.Color(187, 187, 187));
+        jBtnCancelarCreacionEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnCancelarCreacionEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel.png"))); // NOI18N
         jBtnCancelarCreacionEmpleado.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -221,7 +228,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBtnGuardarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnCancelarCreacionEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -235,8 +242,8 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

@@ -78,8 +78,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevoEmpleadoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/new_add_user_info_16706.png"))); // NOI18N
         NuevoEmpleadoMenuItem.setMnemonic('s');
         NuevoEmpleadoMenuItem.setText("Nuevo Empleado");
+        NuevoEmpleadoMenuItem.setToolTipText("");
         NuevoEmpleadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NuevoEmpleadoMenuItemActionPerformed(evt);
@@ -88,6 +90,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.add(NuevoEmpleadoMenuItem);
 
         NuevoClienteMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevoClienteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         NuevoClienteMenuItem.setMnemonic('a');
         NuevoClienteMenuItem.setText("Nuevo Cliente");
         NuevoClienteMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +101,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.add(NuevoClienteMenuItem);
 
         NuevaHabitacionMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaHabitacionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/ic_hotel_128_28520.png"))); // NOI18N
         NuevaHabitacionMenuItem.setText("Nueva Habitación");
         NuevaHabitacionMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +112,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.add(jSeparator1);
 
         NuevoExtraMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevoExtraMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/1486485588-add-create-new-math-sign-cross-plus_81186.png"))); // NOI18N
         NuevoExtraMenuItem.setText("Nuevo Extra");
         NuevoExtraMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +122,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.add(NuevoExtraMenuItem);
 
         NuevaCategoriaMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaCategoriaMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/1486485588-add-create-new-math-sign-cross-plus_81186.png"))); // NOI18N
         NuevaCategoriaMenuItem.setText("Nueva Categoria");
         NuevaCategoriaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +133,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         SalirMenuItem.setBackground(new java.awt.Color(255, 255, 255));
         SalirMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        SalirMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/exit-symbol-1_icon-icons.com_70162.png"))); // NOI18N
         SalirMenuItem.setMnemonic('x');
         SalirMenuItem.setText("Salir");
         SalirMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +151,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         NuevaReservaMenuItem.setBackground(new java.awt.Color(255, 255, 255));
         NuevaReservaMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        NuevaReservaMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/backup_39379.png"))); // NOI18N
         NuevaReservaMenuItem.setMnemonic('o');
         NuevaReservaMenuItem.setText("Reservar");
         NuevaReservaMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +163,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         GenerarReportesMenuItem.setBackground(new java.awt.Color(255, 255, 255));
         GenerarReportesMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        GenerarReportesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/invoice_78456.png"))); // NOI18N
         GenerarReportesMenuItem.setMnemonic('y');
         GenerarReportesMenuItem.setText("Facturar");
         editMenu.add(GenerarReportesMenuItem);
@@ -172,9 +181,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         jMenu2.setText("Configuraciones");
         jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/1492616968-18-google-translate-text-language-translation_83413.png"))); // NOI18N
         jMenuItem1.setText("Idioma");
         jMenu2.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
         jMenuItem2.setText("Usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
