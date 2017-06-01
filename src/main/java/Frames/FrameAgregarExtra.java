@@ -37,7 +37,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jBTAgregar = new javax.swing.JButton();
         jBTCancelar = new javax.swing.JButton();
-        jFTFMonto = new javax.swing.JFormattedTextField();
+        jFTFMonto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -66,13 +66,6 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             }
         });
 
-        jFTFMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
-        jFTFMonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFTFMontoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -86,11 +79,11 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                     .addComponent(jFTFMonto))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jBTAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(jBTCancelar)
                 .addGap(60, 60, 60))
         );
@@ -101,11 +94,11 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jFTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBTAgregar)
                     .addComponent(jBTCancelar))
@@ -120,7 +113,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "NOMBRE", "NACIONALIDAD", "FECHA DE RESERVA", "FECHA DE REGISTRO"
+                "NOMBRE", "NACIONALIDAD", "RESERVA", "FECHA DE REGISTRO"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -158,7 +151,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,8 +168,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS", "ATENCION",JOptionPane.ERROR_MESSAGE);
         }else {
         Extras ex = new Extras();
-        NewExtras nex = new NewExtras();
-        ex.setIdExtras(1);
+        NewExtras nex = new NewExtras();        
         //ex.setReservation(reservation);
         ex.setDescription(this.jTextFDescripcion.toString());
         ex.setRode(Long.parseLong(this.jFTFMonto.toString()));
@@ -185,10 +177,6 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, "SE GUARDO CORECTEAMENTE", "EN HORA BUENA", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBTAgregarActionPerformed
-
-    private void jFTFMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFTFMontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFTFMontoActionPerformed
 
  public boolean validaNull(){
      boolean val = false;
@@ -207,7 +195,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBTAgregar;
     private javax.swing.JButton jBTCancelar;
-    private javax.swing.JFormattedTextField jFTFMonto;
+    private javax.swing.JTextField jFTFMonto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

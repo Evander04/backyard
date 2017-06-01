@@ -8,6 +8,9 @@ import Controllers.NewCategory;
 import Controllers.NewRoom;
 import Pojo.Category;
 import Pojo.Room;
+import java.util.HashMap;
+import java.util.Map;
+import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.JOptionPane;
 /**
  *
@@ -15,15 +18,24 @@ import javax.swing.JOptionPane;
  */
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
 
+    Map<String,String> mapCategory= new HashMap<>();
     /**
      * Creates new form FrameAgregarHabitacion
      */
     public FrameAgregarHabitacion() {
         initComponents();
-        NewCategory nc= new NewCategory();
-        for (Category c : nc.findAll()) {
-           this.jCBCategoria.addItem(c.getCategoryType().toString());
-        }
+//        NewCategory nc= new NewCategory();
+//        for (Category c : nc.findAll()) {
+//             this.jCBCategoria.addItem(mapCategory.get(String.valueOf(c.getCategoryType())));
+//        }
+    }
+    public void mapa(){
+    mapCategory.put("0","A");
+    mapCategory.put("1","B");
+    mapCategory.put("2","C");
+    mapCategory.put("3","D");
+    mapCategory.put("4","E");
+    mapCategory.put("5","F");
     }
 
     /**
@@ -100,6 +112,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jLCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLCategoria.setText("Categoria:");
 
+        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", " " }));
         jCBCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBCategoriaActionPerformed(evt);
@@ -214,7 +227,9 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         }else{
         NewRoom nr = new NewRoom();
         Room ro = new Room();
- //     ro.setCategory(category);
+        Category c= new Category();
+        c.setIdCategory(6);
+        ro.setCategory(c);
         ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
         ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
         ro.setStatusRoom(0);
