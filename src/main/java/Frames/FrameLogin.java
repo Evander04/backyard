@@ -150,7 +150,7 @@ public class FrameLogin extends javax.swing.JFrame {
                 pb.show();                
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Atención", "Credenciales incorrectas", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Atención", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

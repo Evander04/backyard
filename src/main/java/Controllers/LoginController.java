@@ -28,7 +28,7 @@ public class LoginController {
         Boolean val= false;
         try{
         Users u = findUserLogin(user);
-        if (u != null) {
+        if (u.getUserName()!= null) {
             if (u.getPass().equals(hash.Sha512(password))) {
                 val= true;
             } else {
