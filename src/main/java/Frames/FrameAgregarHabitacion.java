@@ -54,7 +54,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Crear Habitacion");
         setToolTipText("");
-        setFrameIcon(new javax.swing.ImageIcon("C:\\Users\\Steven\\Documents\\ProyectoBD\\Nueva carpeta\\backyard\\iconos\\hotel_finder_21775.png")); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,7 +77,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextADescripcion);
 
         jBTGuardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save.png"))); // NOI18N
+        jBTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save.png"))); // NOI18N
         jBTGuardar.setText("Guardar");
         jBTGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +86,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         });
 
         jBTCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBTCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel.png"))); // NOI18N
+        jBTCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jBTCancelar.setText("Cancelar");
         jBTCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

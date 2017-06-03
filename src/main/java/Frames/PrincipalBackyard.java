@@ -73,6 +73,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
         fileMenu.setBackground(new java.awt.Color(255, 255, 255));
+        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/new-file_40454.png"))); // NOI18N
         fileMenu.setMnemonic('f');
         fileMenu.setText("Nuevo");
         fileMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
@@ -145,6 +146,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
+        editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/business_ordering_pencil_table_2333.png"))); // NOI18N
         editMenu.setMnemonic('e');
         editMenu.setText("Operaciones");
         editMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
@@ -170,14 +172,17 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         menuBar.add(editMenu);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/graph-5_icon-icons.com_58023.png"))); // NOI18N
         jMenu1.setText("Central Estadística");
         jMenu1.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         menuBar.add(jMenu1);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/trade_report_reports_documents_2351.png"))); // NOI18N
         jMenu3.setText("Reportes");
         jMenu3.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         menuBar.add(jMenu3);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/settingtool1_80793.png"))); // NOI18N
         jMenu2.setText("Configuraciones");
         jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 

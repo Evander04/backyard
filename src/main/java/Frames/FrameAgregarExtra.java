@@ -43,7 +43,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Agregar Extra");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hotel_finder_21775.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -53,7 +53,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Monto:");
 
-        jBTAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
+        jBTAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jBTAgregar.setText("Agregar");
         jBTAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,7 +61,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             }
         });
 
-        jBTCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel.png"))); // NOI18N
+        jBTCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jBTCancelar.setText("Cancelar");
         jBTCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

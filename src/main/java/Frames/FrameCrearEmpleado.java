@@ -75,7 +75,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setTitle("Agregar Cliente");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hotel_finder_21775.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -88,7 +88,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(187, 187, 187));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/search.png"))); // NOI18N
         jButton1.setText("Buscar");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,7 +121,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         jBtnGuardarEmpleado.setBackground(new java.awt.Color(187, 187, 187));
         jBtnGuardarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
+        jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save.png"))); // NOI18N
         jBtnGuardarEmpleado.setText("Guardar");
         jBtnGuardarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +131,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         jBtnCancelarCreacionEmpleado.setBackground(new java.awt.Color(187, 187, 187));
         jBtnCancelarCreacionEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnCancelarCreacionEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancel.png"))); // NOI18N
+        jBtnCancelarCreacionEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jBtnCancelarCreacionEmpleado.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

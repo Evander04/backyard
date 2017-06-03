@@ -5,7 +5,7 @@
     <Property name="closable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Agregar Extra"/>
     <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-      <Image iconType="3" name="/icon/hotel_finder_21775.png"/>
+      <Image iconType="3" name="/icon32x32/hotel_finder_21775.png"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -146,7 +146,7 @@
             <Component class="javax.swing.JButton" name="jBTAgregar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/add.png"/>
+                  <Image iconType="3" name="/icon32x32/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
@@ -157,7 +157,7 @@
             <Component class="javax.swing.JButton" name="jBTCancelar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/cancel.png"/>
+                  <Image iconType="3" name="/icon32x32/cancel.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>

@@ -55,7 +55,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         button = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
 
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hotel_finder_21775.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel_finder_21775.png"))); // NOI18N
 
         jLabel1.setText("Usuario:");
 
@@ -64,7 +64,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         jLabel3.setText("Trabajador: ");
 
         button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
+        button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         button.setText("Crear");
         button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,10 +99,10 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                         .addComponent(jCheckBox1))
                     .addComponent(textTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(192, 192, 192)
                 .addComponent(button)
-                .addGap(208, 208, 208))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
