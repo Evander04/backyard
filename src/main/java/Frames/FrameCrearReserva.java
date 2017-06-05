@@ -76,9 +76,11 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jBtnGuardarReserva = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("RESERVACION");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
         jTableMostrarClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +103,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableMostrarClientes);
 
+        jBtnCrearCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnCrearCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         jBtnCrearCliente.setText("Agregar Cliente");
         jBtnCrearCliente.setToolTipText("");
 
@@ -130,6 +134,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Identificacion" }));
 
+        jBtnBuscarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/search.png"))); // NOI18N
         jBtnBuscarCliente.setText("Buscar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -172,7 +178,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(291, 291, 291)
+                .addGap(261, 261, 261)
                 .addComponent(jBtnCrearCliente)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -429,7 +435,13 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
+        jBtnGuardarReserva.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnGuardarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save.png"))); // NOI18N
         jBtnGuardarReserva.setText("Guardar");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/calendar.png"))); // NOI18N
+        jLabel2.setText("Calendario");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -445,15 +457,20 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jBtnGuardarReserva)
-                        .addContainerGap(102, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBtnGuardarReserva)
+                .addGap(73, 73, 73))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,13 +479,15 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(156, 156, 156)
-                        .addComponent(jBtnGuardarReserva))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(11, 11, 11)
+                .addComponent(jBtnGuardarReserva)
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -522,6 +541,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
