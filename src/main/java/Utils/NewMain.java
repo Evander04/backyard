@@ -49,11 +49,11 @@ public class NewMain {
             e.setEmail("rojasevander@gmail.com");
             e.setTypeEmployee(2);
             e.setErasedStatus(true);
-            //ne.save(e,0);
+            ne.save(e,0);
             u.setUserName("JEMR");
             u.setPass(h.Sha512("hash"));
             u.setEmployee(e);
-            //nu.save(u, 0);
+            nu.save(u, 0);
             c.setIdCategory(1);
             c.setCategoryType(1);
             c.setDescription("con olor a culo");

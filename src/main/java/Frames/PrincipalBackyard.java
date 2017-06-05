@@ -5,8 +5,14 @@
  */
 package Frames;
 
+import Pojo.Config;
 import Pojo.Employee;
+import Utils.ConfigFile;
+import Utils.Language;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,23 +22,33 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     FrameLogin l = new FrameLogin();
     Employee employee;
+
     /**
      * Creates new form NewMDIApplication
      */
     public PrincipalBackyard(Employee e) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        this.setResizable(false);  
-        this.employee=e;
-//        this.textuser.setText(e.getFirstName());
-    }
-    public PrincipalBackyard(){
-        initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
+        this.employee = e;
     }
 
-    
+    public PrincipalBackyard() {
+        initComponents();
+        setLanguage();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setResizable(false);
+
+    }
+
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+            this.fileMenu.setText(l.getNuevo());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,6 +189,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         jMenuItem1.setText("Idioma");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Usuario");
@@ -275,6 +296,21 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fac.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         fac.show();
     }//GEN-LAST:event_NuevaCategoriaMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ConfigFile cf = new ConfigFile();
+        try {
+            if (cf.findByID(1).getLanguage()==0) {
+                 cf.update(new Config(1, 1));
+            }
+            else{
+                 cf.update(new Config(1, 0));
+            }
+            setLanguage();
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -51,8 +51,7 @@ public class LoginController {
                u.setUserName(users.getUserName());
                u.setPass(users.getPass());
            }
-       });
-              
+       });              
        return u;
     }    
     

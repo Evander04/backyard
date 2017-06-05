@@ -54,7 +54,7 @@ public class ConfigFile {
     }
 
     public void update(Config t) throws IOException {
-        open();
+         open();
         raf.seek(0);
         int n = raf.readInt();
         if (n <= 0) {
@@ -64,8 +64,7 @@ public class ConfigFile {
             long pos = 4 + i * SIZE;
             raf.seek(pos);
             int id_temp = raf.readInt();
-            if (t.getIdConfig() == id_temp) {
-                raf.writeInt(t.getIdConfig());
+            if (t.getIdConfig()== id_temp) {
                 raf.writeInt(t.getLanguage());
                 close();
                 break;

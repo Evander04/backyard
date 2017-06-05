@@ -19,15 +19,19 @@ import javax.swing.JOptionPane;
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
 
     Map<String,String> mapCategory= new HashMap<>();
+    Map<String,String> mapCategoryInverter= new HashMap<>();
     /**
      * Creates new form FrameAgregarHabitacion
      */
     public FrameAgregarHabitacion() {
         initComponents();
-//        NewCategory nc= new NewCategory();
-//        for (Category c : nc.findAll()) {
-//             this.jCBCategoria.addItem(mapCategory.get(String.valueOf(c.getCategoryType())));
-//        }
+        mapa();
+        mapInverter();
+        NewCategory nc= new NewCategory();
+        for (Category c : nc.findAll()) {
+             this.jCBCategoria.addItem(mapCategory.get(String.valueOf(c.getCategoryType())));
+        }
+        
     }
     public void mapa(){
     mapCategory.put("0","A");
@@ -37,7 +41,14 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     mapCategory.put("4","E");
     mapCategory.put("5","F");
     }
-
+    public void mapInverter(){
+    mapCategoryInverter.put("A","0");
+    mapCategoryInverter.put("B","1");
+    mapCategoryInverter.put("C","2");
+    mapCategoryInverter.put("D","3");
+    mapCategoryInverter.put("E","4");
+    mapCategoryInverter.put("F","5");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,7 +123,6 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jLCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLCategoria.setText("Categoria:");
 
-        jCBCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", " " }));
         jCBCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBCategoriaActionPerformed(evt);
@@ -226,9 +236,9 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS","ATENCION", JOptionPane.ERROR_MESSAGE);
         }else{
         NewRoom nr = new NewRoom();
+        NewCategory nc= new NewCategory();
         Room ro = new Room();
-        Category c= new Category();
-        c.setIdCategory(6);
+        Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
         ro.setCategory(c);
         ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
         ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));

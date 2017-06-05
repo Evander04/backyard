@@ -21,49 +21,71 @@ public class Language {
         this.config = cf.findByID(1).getLanguage();
     }
 
-    public String getTitulo() {
+  
+    public String getNuevo() {
         switch (config) {
             case 0:
-                var = "Titulo en español";
+                var = "Nuevo";
                 break;
             case 1:
-                var = "English Title";
+                var = "New";
                 break;
         }
         return var;
     }
     
-    public String getName(){
-        switch (config){
+    public String getNuevoEmpleado() {
+        switch (config) {
             case 0:
-                var = "Nombre:";
+                var = "Nuevo Empleado";
                 break;
             case 1:
-                var = "Name:";
+                var = "New Employee";
+                break;
+        }
+        return var;
+    }
+    public String getNuevoCliente() {
+        switch (config) {
+            case 0:
+                var = "Nuevo Cliente";
+                break;
+            case 1:
+                var = "New Client";
+                break;
+        }
+        return var;
+    }
+    public String getNuevaHabitacion() {
+        switch (config) {
+            case 0:
+                var = "Nueva Habitación";
+                break;
+            case 1:
+                var = "New Room";
                 break;
         }
         return var;
     }
     
-    public String getLastname(){
-        switch(config){
-        case 0:
-            var = "Apellido:";
-            break;
-        case 1:
-            var = "Lastname";
-            break;
+    public String getNuevaCategoria() {
+        switch (config) {
+            case 0:
+                var = "Nueva Categoría";
+                break;
+            case 1:
+                var = "New Category";
+                break;
         }
         return var;
     }
-
-    public String getMensaje() {
+    public String getExtra() {
         switch (config) {
             case 0:
-                var = "Buñuelo sin queso";
+                var = "Nuevo Extra";
                 break;
             case 1:
-                var = "Buñueleishon with out cheese";
+                var = "New Extra";
                 break;
         }
         return var;

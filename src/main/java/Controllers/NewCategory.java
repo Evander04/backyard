@@ -59,5 +59,17 @@ public class NewCategory {
         return list;
     }
     
+    public Category findByCategoryType(int categoryType){        
+        Category c= new Category();
+        findAll().forEach(category->{
+            if (category.getCategoryType()==categoryType) {
+               c.setIdCategory(category.getIdCategory());
+               c.setCategoryType(category.getCategoryType());
+               c.setDescription(category.getDescription());
+               c.setErasedStatus(category.getErasedStatus());
+            }
+        });        
+        return c;
+    }
     /*================CRUD====================*/
 }
