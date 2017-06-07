@@ -8,8 +8,11 @@ package Frames;
 import Controllers.NewEmployee;
 import Pojo.Clients;
 import Pojo.Employee;
+import Utils.Language;
 import java.awt.Component;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,9 +31,17 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
      */
     public FrameCrearEmpleado() {
         initComponents();
+        setLenguage();
         e = new Employee();
     }
-
+    public void setLenguage(){
+         try {
+            Language l = new Language();
+            this.jBtnGuardarEmpleado.setText(l.getBotonGuardar());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -79,10 +79,10 @@ public class Language {
         }
         return var;
     }
-    public String getExtra() {
+   public String getNuevaExtra() {
         switch (config) {
             case 0:
-                var = "Nuevo Extra";
+                var = "Nueva Extra";
                 break;
             case 1:
                 var = "New Extra";
@@ -90,6 +90,18 @@ public class Language {
         }
         return var;
     }
+   public String getBotonGuardar() {
+        switch (config) {
+            case 0:
+                var = "Guardar";
+                break;
+            case 1:
+                var = "Save";
+                break;
+        }
+        return var;
+    }
+    
 //prueba
     
 }

@@ -45,6 +45,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         try {
             Language l = new Language();
             this.fileMenu.setText(l.getNuevo());
+            this.NuevoEmpleadoMenuItem.setText(l.getNuevoEmpleado());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
