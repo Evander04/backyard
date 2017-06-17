@@ -5,6 +5,7 @@
  */
 package Frames;
 
+import Controllers.LoginController;
 import Controllers.NewEmployee;
 import Controllers.NewUsers;
 import Pojo.Employee;
@@ -23,14 +24,15 @@ import javax.swing.JOptionPane;
  */
 public class FrameUsuario extends javax.swing.JInternalFrame {
     
-    NewEmployee newEmployee= new NewEmployee();    
+    NewEmployee newEmployee= new NewEmployee();
+    NewUsers newUsers= new NewUsers();
     /**
      * Creates new form FrameUsuario
      */
     public FrameUsuario() {
         initComponents();
         for (Employee em : newEmployee.findAll()) {
-            String name= em.getFirstName()+" "+em.getSurname()+" "+em.getSecondSurname();
+            String name= em.getFirstName()+" "+em.getDocIdentity();
             this.textTrabajador.addItem(name);
         }
     }
@@ -62,6 +64,12 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         jLabel2.setText("Contraseña: ");
 
         jLabel3.setText("Trabajador: ");
+
+        textTrabajador.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                textTrabajadorItemStateChanged(evt);
+            }
+        });
 
         button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
@@ -162,7 +170,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         } else {
 
             this.TextPass.setEchoChar('*');
-        }
+        }       
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
@@ -174,8 +182,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                 NewUsers nu= new NewUsers();
                 Users u= new Users();
                 Hash h= new Hash();
-                Employee e= new Employee();
-                e.setIdEmployee(2);
+                Employee e=newEmployee.findEmployeeByDoc(docIdentity());
                 u.setEmployee(e);
                 u.setUserName(this.textUser.getText());
                 u.setPass(h.Sha512(this.TextPass.getText()));
@@ -189,6 +196,24 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonActionPerformed
 
+    private void textTrabajadorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_textTrabajadorItemStateChanged
+            setUser();
+    }//GEN-LAST:event_textTrabajadorItemStateChanged
+    public void setUser(){
+        Employee e= newEmployee.findEmployeeByDoc(docIdentity());
+        String user= e.getFirstName().substring(0,1)+e.getSurname();         
+        for (Users users : newUsers.findAll()) {
+            if (users.getUserName().equals(user)) {
+                user=user+String.valueOf(user.length());
+            }
+        }
+        this.textUser.setText(user);
+    }
+    public String docIdentity(){
+        String text= this.textTrabajador.getSelectedItem().toString();
+        String doc=text.substring(text.length()-16, text.length());
+        return doc;
+    }
     public Boolean validateNull(){
         boolean valor=false;
         if (this.textUser.getText().equals("")) {

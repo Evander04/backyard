@@ -70,6 +70,27 @@ public class NewEmployee {
                 + "where u.userName='%s'", user)).addEntity(Employee.class).list().iterator().next();
         conect.close();
         return e;
+    }    
+    public Employee findEmployeeByDoc(String docIdentity){
+        conect.open();
+        Employee e= new Employee();
+        findAll().forEach(emp->{
+            if (emp.getDocIdentity().equals(docIdentity)) {
+                e.setIdEmployee(emp.getIdEmployee());
+                e.setFirstName(emp.getFirstName());
+                e.setSecondName(emp.getSecondName());
+                e.setSurname(emp.getSurname());
+                e.setSecondSurname(emp.getSecondSurname());
+                e.setDocIdentity(emp.getDocIdentity());
+                e.setPhone(emp.getPhone());
+                e.setAddress(emp.getAddress());
+                e.setSalary(emp.getSalary());
+                e.setEmail(emp.getEmail());
+                e.setTypeEmployee(emp.getTypeEmployee());
+                e.setErasedStatus(emp.getErasedStatus());
+            }
+        });
+        return e;
     }
     /*================Controller==============*/
 
