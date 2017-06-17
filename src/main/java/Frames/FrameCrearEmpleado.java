@@ -37,7 +37,21 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     public void setLenguage(){
          try {
             Language l = new Language();
+            FrameCrearEmpleado.this.setTitle(l.getFrameCrearEmpleadoTitulo());
+            this.jlabelTipodeBusqueda.setText(l.getLabelTipodeBusqueda());
+            this.jLabelPrimerNombre.setText(l.getLabelPrimerNombre());
+            this.jLabelSegundoNombre.setText(l.getLabelSegundoNombre());
+            this.jLabelPrimerApellido.setText(l.getLabelPrimerApellido());
+            this.jLabelSegundoApellido.setText(l.getLabelSegundoApellido());
+            this.jLabelIdentificacion.setText(l.getLabelIdentificacion());
+            this.jLabelTelefono.setText(l.getLabelTelefono());
+            this.jLabelSalario.setText(l.getLabelSalario());
+            this.jLabelCorreo.setText(l.getLabelCorreo());
+            this.jLabelTipo.setText(l.getLabelTipo());
+            this.jLabelDireccion.setText(l.getLabelDireccion());
             this.jBtnGuardarEmpleado.setText(l.getBotonGuardar());
+            this.jBtnCancelarCreacionEmpleado.setText(l.getBotonCancelar());
+            this.jBtnBuscar.setText(l.getBotonBuscar());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,32 +68,32 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlabelTipodeBusqueda = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBtnBuscar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelPrimerNombre = new javax.swing.JLabel();
         jTextPrimerNombreEmpleado = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelSegundoNombre = new javax.swing.JLabel();
         jTextSegundoNombreEmpleado = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelPrimerApellido = new javax.swing.JLabel();
         jTextPrimerApellidoEmpleado = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelSegundoApellido = new javax.swing.JLabel();
         jTextSegundoApellidoEmpleado = new javax.swing.JTextField();
         jTextCedulaEmpleado = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabelIdentificacion = new javax.swing.JLabel();
+        jLabelTelefono = new javax.swing.JLabel();
+        jLabelSalario = new javax.swing.JLabel();
         jTextSalarioEmpleado = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jLabelCorreo = new javax.swing.JLabel();
         jTextCorreoEmpleado = new javax.swing.JTextField();
         textTelefono = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jLabelTipo = new javax.swing.JLabel();
         jCBTipoEmpleado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDireccionEmpleado = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
+        jLabelDireccion = new javax.swing.JLabel();
         jBtnGuardarEmpleado = new javax.swing.JButton();
         jBtnCancelarCreacionEmpleado = new javax.swing.JButton();
 
@@ -92,35 +106,35 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel1.setText("Tipo de Busqueda:");
+        jlabelTipodeBusqueda.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jlabelTipodeBusqueda.setText("Tipo de Busqueda:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Telefono", "Correo" }));
 
-        jButton1.setBackground(new java.awt.Color(187, 187, 187));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/search.png"))); // NOI18N
-        jButton1.setText("Buscar");
+        jBtnBuscar.setBackground(new java.awt.Color(187, 187, 187));
+        jBtnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/search.png"))); // NOI18N
+        jBtnBuscar.setText("Buscar");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Primer Nombre:");
+        jLabelPrimerNombre.setText("Primer Nombre:");
 
-        jLabel3.setText("Segundo Nombre:");
+        jLabelSegundoNombre.setText("Segundo Nombre:");
 
-        jLabel4.setText("Primer Apellido:");
+        jLabelPrimerApellido.setText("Primer Apellido:");
 
-        jLabel5.setText("Segundo Apellido:");
+        jLabelSegundoApellido.setText("Segundo Apellido:");
 
-        jLabel6.setText("Identificación");
+        jLabelIdentificacion.setText("Identificación");
 
-        jLabel7.setText("Telefono:");
+        jLabelTelefono.setText("Telefono:");
 
-        jLabel8.setText("Salario:");
+        jLabelSalario.setText("Salario:");
 
-        jLabel11.setText("Correo:");
+        jLabelCorreo.setText("Correo:");
 
-        jLabel9.setText("Tipo:");
+        jLabelTipo.setText("Tipo:");
 
         jCBTipoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mortal", "Supervisor", "Gerente" }));
 
@@ -128,7 +142,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jTextAreaDireccionEmpleado.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDireccionEmpleado);
 
-        jLabel10.setText("Dirección:");
+        jLabelDireccion.setText("Dirección:");
 
         jBtnGuardarEmpleado.setBackground(new java.awt.Color(187, 187, 187));
         jBtnGuardarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -154,19 +168,19 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabelSegundoNombre)
+                            .addComponent(jLabelPrimerNombre))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextSegundoNombreEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                             .addComponent(jTextPrimerNombreEmpleado)))
-                    .addComponent(jLabel6)
+                    .addComponent(jLabelIdentificacion)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabelSegundoApellido)
+                            .addComponent(jLabelPrimerApellido)
+                            .addComponent(jLabelSalario)
+                            .addComponent(jLabelTelefono))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textTelefono)
@@ -176,14 +190,14 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                             .addComponent(jTextSalarioEmpleado, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabelTipo)
+                            .addComponent(jLabelCorreo))
                         .addGap(83, 83, 83)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextCorreoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCBTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10))
+                    .addComponent(jLabelDireccion))
                 .addGap(0, 377, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
@@ -197,43 +211,43 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelPrimerNombre)
                     .addComponent(jTextPrimerNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabelSegundoNombre)
                     .addComponent(jTextSegundoNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabelPrimerApellido)
                     .addComponent(jTextPrimerApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabelSegundoApellido)
                     .addComponent(jTextSegundoApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(jLabelIdentificacion)
                     .addComponent(jTextCedulaEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(jLabelTelefono)
                     .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabelSalario)
                     .addComponent(jTextSalarioEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
+                    .addComponent(jLabelCorreo)
                     .addComponent(jTextCorreoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(jLabelTipo)
                     .addComponent(jCBTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
+                    .addComponent(jLabelDireccion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,13 +262,13 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
+                .addComponent(jlabelTipodeBusqueda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1)
+                .addComponent(jBtnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -265,10 +279,10 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlabelTipodeBusqueda)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -366,22 +380,21 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnCancelarCreacionEmpleado;
     private javax.swing.JButton jBtnGuardarEmpleado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCBTipoEmpleado;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCorreo;
+    private javax.swing.JLabel jLabelDireccion;
+    private javax.swing.JLabel jLabelIdentificacion;
+    private javax.swing.JLabel jLabelPrimerApellido;
+    private javax.swing.JLabel jLabelPrimerNombre;
+    private javax.swing.JLabel jLabelSalario;
+    private javax.swing.JLabel jLabelSegundoApellido;
+    private javax.swing.JLabel jLabelSegundoNombre;
+    private javax.swing.JLabel jLabelTelefono;
+    private javax.swing.JLabel jLabelTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -395,6 +408,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextSalarioEmpleado;
     private javax.swing.JTextField jTextSegundoApellidoEmpleado;
     private javax.swing.JTextField jTextSegundoNombreEmpleado;
+    private javax.swing.JLabel jlabelTipodeBusqueda;
     private javax.swing.JTextField textTelefono;
     // End of variables declaration//GEN-END:variables
 }

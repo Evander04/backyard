@@ -6,6 +6,10 @@
 package Frames;
 import Pojo.Category;
 import Controllers.NewCategory;
+import Utils.Language;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,8 +22,20 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
      */
     public FrameAgregarCategoria() {
         initComponents();
+        setLanguage();
     }
-
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+         FrameAgregarCategoria.this.setTitle(l.getFrameAgregarCategoria());  
+         this.jLTipo.setText(l.getLabelTipo());
+         this.jLDescripcion.setText(l.getLabelDescripcion());
+         this.jBTGuardar.setText(l.getBotonGuardar());
+         this.jBTCancelar.setText(l.getBotonCancelar());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
