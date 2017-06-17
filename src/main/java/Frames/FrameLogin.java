@@ -11,6 +11,8 @@ import Controllers.NewUsers;
 import Pojo.Employee;
 import Pojo.Users;
 import Utils.Hash;
+import Utils.Language;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +32,7 @@ public class FrameLogin extends javax.swing.JFrame {
     public FrameLogin(){
        // try {
             initComponents();
+            setLanguage();
 //            NewUsers nu= new NewUsers();
 //            Employee e= new Employee();
 //            e.setIdEmployee(3);
@@ -43,6 +46,17 @@ public class FrameLogin extends javax.swing.JFrame {
         //}       
         
     }
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+         this.jLabelUsuario.setText(l.getLabelUsuario());
+         this.jLabelContraseña.setText(l.getLabelContraseña());
+         this.jCBMostrar.setText(l.getCBMostrar());
+         this.jBotonEntrar.setText(l.getBotonEntrar());
+        } catch (IOException ex) {
+            Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,33 +68,33 @@ public class FrameLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
+        jLabelContraseña = new javax.swing.JLabel();
         TextUser = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBotonEntrar = new javax.swing.JButton();
         TextPass = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jCBMostrar = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Usuario: ");
+        jLabelUsuario.setText("Usuario: ");
 
-        jLabel2.setText("Contraseña: ");
+        jLabelContraseña.setText("Contraseña: ");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Login_37128.png"))); // NOI18N
-        jButton1.setText("Entrar");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBotonEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBotonEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Login_37128.png"))); // NOI18N
+        jBotonEntrar.setText("Entrar");
+        jBotonEntrar.setToolTipText("");
+        jBotonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBotonEntrarActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Mostrar");
-        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        jCBMostrar.setText("Mostrar");
+        jCBMostrar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBox1ItemStateChanged(evt);
+                jCBMostrarItemStateChanged(evt);
             }
         });
 
@@ -91,8 +105,8 @@ public class FrameLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabelUsuario)
+                    .addComponent(jLabelContraseña))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -100,8 +114,8 @@ public class FrameLogin extends javax.swing.JFrame {
                             .addComponent(TextUser)
                             .addComponent(TextPass, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCBMostrar))
+                    .addComponent(jBotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,16 +123,16 @@ public class FrameLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelUsuario)
                     .addComponent(TextUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelContraseña)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox1)))
+                        .addComponent(jCBMostrar)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBotonEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -138,7 +152,7 @@ public class FrameLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonEntrarActionPerformed
         if (this.TextUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Digite el usuario", "Atención", JOptionPane.ERROR_MESSAGE);
         } else if (this.TextPass.getText().equals("")) {
@@ -155,16 +169,16 @@ public class FrameLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Atención", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBotonEntrarActionPerformed
 
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+    private void jCBMostrarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMostrarItemStateChanged
         if ((evt.getStateChange() == 1) ? true : false) {
             this.TextPass.setEchoChar((char) 0); //password = JPasswordField
         } else {
 
             this.TextPass.setEchoChar('*');
         }
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+    }//GEN-LAST:event_jCBMostrarItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -205,10 +219,10 @@ public class FrameLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField TextPass;
     private javax.swing.JTextField TextUser;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jBotonEntrar;
+    private javax.swing.JCheckBox jCBMostrar;
+    private javax.swing.JLabel jLabelContraseña;
+    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

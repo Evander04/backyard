@@ -5,6 +5,11 @@
  */
 package Frames;
 
+import Utils.Language;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Obed
@@ -16,8 +21,23 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
      */
     public FrameCrearReserva() {
         initComponents();
+        setLanguage();
     }
-
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+            FrameCrearReserva.this.setTitle(l.getFrameCrearReservaTitulo());
+            this.jBtnAgregarCliente.setText(l.getBotonAgregarCliente());
+            this.jBtnBuscarCliente.setText(l.getBotonBuscar());
+            this.jlabelBuscarCliente.setText(l.getlabelBuscarCliente());
+           this.jLabelCalendario.setText(l.getLabelCalendario());
+           this.jBtnGuardarReserva.setText(l.getBotonGuardar());
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FrameCrearReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +51,11 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMostrarClientes = new javax.swing.JTable();
-        jBtnCrearCliente = new javax.swing.JButton();
+        jBtnAgregarCliente = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlabelBuscarCliente = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jTextBuscarCliente = new javax.swing.JTextField();
         jBtnBuscarCliente = new javax.swing.JButton();
@@ -74,9 +94,9 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         jXMonthView1 = new org.jdesktop.swingx.JXMonthView();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         jPanel7 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel = new javax.swing.JLabel();
         jBtnGuardarReserva = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelCalendario = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("RESERVACION");
@@ -103,10 +123,10 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableMostrarClientes);
 
-        jBtnCrearCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnCrearCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
-        jBtnCrearCliente.setText("Agregar Cliente");
-        jBtnCrearCliente.setToolTipText("");
+        jBtnAgregarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnAgregarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
+        jBtnAgregarCliente.setText("Agregar Cliente");
+        jBtnAgregarCliente.setToolTipText("");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,8 +149,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Buscar Cliente:");
+        jlabelBuscarCliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jlabelBuscarCliente.setText("Buscar Cliente:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Identificacion" }));
 
@@ -144,7 +164,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jlabelBuscarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -158,7 +178,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlabelBuscarCliente)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,7 +199,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(261, 261, 261)
-                .addComponent(jBtnCrearCliente)
+                .addComponent(jBtnAgregarCliente)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,7 +212,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBtnCrearCliente)
+                .addComponent(jBtnAgregarCliente)
                 .addGap(25, 25, 25))
         );
 
@@ -209,7 +229,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,8 +436,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("PUBLICA", jPanel5);
 
-        jLabel13.setFont(new java.awt.Font("The Black Box", 1, 36)); // NOI18N
-        jLabel13.setText("BACKYARD");
+        jLabel.setFont(new java.awt.Font("The Black Box", 1, 36)); // NOI18N
+        jLabel.setText("BACKYARD");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -425,13 +445,13 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13)
+                .addComponent(jLabel)
                 .addGap(19, 19, 19))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel13)
+                .addComponent(jLabel)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -439,9 +459,9 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         jBtnGuardarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save.png"))); // NOI18N
         jBtnGuardarReserva.setText("Guardar");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/calendar.png"))); // NOI18N
-        jLabel2.setText("Calendario");
+        jLabelCalendario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/calendar.png"))); // NOI18N
+        jLabelCalendario.setText("Calendario");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -456,17 +476,19 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                         .addGap(159, 159, 159)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabelCalendario))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(24, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jBtnGuardarReserva)
@@ -479,9 +501,9 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabelCalendario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -524,9 +546,7 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -534,15 +554,14 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnAgregarCliente;
     private javax.swing.JButton jBtnBuscarCliente;
-    private javax.swing.JButton jBtnCrearCliente;
     private javax.swing.JButton jBtnGuardarReserva;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCalendario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -584,5 +603,6 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextBuscarCliente;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXMonthView jXMonthView1;
+    private javax.swing.JLabel jlabelBuscarCliente;
     // End of variables declaration//GEN-END:variables
 }

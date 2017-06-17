@@ -6,6 +6,10 @@
 package Frames;
 import Pojo.Extras;
 import Controllers.NewExtras;
+import Utils.Language;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +23,20 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
      */
     public FrameAgregarExtra() {
         initComponents();
+        setLanguage();
     }
-
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+            FrameAgregarExtra.this.setTitle(l.getFrameAgregarExtraTitulo());
+            this.jLabelMonto.setText(l.getLabelMonto());
+            this.jLabelDescripcion.setText(l.getLabelDescripcion());
+            this.jBTAgregar.setText(l.getBotonAgregar());
+            this.jBTCancelar.setText(l.getBotonCancelar());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,9 +48,9 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelDescripcion = new javax.swing.JLabel();
         jTextFDescripcion = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelMonto = new javax.swing.JLabel();
         jBTAgregar = new javax.swing.JButton();
         jBTCancelar = new javax.swing.JButton();
         jFTFMonto = new javax.swing.JTextField();
@@ -49,9 +65,9 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Descripción:");
+        jLabelDescripcion.setText("Descripción:");
 
-        jLabel2.setText("Monto:");
+        jLabelMonto.setText("Monto:");
 
         jBTAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jBTAgregar.setText("Agregar");
@@ -76,8 +92,8 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabelDescripcion)
+                    .addComponent(jLabelMonto))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
@@ -95,11 +111,11 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelDescripcion)
                     .addComponent(jTextFDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelMonto)
                     .addComponent(jFTFMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,8 +215,8 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBTAgregar;
     private javax.swing.JButton jBTCancelar;
     private javax.swing.JTextField jFTFMonto;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelDescripcion;
+    private javax.swing.JLabel jLabelMonto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

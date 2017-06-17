@@ -8,8 +8,12 @@ import Controllers.NewCategory;
 import Controllers.NewRoom;
 import Pojo.Category;
 import Pojo.Room;
+import Utils.Language;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.JOptionPane;
 /**
@@ -25,6 +29,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
      */
     public FrameAgregarHabitacion() {
         initComponents();
+        setLanguage();
         mapa();
         mapInverter();
         NewCategory nc= new NewCategory();
@@ -32,6 +37,21 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
              this.jCBCategoria.addItem(mapCategory.get(String.valueOf(c.getCategoryType())));
         }
         
+    }
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+            FrameAgregarHabitacion.this.setTitle(l.getFrameAgregarHabitacionTitulo());
+            this.jLCapacidad.setText(l.getLabelCapacidad());
+            this.jLPrecio.setText(l.getLabelPrecio());
+            this.jLDescripcion.setText(l.getLabelDescripcion());
+            this.jLTipo.setText(l.getLabelTipo());
+            this.jLCategoria.setText(l.getLabelCategoria());
+            this.jBTGuardar.setText(l.getBotonGuardar());
+            this.jBTCancelar.setText(l.getBotonCancelar());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void mapa(){
     mapCategory.put("0","A");
@@ -63,7 +83,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jLCapacidad = new javax.swing.JLabel();
         jLPrecio = new javax.swing.JLabel();
         jLDescripcion = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLTipo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextADescripcion = new javax.swing.JTextArea();
         jBTGuardar = new javax.swing.JButton();
@@ -92,8 +112,8 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jLDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLDescripcion.setText("Descripció:");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Tipo:");
+        jLTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLTipo.setText("Tipo:");
 
         jTextADescripcion.setColumns(20);
         jTextADescripcion.setRows(5);
@@ -140,9 +160,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                 .addGap(75, 75, 75)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLCapacidad, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLPrecio, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jLCapacidad)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jFTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,8 +168,9 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLDescripcion)
-                            .addComponent(jLabel1)
-                            .addComponent(jLCategoria))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLTipo)
+                                .addComponent(jLCategoria)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jCBCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,7 +180,8 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                         .addGap(2, 2, 2)
                         .addComponent(jBTGuardar)
                         .addGap(99, 99, 99)
-                        .addComponent(jBTCancelar)))
+                        .addComponent(jBTCancelar))
+                    .addComponent(jLPrecio))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -172,16 +192,16 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                     .addComponent(jLCapacidad)
                     .addComponent(jFTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLPrecio)
-                    .addComponent(jFTFPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFTFPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLPrecio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLDescripcion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLTipo)
                     .addComponent(jCBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -283,7 +303,7 @@ public boolean validaNull(){
     private javax.swing.JLabel jLCategoria;
     private javax.swing.JLabel jLDescripcion;
     private javax.swing.JLabel jLPrecio;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

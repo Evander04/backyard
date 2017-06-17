@@ -44,8 +44,27 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     public void setLanguage() {
         try {
             Language l = new Language();
+            PrincipalBackyard.this.setTitle(l.getPrincipalTitulo());//Titulo del principal
+            //Menu Nuevo
             this.fileMenu.setText(l.getNuevo());
             this.NuevoEmpleadoMenuItem.setText(l.getNuevoEmpleado());
+            this.NuevoClienteMenuItem.setText(l.getNuevoCliente());
+            this.NuevaHabitacionMenuItem.setText(l.getNuevaHabitacion());
+            this.NuevoExtraMenuItem.setText(l.getNuevaExtra());
+            this.NuevaCategoriaMenuItem.setText(l.getNuevaCategoria());
+            this.SalirMenuItem.setText(l.getSalida());
+            //Menu Opeciones
+            this.editMenu.setText(l.getOperaciones());
+            this.NuevaReservaMenuItem.setText(l.getNuevaReserva());
+            this.GenerarReportesMenuItem.setText(l.getNuevaFactura());
+            //Menu Central Estadistica
+            this.jCentralEstadistica.setText(l.getCentralEstadistica());
+            //Menu Reportes
+            this.jReport.setText(l.getReporte());
+            //Menu Configuraciones
+            this.jConfiguraciones.setText(l.getConfiguracion());
+            this.jCanbiarIdioma.setText(l.getCambiarIdioma());
+            this.jUsuario.setText(l.getCambioUsuario());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,11 +92,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         editMenu = new javax.swing.JMenu();
         NuevaReservaMenuItem = new javax.swing.JMenuItem();
         GenerarReportesMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jCentralEstadistica = new javax.swing.JMenu();
+        jReport = new javax.swing.JMenu();
+        jConfiguraciones = new javax.swing.JMenu();
+        jCanbiarIdioma = new javax.swing.JMenuItem();
+        jUsuario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
@@ -189,39 +208,39 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         menuBar.add(editMenu);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/graph-5_icon-icons.com_58023.png"))); // NOI18N
-        jMenu1.setText("Central Estadística");
-        jMenu1.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        menuBar.add(jMenu1);
+        jCentralEstadistica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/graph-5_icon-icons.com_58023.png"))); // NOI18N
+        jCentralEstadistica.setText("Central Estadística");
+        jCentralEstadistica.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(jCentralEstadistica);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/trade_report_reports_documents_2351.png"))); // NOI18N
-        jMenu3.setText("Reportes");
-        jMenu3.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        menuBar.add(jMenu3);
+        jReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/trade_report_reports_documents_2351.png"))); // NOI18N
+        jReport.setText("Reportes");
+        jReport.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(jReport);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/settingtool1_80793.png"))); // NOI18N
-        jMenu2.setText("Configuraciones");
-        jMenu2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        jConfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/settingtool1_80793.png"))); // NOI18N
+        jConfiguraciones.setText("Configuraciones");
+        jConfiguraciones.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/1492616968-18-google-translate-text-language-translation_83413.png"))); // NOI18N
-        jMenuItem1.setText("Idioma");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jCanbiarIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/1492616968-18-google-translate-text-language-translation_83413.png"))); // NOI18N
+        jCanbiarIdioma.setText("Idioma");
+        jCanbiarIdioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jCanbiarIdiomaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jConfiguraciones.add(jCanbiarIdioma);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
-        jMenuItem2.setText("Usuario");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
+        jUsuario.setText("Usuario");
+        jUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jUsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jConfiguraciones.add(jUsuario);
 
-        menuBar.add(jMenu2);
+        menuBar.add(jConfiguraciones);
 
         setJMenuBar(menuBar);
 
@@ -275,14 +294,14 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fce.show();
     }//GEN-LAST:event_NuevoEmpleadoMenuItemActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
         FrameUsuario fce = new FrameUsuario();
         desktopPane.add(fce);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fce.getSize();
         fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         fce.show();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jUsuarioActionPerformed
 
     private void NuevaHabitacionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaHabitacionMenuItemActionPerformed
         // TODO add your handling code here:
@@ -314,7 +333,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fac.show();
     }//GEN-LAST:event_NuevaCategoriaMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jCanbiarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCanbiarIdiomaActionPerformed
         ConfigFile cf = new ConfigFile();
         try {
             if (cf.findByID(1).getLanguage()==0) {
@@ -327,7 +346,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jCanbiarIdiomaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,12 +396,12 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jCanbiarIdioma;
+    private javax.swing.JMenu jCentralEstadistica;
+    private javax.swing.JMenu jConfiguraciones;
+    private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem jUsuario;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

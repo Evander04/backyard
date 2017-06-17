@@ -11,7 +11,9 @@ import Controllers.NewUsers;
 import Pojo.Employee;
 import Pojo.Users;
 import Utils.Hash;
+import Utils.Language;
 import java.awt.JobAttributes;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +33,25 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
      */
     public FrameUsuario() {
         initComponents();
+        setLanguage();
         for (Employee em : newEmployee.findAll()) {
             String name= em.getFirstName()+" "+em.getDocIdentity();
             this.textTrabajador.addItem(name);
         }
     }
-
+    public void setLanguage() {
+        try {
+            Language l = new Language();
+            FrameUsuario.this.setTitle(l.getFrameUsuarioTitulo());//Titulo frameuser     
+            this.jLabelUsuario.setText(l.getLabelUsuario());
+            this.jlabelContraseña.setText(l.getLabelContraseña());
+            this.jlabeltrabajador.setText(l.getlabelTrabajador());
+            this.buttonCreate.setText(l.getBotonCrear());
+            this.jCBMostra.setText(l.getCBMostrar());
+        } catch (IOException ex) {
+            Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,22 +63,23 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
         textUser = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jlabelContraseña = new javax.swing.JLabel();
         TextPass = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        jlabeltrabajador = new javax.swing.JLabel();
         textTrabajador = new javax.swing.JComboBox<>();
-        button = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        buttonCreate = new javax.swing.JButton();
+        jCBMostra = new javax.swing.JCheckBox();
 
+        setTitle("USUARIO");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel_finder_21775.png"))); // NOI18N
 
-        jLabel1.setText("Usuario:");
+        jLabelUsuario.setText("Usuario:");
 
-        jLabel2.setText("Contraseña: ");
+        jlabelContraseña.setText("Contraseña: ");
 
-        jLabel3.setText("Trabajador: ");
+        jlabeltrabajador.setText("Trabajador: ");
 
         textTrabajador.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -76,14 +92,14 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         button.setText("Crear");
         button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonActionPerformed(evt);
+                buttonCreateActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText("Mostrar");
-        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        jCBMostra.setText("Mostrar");
+        jCBMostra.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBox1ItemStateChanged(evt);
+                jCBMostraItemStateChanged(evt);
             }
         });
 
@@ -94,9 +110,9 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelUsuario)
+                    .addComponent(jlabelContraseña)
+                    .addComponent(jlabeltrabajador))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -104,12 +120,12 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                             .addComponent(textUser, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                             .addComponent(TextPass))
                         .addGap(8, 8, 8)
-                        .addComponent(jCheckBox1))
+                        .addComponent(jCBMostra))
                     .addComponent(textTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(192, 192, 192)
-                .addComponent(button)
+                .addComponent(buttonCreate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -117,19 +133,19 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabelUsuario)
                     .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jlabelContraseña)
                     .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCBMostra))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jlabeltrabajador)
                     .addComponent(textTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(button)
+                .addComponent(buttonCreate)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -164,7 +180,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+    private void jCBMostraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMostraItemStateChanged
         if ((evt.getStateChange() == 1) ? true : false) {
             this.TextPass.setEchoChar((char) 0); //password = JPasswordField
         } else {
@@ -173,7 +189,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         }       
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
 
-    private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
+    private void buttonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateActionPerformed
         if (validateNull()) {
             JOptionPane.showMessageDialog(null,"digite todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -194,7 +210,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             }
             
         }
-    }//GEN-LAST:event_buttonActionPerformed
+    }//GEN-LAST:event_buttonCreateActionPerformed
 
     private void textTrabajadorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_textTrabajadorItemStateChanged
             setUser();
@@ -231,13 +247,13 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField TextPass;
-    private javax.swing.JButton button;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton buttonCreate;
+    private javax.swing.JCheckBox jCBMostra;
+    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jlabelContraseña;
+    private javax.swing.JLabel jlabeltrabajador;
     private javax.swing.JComboBox<String> textTrabajador;
     private javax.swing.JTextField textUser;
     // End of variables declaration//GEN-END:variables
