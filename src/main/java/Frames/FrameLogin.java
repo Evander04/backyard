@@ -25,34 +25,25 @@ import javax.swing.JOptionPane;
 public class FrameLogin extends javax.swing.JFrame {
 
     LoginController logController = new LoginController();
-    Hash h= new Hash();
+    NewUsers newUser = new NewUsers();
+    Hash h = new Hash();
+
     /**
      * Creates new form NewJFrame
      */
-    public FrameLogin(){
-       // try {
-            initComponents();
-            setLanguage();
-//            NewUsers nu= new NewUsers();
-//            Employee e= new Employee();
-//            e.setIdEmployee(3);
-//            Users u= new Users();
-//            u.setEmployee(e);
-//            u.setUserName("admin");
-//            u.setPass(h.Sha512("admin"));
-//            nu.save(u,0);
-       // } catch (NoSuchAlgorithmException ex) {
-         //   Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
-        //}       
-        
+    public FrameLogin() {
+        initComponents();
+        setLanguage();
+        this.setResizable(false);
     }
+
     public void setLanguage() {
         try {
             Language l = new Language();
-         this.jLabelUsuario.setText(l.getLabelUsuario());
-         this.jLabelContraseña.setText(l.getLabelContraseña());
-         this.jCBMostrar.setText(l.getCBMostrar());
-         this.jBotonEntrar.setText(l.getBotonEntrar());
+            this.jLabelUsuario.setText(l.getLabelUsuario());
+            this.jLabelContraseña.setText(l.getLabelContraseña());
+            this.jCBMostrar.setText(l.getCBMostrar());
+            this.jBotonEntrar.setText(l.getBotonEntrar());
         } catch (IOException ex) {
             Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,10 +68,14 @@ public class FrameLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabelUsuario.setText("Usuario: ");
 
         jLabelContraseña.setText("Contraseña: ");
 
+        jBotonEntrar.setBackground(new java.awt.Color(255, 255, 255));
         jBotonEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBotonEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Login_37128.png"))); // NOI18N
         jBotonEntrar.setText("Entrar");
@@ -158,12 +153,10 @@ public class FrameLogin extends javax.swing.JFrame {
         } else if (this.TextPass.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Digite la contraseña", "Atención", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {                
-//                NewEmployee ne= new NewEmployee();
-//                Employee e=ne.findEmployeeByUser(this.TextUser.getText());
-//                System.out.println(e.getFirstName());
+            if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
+                
                 PrincipalBackyard pb = new PrincipalBackyard();
-                pb.show();                
+                pb.show();
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Atención", JOptionPane.ERROR_MESSAGE);

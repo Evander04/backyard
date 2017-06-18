@@ -25,20 +25,35 @@ import javax.swing.JOptionPane;
  * @author Evander R
  */
 public class FrameUsuario extends javax.swing.JInternalFrame {
-    
-    NewEmployee newEmployee= new NewEmployee();
-    NewUsers newUsers= new NewUsers();
+
+    NewEmployee newEmployee = new NewEmployee();
+    NewUsers newUsers = new NewUsers();
+    boolean noExist = true;
+    Users userRecieve = new Users();
+    int origin = 0;
+
     /**
      * Creates new form FrameUsuario
      */
     public FrameUsuario() {
         initComponents();
         setLanguage();
-        for (Employee em : newEmployee.findAll()) {
-            String name= em.getFirstName()+" "+em.getDocIdentity();
-            this.textTrabajador.addItem(name);
-        }
+        loadData();
+        origin=0;
     }
+
+    public FrameUsuario(Users u) {
+        this.userRecieve = u;
+        initComponents();
+        setLanguage();
+        loadData();
+        this.jPanel2.remove(this.jlabeltrabajador);
+        this.jPanel2.remove(this.textTrabajador);
+        this.textUser.setText(userRecieve.getUserName());
+        this.button.setText("Actualizar");
+        this.button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+    }
+
     public void setLanguage() {
         try {
             Language l = new Language();
@@ -46,12 +61,14 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             this.jLabelUsuario.setText(l.getLabelUsuario());
             this.jlabelContraseña.setText(l.getLabelContraseña());
             this.jlabeltrabajador.setText(l.getlabelTrabajador());
-            this.buttonCreate.setText(l.getBotonCrear());
+            this.button.setText(l.getBotonCrear());
             this.jCBMostra.setText(l.getCBMostrar());
+            origin=1;
         } catch (IOException ex) {
             Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,13 +86,23 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         TextPass = new javax.swing.JPasswordField();
         jlabeltrabajador = new javax.swing.JLabel();
         textTrabajador = new javax.swing.JComboBox<>();
-        buttonCreate = new javax.swing.JButton();
+        button = new javax.swing.JButton();
         jCBMostra = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
         setTitle("USUARIO");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel_finder_21775.png"))); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabelUsuario.setText("Usuario:");
+
+        textUser.setEnabled(false);
 
         jlabelContraseña.setText("Contraseña: ");
 
@@ -87,12 +114,13 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        button.setBackground(new java.awt.Color(255, 255, 255));
         button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         button.setText("Crear");
         button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCreateActionPerformed(evt);
+                buttonActionPerformed(evt);
             }
         });
 
@@ -125,7 +153,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(192, 192, 192)
-                .addComponent(buttonCreate)
+                .addComponent(button)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -145,7 +173,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jlabeltrabajador)
                     .addComponent(textTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(buttonCreate)
+                .addComponent(button)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -180,74 +208,96 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCBMostraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMostraItemStateChanged
+    private void jCBMostraItemStateChanged(java.awt.event.ItemEvent evt) {
         if ((evt.getStateChange() == 1) ? true : false) {
             this.TextPass.setEchoChar((char) 0); //password = JPasswordField
         } else {
 
             this.TextPass.setEchoChar('*');
-        }       
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
-
-    private void buttonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateActionPerformed
-        if (validateNull()) {
-            JOptionPane.showMessageDialog(null,"digite todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        else{
+    }
+
+    private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
+        if (validateNull()) {
+            JOptionPane.showMessageDialog(null, "digite todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             try {
-                NewUsers nu= new NewUsers();
-                Users u= new Users();
-                Hash h= new Hash();
-                Employee e=newEmployee.findEmployeeByDoc(docIdentity());
-                u.setEmployee(e);
-                u.setUserName(this.textUser.getText());
-                u.setPass(h.Sha512(this.TextPass.getText()));
-                nu.save(u,0);
-                JOptionPane.showMessageDialog(null,"guardado correctamente", "Éxitos", JOptionPane.INFORMATION_MESSAGE);
-                clean();
+                Hash h = new Hash();
+                NewUsers nu = new NewUsers();
+                switch (origin) {
+                    case 0:
+                        Users u = new Users();
+                        Employee e = newEmployee.findEmployeeByDoc(docIdentity());
+                        u.setEmployee(e);
+                        u.setUserName(this.textUser.getText());
+                        u.setPass(h.Sha512(this.TextPass.getText()));
+                        nu.save(u, 0);
+                        JOptionPane.showMessageDialog(null, "guardado correctamente", "Éxitos", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        break;
+                    case 1:
+                        userRecieve.setPass(h.Sha512(this.TextPass.getText()));
+                        nu.save(userRecieve, 1);
+                        JOptionPane.showMessageDialog(null, "actualizado correctamente", "Éxitos", JOptionPane.INFORMATION_MESSAGE);                                                
+                        this.dispose();
+                        break;
+                }
+
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
-    }//GEN-LAST:event_buttonCreateActionPerformed
+    }//GEN-LAST:event_buttonActionPerformed
 
     private void textTrabajadorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_textTrabajadorItemStateChanged
-            setUser();
+        setUser();
     }//GEN-LAST:event_textTrabajadorItemStateChanged
-    public void setUser(){
-        Employee e= newEmployee.findEmployeeByDoc(docIdentity());
-        String user= e.getFirstName().substring(0,1)+e.getSurname();         
+    public void loadData() {
+        this.textTrabajador.removeAllItems();
+        for (Employee em : newEmployee.findAll()) {
+            noExist = true;
+            newUsers.findAll().forEach(u -> {
+                if (em.getIdEmployee() == u.getEmployee().getIdEmployee()) {
+                    noExist = false;
+                }
+            });
+            if (noExist) {
+                String name = em.getFirstName() + " " + em.getDocIdentity();
+                this.textTrabajador.addItem(name);
+            }
+        }
+    }
+
+    public void setUser() {
+        Employee e = newEmployee.findEmployeeByDoc(docIdentity());
+        String user = e.getFirstName().substring(0, 1) + e.getSurname();
         for (Users users : newUsers.findAll()) {
             if (users.getUserName().equals(user)) {
-                user=user+String.valueOf(user.length());
+                user = user + String.valueOf(user.length());
             }
         }
         this.textUser.setText(user);
     }
-    public String docIdentity(){
-        String text= this.textTrabajador.getSelectedItem().toString();
-        String doc=text.substring(text.length()-16, text.length());
+
+    public String docIdentity() {
+        String text = this.textTrabajador.getSelectedItem().toString();
+        String doc = text.substring(text.length() - 16, text.length());
         return doc;
     }
-    public Boolean validateNull(){
-        boolean valor=false;
+
+    public Boolean validateNull() {
+        boolean valor = false;
         if (this.textUser.getText().equals("")) {
-            valor=true;
-        }
-        else if(this.TextPass.getText().equals("")){
-        valor= true;
+            valor = true;
+        } else if (this.TextPass.getText().equals("")) {
+            valor = true;
         }
         return valor;
     }
-    public void clean(){
-    this.textUser.setText("");
-    this.TextPass.setText("");
-    this.textTrabajador.setSelectedIndex(0);
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField TextPass;
-    private javax.swing.JButton buttonCreate;
+    private javax.swing.JButton button;
     private javax.swing.JCheckBox jCBMostra;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JPanel jPanel1;

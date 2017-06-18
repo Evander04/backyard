@@ -36,9 +36,8 @@ public class NewUsers {
                 conect.getSession().update(users);
                 trans.commit();
                 break;
-            case 2:
-                //users.setErasedStatus(false);
-                conect.getSession().update(users);
+            case 2:                
+                conect.getSession().delete(users);
                 trans.commit();
                 break;
         }
@@ -48,7 +47,7 @@ public class NewUsers {
     public List<Users> findAll() {
         conect.open();
         List<Users> list= new ArrayList<>();
-        SQLQuery query= conect.getSession().createSQLQuery("select * from Users");
+        SQLQuery query= conect.getSession().createSQLQuery("select * from users");
         query.addEntity(Users.class);
         for (Iterator i=query.list().iterator();i.hasNext();) {
             Users c= (Users) i.next();
@@ -58,5 +57,17 @@ public class NewUsers {
         return list;
     }
     
+    public Users findByUserName(String username){
+        Users u= new Users();
+        findAll().forEach(user->{
+            if (user.getUserName().equals(username)) {
+                u.setIdUser(user.getIdUser());
+                u.setUserName(user.getUserName());
+                u.setPass(user.getPass());
+                u.setEmployee(user.getEmployee());
+            }
+        });      
+        return u;
+    }
     /*================CRUD====================*/
 }

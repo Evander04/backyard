@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -36,11 +37,17 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     public PrincipalBackyard() {
         initComponents();
         setLanguage();
+        this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
 
     }
 
+    public JDesktopPane getDesktopPane() {
+        return desktopPane;
+    }
+
+    
     public void setLanguage() {
         try {
             Language l = new Language();
@@ -295,7 +302,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevoEmpleadoMenuItemActionPerformed
 
     private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
-        FrameUsuario fce = new FrameUsuario();
+        FrameListUser fce = new FrameListUser();
         desktopPane.add(fce);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fce.getSize();
@@ -393,7 +400,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoEmpleadoMenuItem;
     private javax.swing.JMenuItem NuevoExtraMenuItem;
     private javax.swing.JMenuItem SalirMenuItem;
-    private javax.swing.JDesktopPane desktopPane;
+    public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jCanbiarIdioma;
