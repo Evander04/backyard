@@ -43,7 +43,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
            this.jbtnguardar.setText(l.getBotonGuardar());
            this.jbtnCancelar.setText(l.getBotonCancelar());
         } catch (IOException ex) {
-            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrameCrearCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -66,7 +66,6 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         jLabelNacionalidad = new javax.swing.JLabel();
         jcbNacionalidadCliente = new javax.swing.JComboBox<>();
         jLabelTelefono = new javax.swing.JLabel();
-        textTelefono = new javax.swing.JTextField();
         textEmail = new javax.swing.JTextField();
         jLabelCorreo = new javax.swing.JLabel();
         jbtnguardar = new javax.swing.JButton();
@@ -75,6 +74,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textDireccion = new javax.swing.JTextArea();
         jTextIdentificacionCliente = new javax.swing.JFormattedTextField();
+        jFTFTelefono = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("CLIENTE");
@@ -129,6 +129,11 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         jbtnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jbtnCancelar.setText("Cancelar");
+        jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabelDireccion.setFont(new java.awt.Font("Meiryo UI", 3, 14)); // NOI18N
         jLabelDireccion.setText("Dirección:");
@@ -139,6 +144,12 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
 
         try {
             jTextIdentificacionCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-######-####U")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFTFTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -163,11 +174,11 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
                     .addComponent(jcbNacionalidadCliente, javax.swing.GroupLayout.Alignment.TRAILING, 0, 1, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addComponent(textEmail)
-                    .addComponent(textTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jcbIdentificacionCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextIdentificacionCliente)
                     .addComponent(jTextApellidoCliente)
-                    .addComponent(jTextNombreCliente))
+                    .addComponent(jTextNombreCliente)
+                    .addComponent(jFTFTelefono))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
@@ -201,8 +212,8 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
                     .addComponent(jcbNacionalidadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTelefono))
+                    .addComponent(jLabelTelefono)
+                    .addComponent(jFTFTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +243,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,7 +251,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
 
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
         if (validateNull()) {
-            JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Atención", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Verifique que no tenga campos vacios, o que los campos esten correctamente llenados", "Atención", JOptionPane.ERROR_MESSAGE);
         } else {
             NewClient nc = new NewClient();
             c.setName(this.jTextNombreCliente.getText());
@@ -248,7 +259,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
             c.setDocIdentity(this.jTextIdentificacionCliente.getText());
             c.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
             c.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
-            c.setPhone(this.textTelefono.getText());
+            c.setPhone(this.jFTFTelefono.getText());
             c.setEmail(this.textEmail.getText());
             c.setAddress(this.textDireccion.getText());
             c.setErasedStatus(true);
@@ -267,6 +278,11 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextApellidoClienteActionPerformed
 
+    private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbtnCancelarActionPerformed
+
     public boolean validateNull() {
         boolean val = false;
         if (this.jTextNombreCliente.getText().equals("")) {
@@ -277,9 +293,14 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
             val = true;
         } else if (this.textEmail.getText().equals("")) {
             val = true;
-        } else if (this.textTelefono.getText().equals("")) {
+        } else if (this.jFTFTelefono.getText().equals("")) {
+            val = true;
+        } else if (this.jFTFTelefono.getText().length()<=8) {
+            val = true;
+        } else if (this.jTextIdentificacionCliente.getText().length()<=15) {
             val = true;
         }
+        
 
         return val;
     }
@@ -288,7 +309,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         this.jTextNombreCliente.setText("");
         this.jTextApellidoCliente.setText("");
         this.jTextIdentificacionCliente.setText("");
-        this.textTelefono.setText("");
+        this.jFTFTelefono.setText("");
         this.textEmail.setText("");
         this.textDireccion.setText("");
         this.jcbIdentificacionCliente.setSelectedIndex(0);
@@ -296,6 +317,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField jFTFTelefono;
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelCorreo;
     private javax.swing.JLabel jLabelDireccion;
@@ -315,6 +337,5 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jcbNacionalidadCliente;
     private javax.swing.JTextArea textDireccion;
     private javax.swing.JTextField textEmail;
-    private javax.swing.JTextField textTelefono;
     // End of variables declaration//GEN-END:variables
 }
