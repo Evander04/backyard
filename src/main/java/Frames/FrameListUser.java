@@ -12,7 +12,12 @@ import Pojo.Employee;
 import Pojo.Users;
 import com.sun.rowset.internal.Row;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +30,8 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     NewEmployee newEmployee = new NewEmployee();
     String[] arrayType = new String[]{"Recepcionista", "Supervisor", "Gerente"};
     int origin = 0;
-
+    int selection = 0;
+    DefaultTableModel model;
     /**
      * Creates new form FrameListUser
      */
@@ -36,7 +42,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     }
 
     public void loadData() {
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+        model= (DefaultTableModel) this.jTable1.getModel();
         newUser.findAll().forEach(u -> {
             Employee e = newEmployee.findEmployeeByUser(u.getUserName());
             model.addRow(new Object[]{e.getFirstName() + " " + e.getSurname(), u.getUserName(), arrayType[e.getTypeEmployee()]});
@@ -53,22 +59,64 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
+        jlabelTipodeBusqueda = new javax.swing.JLabel();
+        textOption = new javax.swing.JComboBox<>();
+        textBusqueda = new javax.swing.JTextField();
         buttonAddRefresh = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         buttonDelete = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jlabelTipodeBusqueda.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jlabelTipodeBusqueda.setText("Tipo de Busqueda:");
+
+        textOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Trabajador" }));
+        textOption.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                textOptionItemStateChanged(evt);
+            }
+        });
+
+        textBusqueda.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                textBusquedaInputMethodTextChanged(evt);
+            }
+        });
+        textBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBusquedaKeyTyped(evt);
+            }
+        });
+
         buttonAddRefresh.setBackground(new java.awt.Color(255, 255, 255));
         buttonAddRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         buttonAddRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddRefreshActionPerformed(evt);
+            }
+        });
+
+        buttonDelete.setBackground(new java.awt.Color(255, 255, 255));
+        buttonDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete.png"))); // NOI18N
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteActionPerformed(evt);
+            }
+        });
+
+        buttonCancel.setBackground(new java.awt.Color(255, 255, 255));
+        buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelActionPerformed(evt);
             }
         });
 
@@ -99,27 +147,11 @@ public class FrameListUser extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        buttonDelete.setBackground(new java.awt.Color(255, 255, 255));
-        buttonDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete.png"))); // NOI18N
-        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDeleteActionPerformed(evt);
-            }
-        });
-
-        buttonCancel.setBackground(new java.awt.Color(255, 255, 255));
-        buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
-        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonAddRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,18 +160,30 @@ public class FrameListUser extends javax.swing.JInternalFrame {
                 .addGap(3, 3, 3)
                 .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jlabelTipodeBusqueda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textOption, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelTipodeBusqueda)
+                    .addComponent(textOption, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonDelete)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(buttonAddRefresh)
-                        .addContainerGap())
-                    .addComponent(buttonCancel)))
+                    .addComponent(buttonAddRefresh, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonCancel))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,9 +194,9 @@ public class FrameListUser extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -207,11 +251,46 @@ public class FrameListUser extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
+    private void textBusquedaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textBusquedaInputMethodTextChanged
+        System.out.println("probando");
+    }//GEN-LAST:event_textBusquedaInputMethodTextChanged
+
+    private void textBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBusquedaKeyTyped
+        jTable1.removeAll();
+        switch (selection) {
+            case 0:
+                List<Users> users = newUser.findByUserNameLike(this.textBusqueda.getText());
+                if (users != null) {
+                    users.forEach(u -> {
+                        Employee e = newEmployee.findEmployeeByUser(u.getUserName());
+                        model.addRow(new Object[]{e.getFirstName() + " " + e.getSurname(), u.getUserName(), arrayType[e.getTypeEmployee()]});
+                    });
+                }
+                break;
+            case 1:
+                break;
+
+        }
+    }//GEN-LAST:event_textBusquedaKeyTyped
+
+    private void textOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_textOptionItemStateChanged
+        switch (this.textOption.getSelectedIndex()) {
+            case 0:
+                selection = 0;
+                break;
+            case 1:
+                selection = 1;
+                break;
+
+        }
+    }//GEN-LAST:event_textOptionItemStateChanged
+
     public void cancel() {
         buttonAddRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png")));
         origin = 0;
         jTable1.clearSelection();
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddRefresh;
@@ -220,5 +299,8 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlabelTipodeBusqueda;
+    private javax.swing.JTextField textBusqueda;
+    private javax.swing.JComboBox<String> textOption;
     // End of variables declaration//GEN-END:variables
 }

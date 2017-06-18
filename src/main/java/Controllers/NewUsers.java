@@ -69,5 +69,15 @@ public class NewUsers {
         });      
         return u;
     }
+    public List<Users> findByUserNameLike(String username){
+        List<Users> list= new ArrayList<>();
+        findAll().forEach(user->{
+            if (user.getUserName().contentEquals(username)) {
+                list.add(user);
+            }
+        });      
+        return list;
+    }
+    
     /*================CRUD====================*/
 }

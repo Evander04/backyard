@@ -92,6 +92,17 @@ public class NewEmployee {
         });
         return e;
     }
+    
+    public List<Employee> findByNameLike(String name){
+        List<Employee> e= new ArrayList<>();
+        findAll().forEach(em->{
+            String fullName= em.getFirstName()+em.getSecondName()+em.getSurname()+em.getSecondSurname();
+            if (fullName.contains(name)) {
+                e.add(em);
+            }        
+        });
+        return e;
+    }
     /*================Controller==============*/
 
 }
