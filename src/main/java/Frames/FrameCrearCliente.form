@@ -36,7 +36,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,11 +64,11 @@
                       <Component id="jcbNacionalidadCliente" alignment="1" pref="0" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" pref="228" max="32767" attributes="0"/>
                       <Component id="textEmail" max="32767" attributes="0"/>
-                      <Component id="textTelefono" alignment="1" max="32767" attributes="0"/>
                       <Component id="jcbIdentificacionCliente" max="32767" attributes="0"/>
                       <Component id="jTextIdentificacionCliente" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextApellidoCliente" max="32767" attributes="0"/>
                       <Component id="jTextNombreCliente" max="32767" attributes="0"/>
+                      <Component id="jFTFTelefono" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -111,8 +111,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="textTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFTFTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -473,8 +473,6 @@
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textTelefono">
-        </Component>
         <Component class="javax.swing.JTextField" name="textEmail">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textEmailActionPerformed"/>
@@ -512,6 +510,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnCancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDireccion">
           <Properties>
@@ -540,6 +541,13 @@
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="###-######-####U" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jFTFTelefono">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="########" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
