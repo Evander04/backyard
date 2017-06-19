@@ -11,6 +11,7 @@ import Pojo.Employee;
 import Utils.Language;
 import java.awt.Component;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,14 +26,31 @@ import org.hibernate.*;
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
     Employee e;
-
+    NewEmployee newEmployee = new NewEmployee();
+    boolean noExist = true;
+    Employee employeeRecive = new Employee();
+    int origin = 0;
+    Language l;
     /**
      * Creates new form FrameCrearEmpleado
      */
     public FrameCrearEmpleado() {
+        //this.l = new Language();
         initComponents();
         setLenguage();
         e = new Employee();
+        origin = 0;
+    }
+    public FrameCrearEmpleado(Employee e){
+        this.employeeRecive = e;
+        initComponents();
+        setLenguage();
+     //  loadData();
+        this.jPanel4.remove(this.jLabelTipo);
+        this.jPanel4.remove(this.jCBTipoEmpleado);
+        this.jBtnGuardarEmpleado.setText(l.getBotonActualizar());
+        this.jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+        
     }
     public void setLenguage(){
          try {
@@ -52,6 +70,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             this.jBtnGuardarEmpleado.setText(l.getBotonGuardar());
             this.jBtnCancelarCreacionEmpleado.setText(l.getBotonCancelar());
             this.jBtnBuscar.setText(l.getBotonBuscar());
+            origin = 1;
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,7 +118,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setTitle("Agregar Cliente");
+        setTitle("Agregar Empleado");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -344,7 +363,10 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         if (validateNull()) {
             JOptionPane.showMessageDialog(null, "Verifique que no tenga campos vacios, o que los campos esten correctamente llenados", "Atención", JOptionPane.ERROR_MESSAGE);
         } else {
+         //   try{
             NewEmployee newEmployee = new NewEmployee();
+            switch (origin){
+                case 0:{
             e.setFirstName(this.jTextPrimerNombreEmpleado.getText());
             e.setSecondName(this.jTextSegundoNombreEmpleado.getText());
             e.setSurname(this.jTextPrimerApellidoEmpleado.getText());
@@ -359,14 +381,44 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             newEmployee.save(e, 0);
             clean();
             JOptionPane.showMessageDialog(null,"Se guardó el empleado correctamente","Éxito",JOptionPane.INFORMATION_MESSAGE);
-        }
+            this.dispose();
+            break;
+                }
+                case 1: {
+            employeeRecive.setFirstName(this.jTextPrimerNombreEmpleado.getText());
+            employeeRecive.setSecondName(this.jTextSegundoNombreEmpleado.getText());
+            employeeRecive.setSurname(this.jTextPrimerApellidoEmpleado.getText());
+            employeeRecive.setSecondSurname(this.jTextSegundoApellidoEmpleado.getText());
+            employeeRecive.setDocIdentity(this.jFTFTidentificacion.getText());
+            employeeRecive.setPhone(this.jFTFTelefono.getText());
+            employeeRecive.setEmail(this.jTextCorreoEmpleado.getText());
+            employeeRecive.setSalary(Long.parseLong(this.jTextSalarioEmpleado.getText()));
+            employeeRecive.setAddress(this.jTextAreaDireccionEmpleado.getText());
+            employeeRecive.setTypeEmployee(this.jCBTipoEmpleado.getSelectedIndex());
+            employeeRecive.setErasedStatus(true);
+            newEmployee.save(employeeRecive, 1);
+            JOptionPane.showMessageDialog(null, "Actualizado Correctamente","Exitos",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+                }
+            } 
+       //        Logger.getLogger(FrameCrearEmpleado.class.getName()).log(Level.SEVERE,null,ex);
+            
+           //}
     }//GEN-LAST:event_jBtnGuardarEmpleadoActionPerformed
-
+    }
     private void jBtnCancelarCreacionEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarCreacionEmpleadoActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jBtnCancelarCreacionEmpleadoActionPerformed
-
+   /* public void loadData(){
+    this.jCBTipoEmpleado
+}*/
+    
+    public String docType(){
+        String text = this.jCBTipoEmpleado.getSelectedItem().toString();
+        String doc = text.substring(text.length() - 16,text.length());
+        return doc;
+    }
     public boolean validateNull() {
         boolean val = false;
         if (this.jTextPrimerNombreEmpleado.getText().equals("")) {

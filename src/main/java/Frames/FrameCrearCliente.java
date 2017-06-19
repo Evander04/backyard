@@ -9,6 +9,7 @@ import Controllers.NewClient;
 import Pojo.Clients;
 import Utils.Language;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,6 +21,10 @@ import javax.swing.JOptionPane;
 public class FrameCrearCliente extends javax.swing.JInternalFrame {
 
     Clients c = new Clients();
+    NewClient newClient = new NewClient();
+    boolean noExist = true;
+    int origin = 0;
+    Language l;
 
     /**
      * Creates new form FrameCrearCliente
@@ -27,6 +32,15 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     public FrameCrearCliente() {
         initComponents();
         setLanguage();
+    }
+    public FrameCrearCliente(Clients ce){
+      this.c = ce;
+      initComponents();
+      setLanguage();
+      //loadData();
+      this.jbtnguardar.setText(l.getBotonActualizar());
+      this.jbtnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+      
     }
     public void setLanguage() {
         try {
@@ -251,9 +265,28 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
 
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
         if (validateNull()) {
-            JOptionPane.showMessageDialog(null, "Verifique que no tenga campos vacios, o que los campos esten correctamente llenados", "Atención", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         } else {
+           // try{
             NewClient nc = new NewClient();
+            switch(origin){
+                case 0:
+            Clients ce = new Clients();
+            ce.setName(this.jTextNombreCliente.getText());
+            ce.setLastName(this.jTextApellidoCliente.getText());
+            ce.setDocIdentity(this.jTextIdentificacionCliente.getText());
+            ce.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
+            ce.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
+            ce.setPhone(this.jFTFTelefono.getText());
+            ce.setEmail(this.textEmail.getText());
+            ce.setAddress(this.textDireccion.getText());
+            ce.setErasedStatus(true);
+            nc.save(ce, 0);
+            JOptionPane.showMessageDialog(null, "Cliente se guardó correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            clean();
+            this.dispose();
+            break;
+                case 1:
             c.setName(this.jTextNombreCliente.getText());
             c.setLastName(this.jTextApellidoCliente.getText());
             c.setDocIdentity(this.jTextIdentificacionCliente.getText());
@@ -263,9 +296,14 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
             c.setEmail(this.textEmail.getText());
             c.setAddress(this.textDireccion.getText());
             c.setErasedStatus(true);
-            nc.save(c, 0);
-            JOptionPane.showMessageDialog(null, "Cliente se guardó correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            clean();
+            nc.save(c, 1);
+            JOptionPane.showMessageDialog(null, "actualizado correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);                                                
+                        this.dispose();
+                        break; 
+            }
+        //  }catch (NoSuchAlgorithmException ex) {
+         //       Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
+           // }
         }
 
     }//GEN-LAST:event_jbtnguardarActionPerformed

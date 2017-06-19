@@ -48,7 +48,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{e.getFirstName() + " " + e.getSurname(), u.getUserName(), arrayType[e.getTypeEmployee()]});
         });
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,8 +120,6 @@ public class FrameListUser extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

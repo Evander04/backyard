@@ -608,6 +608,84 @@ public class Language {
         }
         return var;
     }
+    public String getFrameListEmployeesTitulo() {
+      switch (config) {
+            case 0:
+                var = "Listar Empleados";
+                break;
+            case 1:
+                var = "List Employees";
+                break;
+        }
+        return var;
+    }
+//============================================================Alertasxdxdxd===========================================================================
+ public String getCamposVaciosOMalos() {
+      switch (config) {
+            case 0:
+                var = "Porfavor rebice que no tenga campos vacios, o esten mal llenados";
+                break;
+            case 1:
+                var = "Please note that there are no empty fields, or they are poorly filled";
+                break;
+        }
+        return var;
+    } 
+    public String getAlerta() {
+      switch (config) {
+            case 0:
+                var = "ALERTA";
+                break;
+            case 1:
+                var = "ALERT";
+                break;
+        }
+        return var;
+    }  
+    public String getError() {
+      switch (config) {
+            case 0:
+                var = "ERROR";
+            case 1:
+                var = "ERROR";
+                break;
+        }
+        return var;
+    }
+    public String getEXITO() {
+      switch (config) {
+            case 0:
+                var = "EXITO";
+                break;
+            case 1:
+                var = "SUCCESS";
+                break;
+        }
+        return var;
+    }
+    public String getELIMINADO() {
+      switch (config) {
+            case 0:
+                var = "Correctamente Eliminado";
+                break;
+            case 1:
+                var = "Successfully deleted";
+                break;
+        }
+        return var;
+    }
+    public String getfilanoafectada() {
+      switch (config) {
+            case 0:
+                var = "Ninguna fila afectada";
+                break;
+            case 1:
+                var = "Ninguna fila afectada";
+                break;
+        }
+        return var;
+    }
+    
 //************************************************************BOTONES************************************************************
    public String getBotonGuardar() {
         switch (config) {
@@ -682,6 +760,17 @@ public class Language {
                 break;
             case 1:
                 var = "Add";
+                break;
+        }
+        return var;
+    }
+    public String getBotonActualizar() {
+        switch (config) {
+            case 0:
+                var = "Actualizar";
+                break;
+            case 1:
+                var = "Update";
                 break;
         }
         return var;

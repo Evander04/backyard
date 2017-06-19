@@ -120,6 +120,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         fileMenu.setMnemonic('f');
         fileMenu.setText("Nuevo");
         fileMenu.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        fileMenu.setMinimumSize(new java.awt.Dimension(90, 24));
 
         NuevoEmpleadoMenuItem.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         NuevoEmpleadoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/new_add_user_info_16706.png"))); // NOI18N
@@ -283,7 +284,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private void NuevoClienteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoClienteMenuItemActionPerformed
         // TODO add your handling code here:
 
-        FrameCrearCliente fcc = new FrameCrearCliente();
+        FrameListCliente fcc = new FrameListCliente();
         desktopPane.add(fcc);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fcc.getSize();
@@ -293,7 +294,8 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     private void NuevoEmpleadoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoEmpleadoMenuItemActionPerformed
         // TODO add your handling code here:
-        FrameCrearEmpleado fce = new FrameCrearEmpleado();
+        //FrameCrearEmpleado fce = new FrameCrearEmpleado();
+        FrameListEmployee fce = new FrameListEmployee();
         desktopPane.add(fce);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fce.getSize();
