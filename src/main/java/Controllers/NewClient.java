@@ -58,5 +58,24 @@ public class NewClient {
         return list;
     }
     
+    public Clients findClientByDoc(String docIdentity){
+        conect.open();
+        Clients c= new Clients();
+        findAll().forEach(cli->{
+            if (cli.getDocIdentity().equals(docIdentity)) {
+                c.setIdClient(cli.getIdClient());
+                c.setName(cli.getName());
+                c.setLastName(cli.getLastName());
+                c.setDocIdentity(cli.getDocIdentity());
+                c.setDocType(cli.getDocType());
+                c.setNationality(cli.getNationality());
+                c.setPhone(cli.getPhone());
+                c.setEmail(cli.getEmail());
+                c.setAddress(cli.getAddress());
+            }
+        });
+        return c;
+    }
+    
     /*================CRUD====================*/
 }

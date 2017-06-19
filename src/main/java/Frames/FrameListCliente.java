@@ -8,10 +8,14 @@ package Frames;
 import Controllers.NewClient;
 import static Frames.FrameListUser.jTable1;
 import static Frames.PrincipalBackyard.desktopPane;
+import Pojo.Clients;
 import Pojo.Users;
 import Utils.Language;
 import com.sun.security.ntlm.Client;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +28,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     int origin = 0;
     int selection = 0;
     DefaultTableModel model;
-    Language l;
+    
     /**
      * Creates new form FrameListTrabajador
      */
@@ -36,8 +40,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     public void loadData(){
         model= (DefaultTableModel) this.jTable1.getModel();
         newClient.findAll().forEach(e -> {
-           // Employee e = newEmployee.findEmployeeByUser(u.getUserName());
-            model.addRow(new Object[]{e.getName(), e.getLastName(),e.getNationality(),e.getPhone()});
+            model.addRow(new Object[]{e.getName(), e.getLastName(),e.getDocIdentity(),e.getPhone()});
         });
     }
     /**
@@ -59,6 +62,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,7 +77,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Nacionalidad", "Teléfono"
+                "Nombre", "Apellido", "Identificación", "Teléfono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -178,15 +182,14 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 fce.show();
                 break;
             case 1:
-                //Client c = newClient.findByUserName(this.jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
-                FrameUsuario fce1 = new FrameUsuario();
+                Clients c= newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
+                FrameCrearCliente fce1= new FrameCrearCliente(c);
                 desktopPane.add(fce1);
                 Dimension desktopSize1 = desktopPane.getSize();
                 Dimension FrameSize1 = fce1.getSize();
                 fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
                 fce1.toFront();
-                jTable1.clearSelection();
-                JOptionPane.showMessageDialog(null, "Digite su nueva contraseña", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                jTable1.clearSelection();                
                 fce1.show();
                 break;
         }
@@ -205,16 +208,21 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        if (this.jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
-        } else {
-          // Client c = newClient.findAll(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            //Client.save(c, 2);
-            model.removeRow(this.jTable1.getSelectedRow());
-            cancel();
-            JOptionPane.showConfirmDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            Language l= new Language();
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            if (this.jTable1.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
+            } else {
+                Clients c= newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
+                newClient.save(c,2);
+                model.removeRow(this.jTable1.getSelectedRow());
+                cancel();
+                JOptionPane.showConfirmDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }//GEN-LAST:event_jButton2ActionPerformed

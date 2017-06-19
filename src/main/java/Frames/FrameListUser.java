@@ -72,6 +72,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jlabelTipodeBusqueda.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jlabelTipodeBusqueda.setText("Tipo de Busqueda:");
@@ -120,6 +121,11 @@ public class FrameListUser extends javax.swing.JInternalFrame {
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -245,7 +251,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
             newUser.save(u, 2);
             model.removeRow(this.jTable1.getSelectedRow());
             cancel();
-            JOptionPane.showConfirmDialog(null, "Eliminado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Eliminado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
