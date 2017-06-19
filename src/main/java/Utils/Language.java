@@ -150,7 +150,7 @@ public class Language {
    public String getCentralEstadistica() {
         switch (config) {
             case 0:
-                var = "Central Estadistica";
+                var = "Central Estadística";
                 break;
             case 1:
                 var = "Statistics Central";
@@ -262,7 +262,7 @@ public class Language {
      public String getFrameCrearReservaTitulo() {
         switch (config) {
             case 0:
-                var = "RESERVACION";
+                var = "RESERVACIÓN";
                 break;
             case 1:
                 var = "RESERVATION";
@@ -433,7 +433,7 @@ public class Language {
                 var = "Dirección:";
                 break;
             case 1:
-                var = "Anddress:";
+                var = "Address:";
                 break;
         }
         return var;
@@ -441,7 +441,7 @@ public class Language {
     public String getLabelTipodeBusqueda() {
       switch (config) {
             case 0:
-                var = "Tipo de Busquedad:";
+                var = "Tipo de Búsquedad:";
                 break;
             case 1:
                 var = "Search Type:";
@@ -510,7 +510,7 @@ public class Language {
    public String getFrameAgregarHabitacionTitulo() {
       switch (config) {
             case 0:
-                var = "Nueva Habitacion";
+                var = "Nueva Habitación";
                 break;
             case 1:
                 var = "New Room";
@@ -543,7 +543,7 @@ public class Language {
    public String getLabelCategoria() {
       switch (config) {
             case 0:
-                var = "Categoria:";
+                var = "Categoría:";
                 break;
             case 1:
                 var = "Category:";
@@ -600,7 +600,7 @@ public class Language {
    public String getLabelTipoCategoria() {
       switch (config) {
             case 0:
-                var = "Tipo de Categoria:";
+                var = "Tipo de Categoría:";
                 break;
             case 1:
                 var = "Category Type:";
@@ -645,7 +645,7 @@ public class Language {
  public String getCamposVaciosOMalos() {
       switch (config) {
             case 0:
-                var = "Porfavor rebice que no tenga campos vacios, o esten mal llenados";
+                var = "Por favor revise que no tenga campos vacíos o estén mal llenados";
                 break;
             case 1:
                 var = "Please note that there are no empty fields, or they are poorly filled";
@@ -677,7 +677,7 @@ public class Language {
     public String getEXITO() {
       switch (config) {
             case 0:
-                var = "EXITO";
+                var = "ÉXITO";
                 break;
             case 1:
                 var = "SUCCESS";
