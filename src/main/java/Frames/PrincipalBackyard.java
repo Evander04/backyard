@@ -8,6 +8,7 @@ package Frames;
 import Pojo.Config;
 import Pojo.Employee;
 import Utils.ConfigFile;
+import Utils.GlobalVars;
 import Utils.Language;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -27,19 +28,13 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     /**
      * Creates new form NewMDIApplication
      */
-    public PrincipalBackyard(Employee e) {
-        initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        this.setResizable(false);
-        this.employee = e;
-    }
-
     public PrincipalBackyard() {
         initComponents();
         setLanguage();
         this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
+        loadData();
 
     }
 
@@ -47,10 +42,36 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         return desktopPane;
     }
 
-    
+    public void loadData() {
+        String type = "";
+        switch (GlobalVars.getTypeEmployee()) {
+            case 0:
+                type = "Recepcionista";
+                this.menuBar.remove(this.jCentralEstadistica);
+                this.menuBar.remove(this.jReport);
+                this.fileMenu.remove(this.NuevaHabitacionMenuItem);
+                this.fileMenu.remove(this.NuevoEmpleadoMenuItem);
+                this.jConfiguraciones.remove(this.jUsuario);
+                break;
+            case 1:
+                type = "Supervisor";
+                this.menuBar.remove(this.jCentralEstadistica);                
+                this.fileMenu.remove(this.NuevoEmpleadoMenuItem);
+                this.jConfiguraciones.remove(this.jUsuario);
+                break;
+            case 2:
+                type = "Gerente";
+                break;
+        }
+        String label = GlobalVars.getNameEmployee() + "(" + type + ")";
+        this.textInfo.setText(label);
+    }
+
     public void setLanguage() {
         try {
             Language l = new Language();
+            ConfigFile cf = new ConfigFile(); 
+            String language = cf.findByID(1).getLanguage() == 0?l.getCambiarIdioma()+"(Español)":l.getCambiarIdioma()+"(English)";
             PrincipalBackyard.this.setTitle(l.getPrincipalTitulo());//Titulo del principal
             //Menu Nuevo
             this.fileMenu.setText(l.getNuevo());
@@ -70,7 +91,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
             this.jReport.setText(l.getReporte());
             //Menu Configuraciones
             this.jConfiguraciones.setText(l.getConfiguracion());
-            this.jCanbiarIdioma.setText(l.getCambiarIdioma());
+            this.jCanbiarIdioma.setText(language);
             this.jUsuario.setText(l.getCambioUsuario());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,6 +125,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         jConfiguraciones = new javax.swing.JMenu();
         jCanbiarIdioma = new javax.swing.JMenuItem();
         jUsuario = new javax.swing.JMenuItem();
+        textInfo = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
@@ -250,6 +272,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         menuBar.add(jConfiguraciones);
 
+        textInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/User_Group-80_icon-icons.com_57247.png"))); // NOI18N
+        textInfo.setText("jMenu1");
+        textInfo.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        menuBar.add(textInfo);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,14 +287,16 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirMenuItemActionPerformed
-        System.exit(0);
+        FrameLogin frame= new FrameLogin();
+        frame.show();
+        this.dispose();
     }//GEN-LAST:event_SalirMenuItemActionPerformed
 
     private void NuevaReservaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaReservaMenuItemActionPerformed
@@ -345,11 +374,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private void jCanbiarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCanbiarIdiomaActionPerformed
         ConfigFile cf = new ConfigFile();
         try {
-            if (cf.findByID(1).getLanguage()==0) {
-                 cf.update(new Config(1, 1));
-            }
-            else{
-                 cf.update(new Config(1, 0));
+            if (cf.findByID(1).getLanguage() == 0) {
+                cf.update(new Config(1, 1));
+            } else {
+                cf.update(new Config(1, 0));
             }
             setLanguage();
         } catch (IOException ex) {
@@ -412,6 +440,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu textInfo;
     // End of variables declaration//GEN-END:variables
 
 }

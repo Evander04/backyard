@@ -10,6 +10,7 @@ import Controllers.NewEmployee;
 import Controllers.NewUsers;
 import Pojo.Employee;
 import Pojo.Users;
+import Utils.GlobalVars;
 import Utils.Hash;
 import Utils.Language;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class FrameLogin extends javax.swing.JFrame {
     LoginController logController = new LoginController();
     NewUsers newUser = new NewUsers();
     Hash h = new Hash();
+    NewEmployee newEmployee = new NewEmployee();
 
     /**
      * Creates new form NewJFrame
@@ -135,13 +137,11 @@ public class FrameLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,7 +154,7 @@ public class FrameLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite la contraseña", "Atención", JOptionPane.ERROR_MESSAGE);
         } else {
             if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
-                
+                setGlobalVars();
                 PrincipalBackyard pb = new PrincipalBackyard();
                 pb.show();
                 this.dispose();
@@ -172,6 +172,17 @@ public class FrameLogin extends javax.swing.JFrame {
             this.TextPass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCBMostrarItemStateChanged
+
+    public void setGlobalVars() {
+        Employee e = newEmployee.findEmployeeByUser(this.TextUser.getText());
+        Users u= newUser.findByUserName(this.TextUser.getText());
+        GlobalVars gv= new GlobalVars();
+        gv.setUserId(u.getIdUser());
+        gv.setUserName(u.getUserName());
+        gv.setNameEmployee(e.getFirstName()+" "+e.getSurname());
+        gv.setEmployeeId(e.getIdEmployee());
+        gv.setTypeEmployee(e.getTypeEmployee());
+    }
 
     /**
      * @param args the command line arguments

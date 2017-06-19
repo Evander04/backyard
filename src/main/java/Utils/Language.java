@@ -106,10 +106,10 @@ public class Language {
    public String getSalida() {
         switch (config) {
             case 0:
-                var = "Salir";
+                var = "Cerrar Sesión";
                 break;
             case 1:
-                var = "Exit";
+                var = "Sign out";
                 break;
         }
         return var;

@@ -242,7 +242,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 newClient.save(c,2);
                 model.removeRow(this.jTable1.getSelectedRow());
                 cancel();
-                JOptionPane.showConfirmDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException ex) {
             Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
