@@ -6,8 +6,10 @@
 package Frames;
 
 import Controllers.NewClient;
+import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Clients;
 import Utils.Language;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -20,11 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class FrameCrearCliente extends javax.swing.JInternalFrame {
 
-    Clients c = new Clients();
+    Clients clientRecieve = new Clients();
     NewClient newClient = new NewClient();
     boolean noExist = true;
     int origin = 0;
-    Language l;
 
     /**
      * Creates new form FrameCrearCliente
@@ -32,34 +33,54 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     public FrameCrearCliente() {
         initComponents();
         setLanguage();
+        origin=0;
     }
-    public FrameCrearCliente(Clients ce){
-      this.c = ce;
-      initComponents();
-      setLanguage();
-      //loadData();
-      this.jbtnguardar.setText(l.getBotonActualizar());
-      this.jbtnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
-      
+
+    public FrameCrearCliente(Clients c) {
+        try {
+            this.clientRecieve = c;
+            Language l = new Language();
+            origin=1;
+            initComponents();
+            setLanguage();
+            loadData();
+            this.jbtnguardar.setText(l.getBotonActualizar());
+            this.jbtnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(FrameCrearCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
+
     public void setLanguage() {
         try {
             Language l = new Language();
-           FrameCrearCliente.this.setTitle(l.getFrameCrearClienteTitulo());
-           this.jLabelNombre.setText(l.getLabelNombre());
-           this.jLabelApellido.setText(l.getLabelApellido());
-           this.jLabelIdentificacion.setText(l.getLabelIdentificacion());
-           this.jLabelTipoIdentificacion.setText(l.getLabelTipoIdentificaion());
-           this.jLabelNacionalidad.setText(l.getLabelNacionalidad());
-           this.jLabelTelefono.setText(l.getLabelTelefono());
-           this.jLabelCorreo.setText(l.getLabelCorreo());
-           this.jLabelDireccion.setText(l.getLabelDireccion());
-           this.jbtnguardar.setText(l.getBotonGuardar());
-           this.jbtnCancelar.setText(l.getBotonCancelar());
+            FrameCrearCliente.this.setTitle(l.getFrameCrearClienteTitulo());
+            this.jLabelNombre.setText(l.getLabelNombre());
+            this.jLabelApellido.setText(l.getLabelApellido());
+            this.jLabelIdentificacion.setText(l.getLabelIdentificacion());
+            this.jLabelTipoIdentificacion.setText(l.getLabelTipoIdentificaion());
+            this.jLabelNacionalidad.setText(l.getLabelNacionalidad());
+            this.jLabelTelefono.setText(l.getLabelTelefono());
+            this.jLabelCorreo.setText(l.getLabelCorreo());
+            this.jLabelDireccion.setText(l.getLabelDireccion());
+            this.jbtnguardar.setText(l.getBotonGuardar());
+            this.jbtnCancelar.setText(l.getBotonCancelar());
         } catch (IOException ex) {
             Logger.getLogger(FrameCrearCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void loadData() {
+        this.jTextNombreCliente.setText(clientRecieve.getName());
+        this.jTextApellidoCliente.setText(clientRecieve.getLastName());
+        this.jTextIdentificacionCliente.setText(clientRecieve.getDocIdentity());
+        this.jcbNacionalidadCliente.setSelectedItem(clientRecieve.getNationality());
+        this.jFTFTelefono.setText(clientRecieve.getPhone());
+        this.textEmail.setText(clientRecieve.getEmail());
+        this.textDireccion.setText(clientRecieve.getAddress());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,9 +111,12 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         jTextIdentificacionCliente = new javax.swing.JFormattedTextField();
         jFTFTelefono = new javax.swing.JFormattedTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setTitle("CLIENTE");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelNombre.setFont(new java.awt.Font("Meiryo UI", 3, 14)); // NOI18N
         jLabelNombre.setText("Nombre:");
@@ -264,46 +288,47 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnguardarActionPerformed
-        if (validateNull()) {
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        } else {
-           // try{
-            NewClient nc = new NewClient();
-            switch(origin){
-                case 0:
-            Clients ce = new Clients();
-            ce.setName(this.jTextNombreCliente.getText());
-            ce.setLastName(this.jTextApellidoCliente.getText());
-            ce.setDocIdentity(this.jTextIdentificacionCliente.getText());
-            ce.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
-            ce.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
-            ce.setPhone(this.jFTFTelefono.getText());
-            ce.setEmail(this.textEmail.getText());
-            ce.setAddress(this.textDireccion.getText());
-            ce.setErasedStatus(true);
-            nc.save(ce, 0);
-            JOptionPane.showMessageDialog(null, "Cliente se guardó correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
-            clean();
-            this.dispose();
-            break;
-                case 1:
-            c.setName(this.jTextNombreCliente.getText());
-            c.setLastName(this.jTextApellidoCliente.getText());
-            c.setDocIdentity(this.jTextIdentificacionCliente.getText());
-            c.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
-            c.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
-            c.setPhone(this.jFTFTelefono.getText());
-            c.setEmail(this.textEmail.getText());
-            c.setAddress(this.textDireccion.getText());
-            c.setErasedStatus(true);
-            nc.save(c, 1);
-            JOptionPane.showMessageDialog(null, "actualizado correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);                                                
+        try {
+            Language l = new Language();
+            if (validateNull()) {
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                NewClient nc = new NewClient();
+                switch (origin) {
+                    case 0:
+                        Clients ce = new Clients();
+                        ce.setName(this.jTextNombreCliente.getText());
+                        ce.setLastName(this.jTextApellidoCliente.getText());
+                        ce.setDocIdentity(this.jTextIdentificacionCliente.getText());
+                        ce.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
+                        ce.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
+                        ce.setPhone(this.jFTFTelefono.getText());
+                        ce.setEmail(this.textEmail.getText());
+                        ce.setAddress(this.textDireccion.getText());
+                        ce.setErasedStatus(true);
+                        nc.save(ce, 0);
+                        JOptionPane.showMessageDialog(null, "Cliente se guardó correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                        clean();
                         this.dispose();
-                        break; 
+                        break;
+                    case 1:
+                        clientRecieve.setName(this.jTextNombreCliente.getText());
+                        clientRecieve.setLastName(this.jTextApellidoCliente.getText());
+                        clientRecieve.setDocIdentity(this.jTextIdentificacionCliente.getText());
+                        clientRecieve.setDocType(this.jcbIdentificacionCliente.getSelectedIndex() == 0 ? false : true);
+                        clientRecieve.setNationality(this.jcbNacionalidadCliente.getSelectedItem().toString());
+                        clientRecieve.setPhone(this.jFTFTelefono.getText());
+                        clientRecieve.setEmail(this.textEmail.getText());
+                        clientRecieve.setAddress(this.textDireccion.getText());
+                        clientRecieve.setErasedStatus(true);
+                        nc.save(clientRecieve, 1);
+                        JOptionPane.showMessageDialog(null, "actualizado correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        break;
+                }
             }
-        //  }catch (NoSuchAlgorithmException ex) {
-         //       Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
-           // }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameCrearCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jbtnguardarActionPerformed
@@ -317,7 +342,13 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextApellidoClienteActionPerformed
 
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        FrameListCliente fcc = new FrameListCliente();
+        desktopPane.add(fcc);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fcc.getSize();
+        fcc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fcc.show();
         this.dispose();
     }//GEN-LAST:event_jbtnCancelarActionPerformed
 
@@ -333,12 +364,11 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
             val = true;
         } else if (this.jFTFTelefono.getText().equals("")) {
             val = true;
-        } else if (this.jFTFTelefono.getText().length()<=8) {
+        } else if (this.jFTFTelefono.getText().length() < 8) {
             val = true;
-        } else if (this.jTextIdentificacionCliente.getText().length()<=15) {
+        } else if (this.jTextIdentificacionCliente.getText().length() <= 15) {
             val = true;
         }
-        
 
         return val;
     }

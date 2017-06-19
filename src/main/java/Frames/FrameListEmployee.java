@@ -32,10 +32,9 @@ import javax.swing.table.TableModel;
  */
 public class FrameListEmployee extends javax.swing.JInternalFrame {
     NewEmployee newEmplo = new NewEmployee();
-     int origin = 0;
+    int origin = 0;
     int selection = 0;
-    DefaultTableModel model;
-    Language l;
+    DefaultTableModel model;    
     /**
      * Creates new form FrameListEmployee
      */
@@ -48,7 +47,6 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
     public void loadData() {
         model= (DefaultTableModel) this.jTable1.getModel();
         newEmplo.findAll().forEach(e -> {
-//            Employee u = (Employee) newEmplo.findByNameLike(u.getFirstName());
             model.addRow(new Object[]{e.getFirstName(), e.getSurname(), e.getDocIdentity(),e.getPhone()});
         });
     }
@@ -97,18 +95,13 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
         setRequestFocusEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -125,6 +118,8 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -132,6 +127,7 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jBtAdd.setBackground(new java.awt.Color(255, 255, 255));
         jBtAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jBtAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +135,7 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
             }
         });
 
+        jBDelete.setBackground(new java.awt.Color(255, 255, 255));
         jBDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete.png"))); // NOI18N
         jBDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +143,7 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
             }
         });
 
+        jBCancel.setBackground(new java.awt.Color(255, 255, 255));
         jBCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
         jBCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,40 +200,55 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(400, Short.MAX_VALUE)
+                .addComponent(jBtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jBCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(37, 37, 37))
+                        .addComponent(jScrollPane1))
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(281, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCancel)
+                    .addComponent(jBDelete)
+                    .addComponent(jBtAdd))
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(78, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtAdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBCancel)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(354, 354, 354))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtAdd)
-                    .addComponent(jBDelete)
-                    .addComponent(jBCancel))
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -253,16 +266,15 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
                 fce.toFront();
                 fce.show();
                 break;
-            case 1:
-               // Employee e =  newEmplo.findByNameLike(this.jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
-                FrameCrearEmpleado fce1 = new FrameCrearEmpleado();
+            case 1:               
+                Employee e= newEmplo.findEmployeeByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
+                FrameCrearEmpleado fce1 = new FrameCrearEmpleado(e);
                 desktopPane.add(fce1);
                 Dimension desktopSize1 = desktopPane.getSize();
                 Dimension FrameSize1 = fce1.getSize();
                 fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
                 fce1.toFront();
-                jTable1.clearSelection();
-                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(), JOptionPane.INFORMATION_MESSAGE);
+                jTable1.clearSelection();                
                 fce1.show();
                 break;
         }
@@ -281,16 +293,21 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCancelActionPerformed
 
     private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
-        // TODO add your handling code here:
-         DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        if (this.jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
-        } else {
-           Employee u = (Employee) newEmplo.findByNameLike(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            newEmplo.save(u, 2);
-            model.removeRow(this.jTable1.getSelectedRow());
-            cancel();
-            JOptionPane.showConfirmDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            Language l= new Language();
+            if (this.jTable1.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
+            } else {
+                Employee u = newEmplo.findEmployeeByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
+                newEmplo.save(u, 2);
+                model.removeRow(this.jTable1.getSelectedRow());
+                cancel();
+                JOptionPane.showMessageDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameListEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jBDeleteActionPerformed
@@ -326,7 +343,6 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
             case 1:
                 selection = 1;
                 break;
-
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
     

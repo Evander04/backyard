@@ -6,10 +6,12 @@
 package Frames;
 
 import Controllers.NewEmployee;
+import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Clients;
 import Pojo.Employee;
 import Utils.Language;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -25,38 +27,39 @@ import org.hibernate.*;
  */
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
-    Employee e;
+    
     NewEmployee newEmployee = new NewEmployee();
     boolean noExist = true;
-    Employee employeeRecive = new Employee();
-    int origin = 0;
-    Language l;
+    Employee employeeRecive;
+    int origin = 0;    
     /**
      * Creates new form FrameCrearEmpleado
      */
     public FrameCrearEmpleado() {
         //this.l = new Language();
         initComponents();
-        setLenguage();
-        e = new Employee();
+        setLenguage();        
         origin = 0;
     }
     public FrameCrearEmpleado(Employee e){
-        this.employeeRecive = e;
-        initComponents();
-        setLenguage();
-     //  loadData();
-        this.jPanel4.remove(this.jLabelTipo);
-        this.jPanel4.remove(this.jCBTipoEmpleado);
-        this.jBtnGuardarEmpleado.setText(l.getBotonActualizar());
-        this.jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+        try {
+            this.employeeRecive = e;
+            initComponents();
+            setLenguage();
+            loadData();
+            origin=1;
+            Language l= new Language();
+            this.jBtnGuardarEmpleado.setText(l.getBotonActualizar());
+            this.jBtnGuardarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(FrameCrearEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     public void setLenguage(){
          try {
             Language l = new Language();
             FrameCrearEmpleado.this.setTitle(l.getFrameCrearEmpleadoTitulo());
-            this.jlabelTipodeBusqueda.setText(l.getLabelTipodeBusqueda());
             this.jLabelPrimerNombre.setText(l.getLabelPrimerNombre());
             this.jLabelSegundoNombre.setText(l.getLabelSegundoNombre());
             this.jLabelPrimerApellido.setText(l.getLabelPrimerApellido());
@@ -68,12 +71,23 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             this.jLabelTipo.setText(l.getLabelTipo());
             this.jLabelDireccion.setText(l.getLabelDireccion());
             this.jBtnGuardarEmpleado.setText(l.getBotonGuardar());
-            this.jBtnCancelarCreacionEmpleado.setText(l.getBotonCancelar());
-            this.jBtnBuscar.setText(l.getBotonBuscar());
+            this.jBtnCancelarCreacionEmpleado.setText(l.getBotonCancelar());            
             origin = 1;
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void loadData(){
+        this.jTextPrimerNombreEmpleado.setText(employeeRecive.getFirstName());
+        this.jTextSegundoNombreEmpleado.setText(employeeRecive.getSecondName());
+        this.jTextPrimerApellidoEmpleado.setText(employeeRecive.getSurname());
+        this.jTextSegundoApellidoEmpleado.setText(employeeRecive.getSecondSurname());
+        this.jFTFTidentificacion.setText(employeeRecive.getDocIdentity());
+        this.jFTFTelefono.setText(employeeRecive.getPhone());
+        this.jTextSalarioEmpleado.setText(employeeRecive.getSalary().toString());
+        this.jTextCorreoEmpleado.setText(employeeRecive.getEmail());
+        this.jCBTipoEmpleado.setSelectedIndex(employeeRecive.getTypeEmployee());
+        this.jTextAreaDireccionEmpleado.setText(employeeRecive.getAddress().toString());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,12 +99,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jlabelTipodeBusqueda = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jBtnBuscar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabelPrimerNombre = new javax.swing.JLabel();
         jTextPrimerNombreEmpleado = new javax.swing.JTextField();
@@ -120,20 +128,6 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Agregar Empleado");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jlabelTipodeBusqueda.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jlabelTipodeBusqueda.setText("Tipo de Busqueda:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido", "Telefono", "Correo" }));
-
-        jBtnBuscar.setBackground(new java.awt.Color(187, 187, 187));
-        jBtnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/search.png"))); // NOI18N
-        jBtnBuscar.setText("Buscar");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -236,13 +230,13 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                                         .addComponent(jFTFTelefono)
                                         .addComponent(jFTFTidentificacion)
                                         .addComponent(jTextPrimerNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 377, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(jBtnGuardarEmpleado)
                 .addGap(50, 50, 50)
                 .addComponent(jBtnCancelarCreacionEmpleado)
-                .addGap(297, 297, 297))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,64 +288,15 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jlabelTipodeBusqueda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jBtnBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlabelTipodeBusqueda)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -363,10 +308,10 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         if (validateNull()) {
             JOptionPane.showMessageDialog(null, "Verifique que no tenga campos vacios, o que los campos esten correctamente llenados", "Atención", JOptionPane.ERROR_MESSAGE);
         } else {
-         //   try{
             NewEmployee newEmployee = new NewEmployee();
             switch (origin){
                 case 0:{
+            Employee e= new Employee();
             e.setFirstName(this.jTextPrimerNombreEmpleado.getText());
             e.setSecondName(this.jTextSegundoNombreEmpleado.getText());
             e.setSurname(this.jTextPrimerApellidoEmpleado.getText());
@@ -395,24 +340,25 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             employeeRecive.setSalary(Long.parseLong(this.jTextSalarioEmpleado.getText()));
             employeeRecive.setAddress(this.jTextAreaDireccionEmpleado.getText());
             employeeRecive.setTypeEmployee(this.jCBTipoEmpleado.getSelectedIndex());
-            employeeRecive.setErasedStatus(true);
             newEmployee.save(employeeRecive, 1);
             JOptionPane.showMessageDialog(null, "Actualizado Correctamente","Exitos",JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
                 }
-            } 
-       //        Logger.getLogger(FrameCrearEmpleado.class.getName()).log(Level.SEVERE,null,ex);
-            
-           //}
+            }      
     }//GEN-LAST:event_jBtnGuardarEmpleadoActionPerformed
     }
     private void jBtnCancelarCreacionEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarCreacionEmpleadoActionPerformed
         // TODO add your handling code here:
+        
+        FrameListEmployee fcc = new FrameListEmployee();
+        desktopPane.add(fcc);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fcc.getSize();
+        fcc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fcc.show();
         this.dispose();
     }//GEN-LAST:event_jBtnCancelarCreacionEmpleadoActionPerformed
-   /* public void loadData(){
-    this.jCBTipoEmpleado
-}*/
+ 
     
     public String docType(){
         String text = this.jCBTipoEmpleado.getSelectedItem().toString();
@@ -439,7 +385,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             val = true;
         } else if (this.jTextAreaDireccionEmpleado.getText().equals("")) {
             val = true;
-        }else if (this.jFTFTelefono.getText().length()<=8) {
+        }else if (this.jFTFTelefono.getText().length()<8) {
             val = true;
         }else if (this.jFTFTidentificacion.getText().length()<=15) {
             val = true;
@@ -460,11 +406,9 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnCancelarCreacionEmpleado;
     private javax.swing.JButton jBtnGuardarEmpleado;
     private javax.swing.JComboBox<String> jCBTipoEmpleado;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFTFTelefono;
     private javax.swing.JFormattedTextField jFTFTidentificacion;
     private javax.swing.JLabel jLabelCorreo;
@@ -477,18 +421,14 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelSegundoNombre;
     private javax.swing.JLabel jLabelTelefono;
     private javax.swing.JLabel jLabelTipo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDireccionEmpleado;
     private javax.swing.JTextField jTextCorreoEmpleado;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextPrimerApellidoEmpleado;
     private javax.swing.JTextField jTextPrimerNombreEmpleado;
     private javax.swing.JTextField jTextSalarioEmpleado;
     private javax.swing.JTextField jTextSegundoApellidoEmpleado;
     private javax.swing.JTextField jTextSegundoNombreEmpleado;
-    private javax.swing.JLabel jlabelTipodeBusqueda;
     // End of variables declaration//GEN-END:variables
 }
