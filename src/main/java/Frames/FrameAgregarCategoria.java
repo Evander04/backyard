@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
-
+    Language l;
     /**
      * Creates new form FrameAgregarCategoria
      */
@@ -186,7 +186,7 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         if(validateNull()){
-            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS", "ATENCION", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         }else{
         Category c = new Category();
         NewCategory nc = new NewCategory();
@@ -195,7 +195,7 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
         c.setErasedStatus(true);
         nc.save(c, 0);
             clean();
-            JOptionPane.showMessageDialog(null, "SE GUARDO LA CATEGORIA CORRECTAMENTE","EXITO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(),l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBTGuardarActionPerformed
     public void clean(){

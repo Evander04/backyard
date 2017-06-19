@@ -261,6 +261,315 @@
                 <Property name="rows" type="int" value="5"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Nombre"/>
+                    <StringItem index="1" value="Apellido"/>
+                    <StringItem index="2" value="Telefono"/>
+                    <StringItem index="3" value="Correo"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextField1">
+            </Component>
+            <Component class="javax.swing.JButton" name="jBtnBuscar">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="bb" green="bb" red="bb" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon32x32/search.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelSegundoNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelPrimerNombre" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jTextCorreoEmpleado" min="-2" pref="182" max="-2" attributes="0"/>
+                                              <Component id="jCBTipoEmpleado" min="-2" pref="182" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane1" min="-2" pref="255" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="jLabelDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabelSegundoApellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelPrimerApellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelSalario" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelIdentificacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jTextSegundoNombreEmpleado" min="-2" pref="182" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jTextPrimerApellidoEmpleado" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="jTextSegundoApellidoEmpleado" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="jTextSalarioEmpleado" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="jFTFTelefono" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jFTFTidentificacion" max="32767" attributes="0"/>
+                                                  <Component id="jTextPrimerNombreEmpleado" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="377" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="jBtnGuardarEmpleado" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jBtnCancelarCreacionEmpleado" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelPrimerNombre" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jTextPrimerNombreEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelSegundoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextSegundoNombreEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelPrimerApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextPrimerApellidoEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelSegundoApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextSegundoApellidoEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jFTFTidentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jFTFTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelSalario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextSalarioEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextCorreoEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCBTipoEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelDireccion" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jBtnGuardarEmpleado" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jBtnCancelarCreacionEmpleado" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabelPrimerNombre">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Primer Nombre:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextPrimerNombreEmpleado">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelSegundoNombre">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Segundo Nombre:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextSegundoNombreEmpleado">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelPrimerApellido">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Primer Apellido:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextPrimerApellidoEmpleado">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelSegundoApellido">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Segundo Apellido:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextSegundoApellidoEmpleado">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelIdentificacion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Identificaci&#xf3;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelTelefono">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Telefono:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelSalario">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Salario:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextSalarioEmpleado">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextSalarioEmpleadoKeyTyped"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelCorreo">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Correo:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextCorreoEmpleado">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelTipo">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tipo:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jCBTipoEmpleado">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Mortal"/>
+                        <StringItem index="1" value="Supervisor"/>
+                        <StringItem index="2" value="Gerente"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="jTextAreaDireccionEmpleado">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JLabel" name="jLabelDireccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jBtnGuardarEmpleado">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="bb" green="bb" red="bb" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon32x32/save.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Guardar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnGuardarEmpleadoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jBtnCancelarCreacionEmpleado">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="bb" green="bb" red="bb" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icon32x32/cancel.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cancelar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCancelarCreacionEmpleadoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFTFTelefono">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="########" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="jFTFTidentificacion">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="###-######-####U" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabelDireccion">

@@ -702,7 +702,73 @@ public class Language {
                 var = "Ninguna fila afectada";
                 break;
             case 1:
-                var = "Ninguna fila afectada";
+                var = "None affected row";
+                break;
+        }
+        return var;
+    }
+    public String getGuardadocorrecto() {
+      switch (config) {
+            case 0:
+                var = "Datos guardados correctamente";
+                break;
+            case 1:
+                var = "Data saved correctly";
+                break;
+        }
+        return var;
+    }
+    public String getActualizadocorrecto() {
+      switch (config) {
+            case 0:
+                var = "Actualizado correctamente";
+                break;
+            case 1:
+                var = "Updated successfully";
+                break;
+        }
+        return var;
+    }
+    public String getDigiteContraseña() {
+      switch (config) {
+            case 0:
+                var = "Digite su nueva contraseña";
+                break;
+            case 1:
+                var = "Enter your new password";
+                break;
+        }
+        return var;
+    }
+     public String getDContraseña() {
+      switch (config) {
+            case 0:
+                var = "Digite su contraseña";
+                break;
+            case 1:
+                var = "Enter your password";
+                break;
+        }
+        return var;
+    }
+      public String getDUsuario() {
+      switch (config) {
+            case 0:
+                var = "Digite su usuario";
+                break;
+            case 1:
+                var = "Enter your user";
+                break;
+        }
+        return var;
+    }
+     public String getCredencialesIncorectas() {
+      switch (config) {
+            case 0:
+                var = "Credenciales incorrectas";
+                break;
+            case 1:
+                var = "Bad credentials";
                 break;
         }
         return var;

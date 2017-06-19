@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,7 +28,7 @@ import org.hibernate.*;
  * @author Obed
  */
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
-
+ Language l;
     
     NewEmployee newEmployee = new NewEmployee();
     boolean noExist = true;
@@ -40,6 +42,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         initComponents();
         setLenguage();        
         origin = 0;
+        patern();
     }
     public FrameCrearEmpleado(Employee e){
         try {
@@ -88,6 +91,14 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         this.jTextCorreoEmpleado.setText(employeeRecive.getEmail());
         this.jCBTipoEmpleado.setSelectedIndex(employeeRecive.getTypeEmployee());
         this.jTextAreaDireccionEmpleado.setText(employeeRecive.getAddress().toString());
+    }
+    public void patern(){
+        String pr = this.jTextSalarioEmpleado.getText();
+        Pattern p = Pattern.compile("[\\p{Alnum}]");
+        Matcher m = p.matcher(pr);
+        if(!m.find()){
+       // evt.consume();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,6 +155,12 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         jLabelTelefono.setText("Telefono:");
 
         jLabelSalario.setText("Salario:");
+
+        jTextSalarioEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextSalarioEmpleadoKeyTyped(evt);
+            }
+        });
 
         jLabelCorreo.setText("Correo:");
 
@@ -306,7 +323,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     private void jBtnGuardarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarEmpleadoActionPerformed
         // TODO add your handling code here:        
         if (validateNull()) {
-            JOptionPane.showMessageDialog(null, "Verifique que no tenga campos vacios, o que los campos esten correctamente llenados", "Atención", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         } else {
             NewEmployee newEmployee = new NewEmployee();
             switch (origin){
@@ -325,7 +342,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             e.setErasedStatus(true);
             newEmployee.save(e, 0);
             clean();
-            JOptionPane.showMessageDialog(null,"Se guardó el empleado correctamente","Éxito",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,l.getGuardadocorrecto(),l.getEXITO(),JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             break;
                 }
@@ -341,7 +358,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             employeeRecive.setAddress(this.jTextAreaDireccionEmpleado.getText());
             employeeRecive.setTypeEmployee(this.jCBTipoEmpleado.getSelectedIndex());
             newEmployee.save(employeeRecive, 1);
-            JOptionPane.showMessageDialog(null, "Actualizado Correctamente","Exitos",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(),l.getEXITO(),JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
                 }
             }      
@@ -358,7 +375,20 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
         fcc.show();
         this.dispose();
     }//GEN-LAST:event_jBtnCancelarCreacionEmpleadoActionPerformed
- 
+
+    private void jTextSalarioEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextSalarioEmpleadoKeyTyped
+        // TODO add your handling code here:
+        String pr = Character.toString(evt.getKeyChar());
+        Pattern p = Pattern.compile("[\\p{Alnum}]");
+        Matcher m = p.matcher(pr);
+        if(!m.find()){
+        evt.consume();
+            System.out.println("verga");
+        }
+    }//GEN-LAST:event_jTextSalarioEmpleadoKeyTyped
+   /* public void loadData(){
+    this.jCBTipoEmpleado
+}*/
     
     public String docType(){
         String text = this.jCBTipoEmpleado.getSelectedItem().toString();

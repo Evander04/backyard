@@ -307,7 +307,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
                         ce.setAddress(this.textDireccion.getText());
                         ce.setErasedStatus(true);
                         nc.save(ce, 0);
-                        JOptionPane.showMessageDialog(null, "Cliente se guardó correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
                         clean();
                         this.dispose();
                         break;
@@ -322,7 +322,7 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
                         clientRecieve.setAddress(this.textDireccion.getText());
                         clientRecieve.setErasedStatus(true);
                         nc.save(clientRecieve, 1);
-                        JOptionPane.showMessageDialog(null, "actualizado correctamente", l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
                         break;
                 }
