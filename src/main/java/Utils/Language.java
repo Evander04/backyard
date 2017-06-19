@@ -619,6 +619,28 @@ public class Language {
         }
         return var;
     }
+     public String getFrameListClientTitulo() {
+      switch (config) {
+            case 0:
+                var = "Listar Clientes";
+                break;
+            case 1:
+                var = "List Clients";
+                break;
+        }
+        return var;
+    }
+      public String getFrameListUserTitulo() {
+      switch (config) {
+            case 0:
+                var = "Listar Usuarios";
+                break;
+            case 1:
+                var = "List Users";
+                break;
+        }
+        return var;
+    }
 //============================================================Alertasxdxdxd===========================================================================
  public String getCamposVaciosOMalos() {
       switch (config) {
@@ -685,7 +707,139 @@ public class Language {
         }
         return var;
     }
-    
+//===============================================================================columnas ==============================================================================================================
+public String getColumnNombre() {
+      switch (config) {
+            case 0:
+                var = "Nombre";
+                break;
+            case 1:
+                var = "Name";
+                break;
+        }
+        return var;
+    } 
+public String getColumnApellido() {
+      switch (config) {
+            case 0:
+                var = "Apellido";
+                break;
+            case 1:
+                var = "LastName";
+                break;
+        }
+        return var;
+    }    
+    public String getColumnIdentificacion() {
+      switch (config) {
+            case 0:
+                var = "Identificación";
+                break;
+            case 1:
+                var = "Identification";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnTelefono() {
+      switch (config) {
+            case 0:
+                var = "Teléfono";
+                break;
+            case 1:
+                var = "Phone";
+                break;
+        }
+        return var;
+    } 
+     public String getColumnNacionalidad() {
+      switch (config) {
+            case 0:
+                var = "Nacionalidad";
+                break;
+            case 1:
+                var = "Nationality";
+                break;
+        }
+        return var;
+    } 
+     public String getColumnReserva() {
+      switch (config) {
+            case 0:
+                var = "Reserva";
+                break;
+            case 1:
+                var = "Reserved";
+                break;
+        }
+        return var;
+    } 
+     public String getColumnFecha() {
+      switch (config) {
+            case 0:
+                var = "Fecha";
+                break;
+            case 1:
+                var = "Date";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnRegistro() {
+      switch (config) {
+            case 0:
+                var = "Registro";
+                break;
+            case 1:
+                var = "Registry";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnTrabajador() {
+      switch (config) {
+            case 0:
+                var = "Trabajador";
+                break;
+            case 1:
+                var = "Workman";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnUsuario() {
+      switch (config) {
+            case 0:
+                var = "Usuario";
+                break;
+            case 1:
+                var = "User";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnTipo() {
+      switch (config) {
+            case 0:
+                var = "Tipo";
+                break;
+            case 1:
+                var = "Type";
+                break;
+        }
+        return var;
+    } 
+    public String getColumnEmail() {
+      switch (config) {
+            case 0:
+                var = "Correo";
+                break;
+            case 1:
+                var = "Email";
+                break;
+        }
+        return var;
+    } 
 //************************************************************BOTONES************************************************************
    public String getBotonGuardar() {
         switch (config) {

@@ -12,8 +12,14 @@ import Pojo.Users;
 import Utils.Language;
 import com.sun.security.ntlm.Client;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -32,6 +38,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         initComponents();
         loadData();
         origin = 0;
+        setLenguage();
     }
     public void loadData(){
         model= (DefaultTableModel) this.jTable1.getModel();
@@ -39,6 +46,25 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
            // Employee e = newEmployee.findEmployeeByUser(u.getUserName());
             model.addRow(new Object[]{e.getName(), e.getLastName(),e.getNationality(),e.getPhone()});
         });
+    }
+    public void setLenguage(){
+         try {
+            Language l = new Language();
+            FrameListCliente.this.setTitle(l.getFrameListClientTitulo());
+            this.jLabel1.setText(l.getLabelTipodeBusqueda()); 
+             JTableHeader th = jTable1.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnNombre());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnApellido());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnNacionalidad());
+              TableColumn tc3 = tcm.getColumn(3);
+             tc3.setHeaderValue(l.getColumnTelefono());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

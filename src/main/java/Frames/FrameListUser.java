@@ -10,15 +10,22 @@ import Controllers.NewUsers;
 import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Employee;
 import Pojo.Users;
+import Utils.Language;
 import com.sun.rowset.internal.Row;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -39,6 +46,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
         initComponents();
         loadData();
         origin = 0;
+        setLenguage();
     }
 
     public void loadData() {
@@ -48,7 +56,23 @@ public class FrameListUser extends javax.swing.JInternalFrame {
             model.addRow(new Object[]{e.getFirstName() + " " + e.getSurname(), u.getUserName(), arrayType[e.getTypeEmployee()]});
         });
     }
-    
+    public void setLenguage(){
+         try {
+            Language l = new Language();
+            FrameListUser.this.setTitle(l.getFrameListUserTitulo());
+            this.jlabelTipodeBusqueda.setText(l.getLabelTipodeBusqueda()); 
+             JTableHeader th = jTable1.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnTrabajador());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnUsuario());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnTipo());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

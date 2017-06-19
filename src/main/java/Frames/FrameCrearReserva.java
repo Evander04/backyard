@@ -9,13 +9,16 @@ import Utils.Language;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author Obed
  */
 public class FrameCrearReserva extends javax.swing.JInternalFrame {
-
+   
     /**
      * Creates new form FrameCrearReserva
      */
@@ -25,15 +28,34 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
     }
     public void setLanguage() {
         try {
-            Language l = new Language();
-            FrameCrearReserva.this.setTitle(l.getFrameCrearReservaTitulo());
-            this.jBtnAgregarCliente.setText(l.getBotonAgregarCliente());
-            this.jBtnBuscarCliente.setText(l.getBotonBuscar());
-            this.jlabelBuscarCliente.setText(l.getlabelBuscarCliente());
+           Language l = new Language();
+           FrameCrearReserva.this.setTitle(l.getFrameCrearReservaTitulo());
+           this.jBtnAgregarCliente.setText(l.getBotonAgregarCliente());
+           this.jBtnBuscarCliente.setText(l.getBotonBuscar());
+           this.jlabelBuscarCliente.setText(l.getlabelBuscarCliente());
            this.jLabelCalendario.setText(l.getLabelCalendario());
-           this.jBtnGuardarReserva.setText(l.getBotonGuardar());
-            
-            
+           this.jBtnGuardarReserva.setText(l.getBotonGuardar());           
+           JTableHeader th = jTableMostrarClientes.getTableHeader();//Tabla # 1
+           TableColumnModel tcm = th.getColumnModel();
+           TableColumn tc = tcm.getColumn(0);
+           tc.setHeaderValue(l.getColumnNombre());
+           TableColumn tc1 = tcm.getColumn(1);
+           tc1.setHeaderValue(l.getColumnTelefono());
+           TableColumn tc2 = tcm.getColumn(2);
+           tc2.setHeaderValue(l.getColumnIdentificacion());
+           TableColumn tc3 = tcm.getColumn(3);
+           tc3.setHeaderValue(l.getColumnEmail());
+           JTableHeader th1 = jTable1.getTableHeader();//Tabla # 2
+           TableColumnModel tcm1 = th1.getColumnModel();
+           TableColumn tcc = tcm1.getColumn(0);
+           tcc.setHeaderValue(l.getColumnNombre());
+           TableColumn tcc1 = tcm1.getColumn(1);
+           tcc1.setHeaderValue(l.getColumnTelefono());
+           TableColumn tcc2 = tcm1.getColumn(2);
+           tcc2.setHeaderValue(l.getColumnIdentificacion());
+           TableColumn tcc3 = tcm1.getColumn(3);
+           tcc3.setHeaderValue(l.getColumnEmail()); 
+                       
         } catch (IOException ex) {
             Logger.getLogger(FrameCrearReserva.class.getName()).log(Level.SEVERE, null, ex);
         }

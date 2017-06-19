@@ -20,6 +20,11 @@ import Utils.Language;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -51,7 +56,17 @@ public class FrameListEmployee extends javax.swing.JInternalFrame {
          try {
             Language l = new Language();
             FrameListEmployee.this.setTitle(l.getFrameListEmployeesTitulo());
-            this.jLabel1.setText(l.getLabelTipodeBusqueda());
+            this.jLabel1.setText(l.getLabelTipodeBusqueda()); 
+             JTableHeader th = jTable1.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnNombre());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnApellido());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnIdentificacion());
+              TableColumn tc3 = tcm.getColumn(3);
+             tc3.setHeaderValue(l.getColumnTelefono());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
