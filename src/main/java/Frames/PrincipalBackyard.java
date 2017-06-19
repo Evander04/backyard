@@ -295,7 +295,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private void NuevoEmpleadoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoEmpleadoMenuItemActionPerformed
         // TODO add your handling code here:
         //FrameCrearEmpleado fce = new FrameCrearEmpleado();
-        FrameCrearEmpleado fce = new FrameCrearEmpleado();
+        FrameListEmployee fce = new FrameListEmployee();
         desktopPane.add(fce);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fce.getSize();

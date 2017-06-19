@@ -31,7 +31,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
     boolean noExist = true;
     Users userRecieve = new Users();
     int origin = 0;
-
+    Language l;
     /**
      * Creates new form FrameUsuario
      */
@@ -219,7 +219,7 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
         if (validateNull()) {
-            JOptionPane.showMessageDialog(null, "digite todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getError(), JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 Hash h = new Hash();
@@ -232,13 +232,13 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
                         u.setUserName(this.textUser.getText());
                         u.setPass(h.Sha512(this.TextPass.getText()));
                         nu.save(u, 0);
-                        JOptionPane.showMessageDialog(null, "guardado correctamente", "Éxitos", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
                         break;
                     case 1:
                         userRecieve.setPass(h.Sha512(this.TextPass.getText()));
                         nu.save(userRecieve, 1);
-                        JOptionPane.showMessageDialog(null, "actualizado correctamente", "Éxitos", JOptionPane.INFORMATION_MESSAGE);                                                
+                        JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);                                                
                         this.dispose();
                         break;
                 }

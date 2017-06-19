@@ -39,6 +39,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     int origin = 0;
     int selection = 0;
     DefaultTableModel model;
+    Language l;
     /**
      * Creates new form FrameListUser
      */
@@ -250,7 +251,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
                 fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
                 fce1.toFront();
                 jTable1.clearSelection();
-                JOptionPane.showMessageDialog(null, "Digite su nueva contraseña", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, l.getDigiteContraseña() , l.getAlerta(), JOptionPane.INFORMATION_MESSAGE);
                 fce1.show();
                 break;
         }

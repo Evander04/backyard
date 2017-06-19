@@ -27,6 +27,7 @@ public class FrameLogin extends javax.swing.JFrame {
     LoginController logController = new LoginController();
     NewUsers newUser = new NewUsers();
     Hash h = new Hash();
+    Language l;
 
     /**
      * Creates new form NewJFrame
@@ -149,9 +150,9 @@ public class FrameLogin extends javax.swing.JFrame {
 
     private void jBotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonEntrarActionPerformed
         if (this.TextUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite el usuario", "Atención", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getDUsuario(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         } else if (this.TextPass.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite la contraseña", "Atención", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getDContraseña(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         } else {
             if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
                 
@@ -159,7 +160,7 @@ public class FrameLogin extends javax.swing.JFrame {
                 pb.show();
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Atención", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jBotonEntrarActionPerformed

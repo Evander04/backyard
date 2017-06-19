@@ -28,7 +28,7 @@ import org.hibernate.*;
  * @author Obed
  */
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
-
+ Language l;
     
     NewEmployee newEmployee = new NewEmployee();
     boolean noExist = true;
@@ -342,7 +342,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             e.setErasedStatus(true);
             newEmployee.save(e, 0);
             clean();
-            JOptionPane.showMessageDialog(null,"Se guardó el empleado correctamente","Éxito",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,l.getGuardadocorrecto(),l.getEXITO(),JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             break;
                 }
@@ -358,7 +358,7 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
             employeeRecive.setAddress(this.jTextAreaDireccionEmpleado.getText());
             employeeRecive.setTypeEmployee(this.jCBTipoEmpleado.getSelectedIndex());
             newEmployee.save(employeeRecive, 1);
-            JOptionPane.showMessageDialog(null, "Actualizado Correctamente","Exitos",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(),l.getEXITO(),JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
                 }
             }      
