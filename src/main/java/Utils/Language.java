@@ -702,7 +702,18 @@ public class Language {
                 var = "Ninguna fila afectada";
                 break;
             case 1:
-                var = "Ninguna fila afectada";
+                var = "None affected row";
+                break;
+        }
+        return var;
+    }
+    public String getGuardadocorrecto() {
+      switch (config) {
+            case 0:
+                var = "Datos guardados correctamente";
+                break;
+            case 1:
+                var = "Data saved correctly";
                 break;
         }
         return var;

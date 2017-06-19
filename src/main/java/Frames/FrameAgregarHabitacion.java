@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
-
+    Language l;
     Map<String,String> mapCategory= new HashMap<>();
     Map<String,String> mapCategoryInverter= new HashMap<>();
     /**
@@ -253,7 +253,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
         // TODO add your handling code here:
         if (validaNull()){
-            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS","ATENCION", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         }else{
         NewRoom nr = new NewRoom();
         NewCategory nc= new NewCategory();
@@ -268,7 +268,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         ro.setErasedStatus(true);
         nr.save(ro, 0);
         clearfield();
-        JOptionPane.showMessageDialog(null, "DATOS GUARDADOS CORRECTAMENTE", "EXITO", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBTGuardarActionPerformed
 

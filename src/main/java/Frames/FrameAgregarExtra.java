@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarExtra extends javax.swing.JInternalFrame {
-
+Language l;
     /**
      * Creates new form FrameAgregarExtra
      */
@@ -184,7 +184,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
     private void jBTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTAgregarActionPerformed
         // TODO add your handling code here:
         if (validaNull()){
-            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS", "ATENCION",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(),JOptionPane.ERROR_MESSAGE);
         }else {
         Extras ex = new Extras();
         NewExtras nex = new NewExtras();        
@@ -193,7 +193,7 @@ public class FrameAgregarExtra extends javax.swing.JInternalFrame {
         ex.setRode(Long.parseLong(this.jFTFMonto.toString()));
         nex.save(ex, 0);
        clearfield();
-        JOptionPane.showMessageDialog(null, "SE GUARDO CORECTEAMENTE", "EN HORA BUENA", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBTAgregarActionPerformed
 
