@@ -7,23 +7,28 @@ package Frames;
 
 import Pojo.Config;
 import Pojo.Employee;
+import Utils.BackGround;
 import Utils.ConfigFile;
 import Utils.Language;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
 /**
  *
  * @author Obed
  */
-public class PrincipalBackyard extends javax.swing.JFrame {
+public class PrincipalBackyard extends javax.swing.JFrame{
 
     FrameLogin l = new FrameLogin();
     Employee employee;
-
+    
+  //  private Image img = new ImageIcon(getClass().getResource(".../icon32x32/20170619_1713587385.jpg")).getImage();
     /**
      * Creates new form NewMDIApplication
      */
@@ -36,13 +41,14 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     public PrincipalBackyard() {
         initComponents();
+        desktopPane.setBorder(new BackGround());
         setLanguage();
         this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
-
+       
     }
-
+    
     public JDesktopPane getDesktopPane() {
         return desktopPane;
     }
@@ -107,11 +113,15 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bienvenido");
+        setBackground(new java.awt.Color(255, 255, 255));
         setExtendedState(6);
+        setIconImage(new ImageIcon(getClass().getResource("../icon32x32/hotel_finder_21775.png")).getImage());
         setResizable(false);
         setSize(new java.awt.Dimension(1400, 700));
 
+        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        desktopPane.setForeground(new java.awt.Color(255, 255, 255));
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 

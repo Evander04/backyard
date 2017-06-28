@@ -124,6 +124,10 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         setTitle("RESERVACION");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/hotel_finder_21775.png"))); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jTableMostrarClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -170,6 +174,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(jTable1);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jlabelBuscarCliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jlabelBuscarCliente.setText("Buscar Cliente:");
@@ -237,6 +243,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
                 .addComponent(jBtnAgregarCliente)
                 .addGap(25, 25, 25))
         );
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel8.setText("Habitacion:");
 
@@ -457,6 +465,8 @@ public class FrameCrearReserva extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("PUBLICA", jPanel5);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel.setFont(new java.awt.Font("The Black Box", 1, 36)); // NOI18N
         jLabel.setText("BACKYARD");
