@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
-    Language l;
+
     /**
      * Creates new form FrameAgregarCategoria
      */
@@ -183,19 +183,23 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBTCancelarActionPerformed
 
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
-        // TODO add your handling code here:
-        
-        if(validateNull()){
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        }else{
-        Category c = new Category();
-        NewCategory nc = new NewCategory();
-        c.setCategoryType(this.jCBTipo.getSelectedIndex());
-        c.setDescription(this.jTextADescripcion.getText());
-        c.setErasedStatus(true);
-        nc.save(c, 0);
-            clean();
-            JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(),l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            Language l= new Language();
+            if(validateNull()){
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            }else{
+                Category c = new Category();
+                NewCategory nc = new NewCategory();
+                c.setCategoryType(this.jCBTipo.getSelectedIndex());
+                c.setDescription(this.jTextADescripcion.getText());
+                c.setErasedStatus(true);
+                nc.save(c, 0);
+                clean();
+                JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(),l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAgregarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBTGuardarActionPerformed
     public void clean(){

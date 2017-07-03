@@ -31,10 +31,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     public PrincipalBackyard() {
         initComponents();
         setLanguage();
-        this.NuevaCategoriaMenuItem.setVisible(false);
+      //  this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
-        loadData();
+    //    loadData();
 
     }
 
@@ -301,7 +301,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     private void NuevaReservaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaReservaMenuItemActionPerformed
         // TODO add your handling code here:
-        FrameCrearReserva fcr = new FrameCrearReserva();
+        FrameReservation fcr = new FrameReservation();
         desktopPane.add(fcr);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fcr.getSize();

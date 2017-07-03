@@ -5,7 +5,7 @@
  */
 package Utils;
 
-import Frames.FrameCrearReserva;
+
 import java.io.IOException;
 
 /**
@@ -281,19 +281,7 @@ public class Language {
         }
         return var;
     }
-      public String getDatePiker() {
-        switch (config) {
-            case 0:
-                FrameCrearReserva cr = new FrameCrearReserva();
-               // cr.jXDatePicker1.setDefaults( jXDatePicker1.datepicker.regional[ "fr" ] );
-
-                break;
-            case 1:
-                var = "Search Customer:";
-                break;
-        }
-        return var;
-    }
+    
       public String getTabPanePrivada() {
       switch (config) {
             case 0:

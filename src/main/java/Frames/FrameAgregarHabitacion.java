@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
-    Language l;
+    
     Map<String,String> mapCategory= new HashMap<>();
     Map<String,String> mapCategoryInverter= new HashMap<>();
     /**
@@ -93,6 +93,8 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         jFTFPrecio = new javax.swing.JFormattedTextField();
         jLCategoria = new javax.swing.JLabel();
         jCBCategoria = new javax.swing.JComboBox<>();
+        label = new javax.swing.JLabel();
+        textNombre = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Crear Habitacion");
@@ -152,6 +154,9 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label.setText("Nombre:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -159,12 +164,6 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLCapacidad)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFTFPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLDescripcion)
@@ -181,13 +180,26 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                         .addComponent(jBTGuardar)
                         .addGap(99, 99, 99)
                         .addComponent(jBTCancelar))
-                    .addComponent(jLPrecio))
+                    .addComponent(jLPrecio)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLCapacidad)
+                            .addComponent(label))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFTFCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(jFTFPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(textNombre))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label)
+                    .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCapacidad)
                     .addComponent(jFTFCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -228,7 +240,7 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,24 +263,30 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBTCancelarActionPerformed
 
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
-        // TODO add your handling code here:
-        if (validaNull()){
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        }else{
-        NewRoom nr = new NewRoom();
-        NewCategory nc= new NewCategory();
-        Room ro = new Room();
-        Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
-        ro.setCategory(c);
-        ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
-        ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
-        ro.setStatusRoom(0);
-        ro.setDescription(this.jTextADescripcion.getText());
-        ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
-        ro.setErasedStatus(true);
-        nr.save(ro, 0);
-        clearfield();
-        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            Language l= new Language();
+            if (validaNull()){
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            }else{
+                NewRoom nr = new NewRoom();
+                NewCategory nc= new NewCategory();
+                Room ro = new Room();
+                Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
+                ro.setName(this.textNombre.getText());
+                ro.setCategory(c);
+                ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
+                ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
+                ro.setStatusRoom(0);
+                ro.setDescription(this.jTextADescripcion.getText());
+                ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
+                ro.setErasedStatus(true);
+                nr.save(ro, 0);
+                clearfield();
+                JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAgregarHabitacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBTGuardarActionPerformed
 
@@ -280,7 +298,9 @@ private void clearfield(){
     jFTFCapacidad.setText("");
     jFTFPrecio.setText("");
     jTextADescripcion.setText("");
+    textNombre.setText("");
 }
+
 public boolean validaNull(){
     boolean val = false;
     if(this.jFTFCapacidad.getText().equals("")){
@@ -308,5 +328,7 @@ public boolean validaNull(){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextADescripcion;
+    private javax.swing.JLabel label;
+    private javax.swing.JTextField textNombre;
     // End of variables declaration//GEN-END:variables
 }

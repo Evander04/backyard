@@ -11,7 +11,6 @@ import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Clients;
 import Pojo.Users;
 import Utils.Language;
-import com.sun.security.ntlm.Client;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.util.logging.Level;
