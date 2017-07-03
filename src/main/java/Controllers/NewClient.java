@@ -76,6 +76,25 @@ public class NewClient {
         });
         return c;
     }
-    
+    public List<Clients> findClientByName(String name){
+        conect.open();
+        List<Clients> list= new ArrayList<>(); 
+        findAll().forEach(cli->{
+             Clients c= new Clients();
+            if (cli.getName().contains(name)) {
+                c.setIdClient(cli.getIdClient());
+                c.setName(cli.getName());
+                c.setLastName(cli.getLastName());
+                c.setDocIdentity(cli.getDocIdentity());
+                c.setDocType(cli.getDocType());
+                c.setNationality(cli.getNationality());
+                c.setPhone(cli.getPhone());
+                c.setEmail(cli.getEmail());
+                c.setAddress(cli.getAddress());
+                list.add(c);
+            }
+        });
+        return list;
+    }
     /*================CRUD====================*/
 }
