@@ -27,7 +27,6 @@ public class FrameLogin extends javax.swing.JFrame {
     LoginController logController = new LoginController();
     NewUsers newUser = new NewUsers();
     Hash h = new Hash();
-    Language l;
 
     /**
      * Creates new form NewJFrame
@@ -149,19 +148,24 @@ public class FrameLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonEntrarActionPerformed
-        if (this.TextUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, l.getDUsuario(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        } else if (this.TextPass.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, l.getDContraseña(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        } else {
-            if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
-                
-                PrincipalBackyard pb = new PrincipalBackyard();
-                pb.show();
-                this.dispose();
+        try {
+            Language l = new Language();
+            if (this.TextUser.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, l.getDUsuario(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            } else if (this.TextPass.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, l.getDContraseña(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+                if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
+                    
+                    PrincipalBackyard pb = new PrincipalBackyard();
+                    pb.show();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+                }
             }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBotonEntrarActionPerformed
 

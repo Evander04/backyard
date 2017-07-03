@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarExtra extends javax.swing.JInternalFrame {
-Language l;
     /**
      * Creates new form FrameAgregarExtra
      */
@@ -182,18 +181,23 @@ Language l;
     }//GEN-LAST:event_jBTCancelarActionPerformed
 
     private void jBTAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTAgregarActionPerformed
-        // TODO add your handling code here:
-        if (validaNull()){
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(),JOptionPane.ERROR_MESSAGE);
-        }else {
-        Extras ex = new Extras();
-        NewExtras nex = new NewExtras();        
-        //ex.setReservation(reservation);
-        ex.setDescription(this.jTextFDescripcion.toString());
-        ex.setRode(Long.parseLong(this.jFTFMonto.toString()));
-        nex.save(ex, 0);
-       clearfield();
-        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            Language l = new Language();
+            if (validaNull()){
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(),JOptionPane.ERROR_MESSAGE);
+            }else {
+                Extras ex = new Extras();
+                NewExtras nex = new NewExtras();
+                //ex.setReservation(reservation);
+                ex.setDescription(this.jTextFDescripcion.toString());
+                ex.setRode(Long.parseLong(this.jFTFMonto.toString()));
+                nex.save(ex, 0);
+                clearfield();
+                JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAgregarExtra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBTAgregarActionPerformed
 

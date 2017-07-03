@@ -8,14 +8,19 @@ package Frames;
 import Pojo.Config;
 import Pojo.Employee;
 import Utils.BackGround;
+import Utils.BytesImage;
 import Utils.ConfigFile;
 import Utils.Language;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
@@ -27,8 +32,9 @@ public class PrincipalBackyard extends javax.swing.JFrame{
 
     FrameLogin l = new FrameLogin();
     Employee employee;
-    
-  //  private Image img = new ImageIcon(getClass().getResource(".../icon32x32/20170619_1713587385.jpg")).getImage();
+    BytesImage bm;
+     Image img = new ImageIcon(getClass().getResource("../icon32x32/20170619_1713587385.jpg")).getImage();
+     BufferedImage bfi = null; //20170619_1713587385
     /**
      * Creates new form NewMDIApplication
      */
@@ -93,6 +99,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
@@ -119,9 +126,12 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         setResizable(false);
         setSize(new java.awt.Dimension(1400, 700));
 
-        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setText("jLabel1");
+        desktopPane.add(jLabel1);
+        jLabel1.setBounds(81, 36, 520, 410);
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -418,6 +428,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private javax.swing.JMenuItem jCanbiarIdioma;
     private javax.swing.JMenu jCentralEstadistica;
     private javax.swing.JMenu jConfiguraciones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;

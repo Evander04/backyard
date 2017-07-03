@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
  * @author Steven
  */
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
-    Language l;
     Map<String,String> mapCategory= new HashMap<>();
     Map<String,String> mapCategoryInverter= new HashMap<>();
     /**
@@ -251,24 +250,29 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBTCancelarActionPerformed
 
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
-        // TODO add your handling code here:
-        if (validaNull()){
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        }else{
-        NewRoom nr = new NewRoom();
-        NewCategory nc= new NewCategory();
-        Room ro = new Room();
-        Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
-        ro.setCategory(c);
-        ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
-        ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
-        ro.setStatusRoom(0);
-        ro.setDescription(this.jTextADescripcion.getText());
-        ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
-        ro.setErasedStatus(true);
-        nr.save(ro, 0);
-        clearfield();
-        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        try {
+            // TODO add your handling code here:
+            Language l = new Language();
+            if (validaNull()){
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            }else{
+                NewRoom nr = new NewRoom();
+                NewCategory nc= new NewCategory();
+                Room ro = new Room();
+                Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
+                ro.setCategory(c);
+                ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
+                ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
+                ro.setStatusRoom(0);
+                ro.setDescription(this.jTextADescripcion.getText());
+                ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
+                ro.setErasedStatus(true);
+                nr.save(ro, 0);
+                clearfield();
+                JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAgregarHabitacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jBTGuardarActionPerformed
 

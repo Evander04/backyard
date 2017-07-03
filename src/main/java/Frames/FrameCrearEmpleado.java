@@ -28,7 +28,6 @@ import org.hibernate.*;
  * @author Obed
  */
 public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
- Language l;
     
     NewEmployee newEmployee = new NewEmployee();
     boolean noExist = true;
@@ -322,6 +321,12 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
 
     private void jBtnGuardarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarEmpleadoActionPerformed
         // TODO add your handling code here:        
+      Language l = null;
+        try {
+            l = new Language();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameCrearEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (validateNull()) {
             JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
         } else {
