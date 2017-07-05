@@ -39,7 +39,6 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     int origin = 0;
     int selection = 0;
     DefaultTableModel model;
-    Language l;
     /**
      * Creates new form FrameListUser
      */
@@ -232,30 +231,35 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddRefreshActionPerformed
-        switch (origin) {
-            case 0:
-                FrameUsuario fce = new FrameUsuario();
-                desktopPane.add(fce);
-                Dimension desktopSize = desktopPane.getSize();
-                Dimension FrameSize = fce.getSize();
-                fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                fce.toFront();
-                fce.show();
-                break;
-            case 1:
-                Users u = newUser.findByUserName(this.jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
-                FrameUsuario fce1 = new FrameUsuario(u);
-                desktopPane.add(fce1);
-                Dimension desktopSize1 = desktopPane.getSize();
-                Dimension FrameSize1 = fce1.getSize();
-                fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
-                fce1.toFront();
-                jTable1.clearSelection();
-                JOptionPane.showMessageDialog(null, l.getDigiteContraseña() , l.getAlerta(), JOptionPane.INFORMATION_MESSAGE);
-                fce1.show();
-                break;
+        try {
+            Language l = new Language();
+            switch (origin) {
+                case 0:
+                    FrameUsuario fce = new FrameUsuario();
+                    desktopPane.add(fce);
+                    Dimension desktopSize = desktopPane.getSize();
+                    Dimension FrameSize = fce.getSize();
+                    fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+                    fce.toFront();
+                    fce.show();
+                    break;
+                case 1:
+                    Users u = newUser.findByUserName(this.jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 1).toString());
+                    FrameUsuario fce1 = new FrameUsuario(u);
+                    desktopPane.add(fce1);
+                    Dimension desktopSize1 = desktopPane.getSize();
+                    Dimension FrameSize1 = fce1.getSize();
+                    fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
+                    fce1.toFront();
+                    jTable1.clearSelection();
+                    JOptionPane.showMessageDialog(null, l.getDigiteContraseña() , l.getAlerta(), JOptionPane.INFORMATION_MESSAGE);
+                    fce1.show();
+                    break;
+            }
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameListUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();
     }//GEN-LAST:event_buttonAddRefreshActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

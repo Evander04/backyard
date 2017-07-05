@@ -894,6 +894,28 @@ public String getColumnApellido() {
         }
         return var;
     } 
+     public String getColumnDireccion() {
+      switch (config) {
+            case 0:
+                var = "Dirección";
+                break;
+            case 1:
+                var = "Address";
+                break;
+        }
+        return var;
+    } 
+      public String getColumnSalario() {
+      switch (config) {
+            case 0:
+                var = "Salario";
+                break;
+            case 1:
+                var = "Salary";
+                break;
+        }
+        return var;
+    } 
 //************************************************************BOTONES************************************************************
    public String getBotonGuardar() {
         switch (config) {

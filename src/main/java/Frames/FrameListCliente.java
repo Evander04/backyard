@@ -32,6 +32,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     int origin = 0;
     int selection = 0;
     DefaultTableModel model;
+    //String[] arrayType = new String[]{"Cedula", "Pasaporte"};
     
 
     /**
@@ -55,7 +56,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     public void loadData() {
         model = (DefaultTableModel) this.jTable1.getModel();
         newClient.findAll().forEach(e -> {
-            model.addRow(new Object[]{e.getName(), e.getLastName(), e.getDocIdentity(), e.getPhone()});
+            model.addRow(new Object[]{e.getName(), e.getLastName(),e.getDocIdentity()/*, arrayType[e.getDocType()]*/,e.getNationality(),e.getPhone(),e.getAddress(),e.getEmail()});
         });
     }
 
@@ -63,17 +64,24 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         try {
             Language l = new Language();
             FrameListCliente.this.setTitle(l.getFrameListClientTitulo());
-            this.jLabel1.setText(l.getLabelTipodeBusqueda());
-            JTableHeader th = jTable1.getTableHeader();
-            TableColumnModel tcm = th.getColumnModel();
-            TableColumn tc = tcm.getColumn(0);
-            tc.setHeaderValue(l.getColumnNombre());
-            TableColumn tc1 = tcm.getColumn(1);
-            tc1.setHeaderValue(l.getColumnApellido());
-            TableColumn tc2 = tcm.getColumn(2);
-            tc2.setHeaderValue(l.getColumnNacionalidad());
-            TableColumn tc3 = tcm.getColumn(3);
-            tc3.setHeaderValue(l.getColumnTelefono());
+            this.jLabel1.setText(l.getLabelTipodeBusqueda()); 
+             JTableHeader th = jTable1.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnNombre());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnApellido());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnIdentificacion());
+              TableColumn tc3 = tcm.getColumn(3);
+             tc3.setHeaderValue(l.getColumnNacionalidad());
+               TableColumn tc4 = tcm.getColumn(4);
+             tc4.setHeaderValue(l.getColumnTelefono());
+               TableColumn tc5 = tcm.getColumn(5);
+             tc5.setHeaderValue(l.getColumnDireccion());
+               TableColumn tc6 = tcm.getColumn(6);
+             tc6.setHeaderValue(l.getColumnEmail());
+             
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,11 +121,11 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Identificación", "Teléfono"
+                "Nombre", "Apellido", "Identificación", "Nacionalidad", "Teléfono", "Dirección", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -163,7 +171,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

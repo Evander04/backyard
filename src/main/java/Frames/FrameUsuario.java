@@ -31,7 +31,6 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
     boolean noExist = true;
     Users userRecieve = new Users();
     int origin = 0;
-    Language l;
     /**
      * Creates new form FrameUsuario
      */
@@ -218,34 +217,40 @@ public class FrameUsuario extends javax.swing.JInternalFrame {
     }
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
-        if (validateNull()) {
-            JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getError(), JOptionPane.ERROR_MESSAGE);
-        } else {
-            try {
-                Hash h = new Hash();
-                NewUsers nu = new NewUsers();
-                switch (origin) {
-                    case 0:
-                        Users u = new Users();
-                        Employee e = newEmployee.findEmployeeByDoc(docIdentity());
-                        u.setEmployee(e);
-                        u.setUserName(this.textUser.getText());
-                        u.setPass(h.Sha512(this.TextPass.getText()));
-                        nu.save(u, 0);
-                        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
-                        break;
-                    case 1:
-                        userRecieve.setPass(h.Sha512(this.TextPass.getText()));
-                        nu.save(userRecieve, 1);
-                        JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);                                                
-                        this.dispose();
-                        break;
+        try {
+            Language l = new Language();
+            if (validateNull()) {
+                
+                JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(), l.getError(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    Hash h = new Hash();
+                    NewUsers nu = new NewUsers();
+                    switch (origin) {
+                        case 0:
+                            Users u = new Users();
+                            Employee e = newEmployee.findEmployeeByDoc(docIdentity());
+                            u.setEmployee(e);
+                            u.setUserName(this.textUser.getText());
+                            u.setPass(h.Sha512(this.TextPass.getText()));
+                            nu.save(u, 0);
+                            JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                            break;
+                        case 1:
+                            userRecieve.setPass(h.Sha512(this.TextPass.getText()));
+                            nu.save(userRecieve, 1);
+                            JOptionPane.showMessageDialog(null, l.getActualizadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                            this.dispose();
+                            break;
+                    }
+                    
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonActionPerformed
 
