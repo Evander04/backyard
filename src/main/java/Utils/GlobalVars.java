@@ -5,6 +5,11 @@
  */
 package Utils;
 
+import Pojo.Clients;
+import Pojo.Room;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Evander R
@@ -16,10 +21,22 @@ public class GlobalVars {
     public static int typeEmployee;
     public static String nameEmployee;
     public static int employeeId;
+    public static List<Clients> clients = new ArrayList<>();
+    public static List<Room> rooms = new ArrayList<>();
     public GlobalVars() {
     }
 
-    
+    public static int getIndex(Room r){
+        int i=0;
+        int j=0;
+        for (Room ro:rooms) {
+            if (ro.getIdRoom()==r.getIdRoom()) {
+                j=i;
+            }
+            i++;
+        }
+        return j;
+    }
     public static int getUserId() {
         return userId;
     }

@@ -11,6 +11,7 @@ public class Bill  implements java.io.Serializable {
 
 
      private Integer idBill;
+     private Integer IdEmployee;
      private Integer idReservation;
      private Date departureDate;
      private Long rode;
@@ -31,6 +32,15 @@ public class Bill  implements java.io.Serializable {
     public void setIdBill(Integer idBill) {
         this.idBill = idBill;
     }
+
+    public Integer getIdEmployee() {
+        return IdEmployee;
+    }
+
+    public void setIdEmployee(Integer IdEmployee) {
+        this.IdEmployee = IdEmployee;
+    }
+    
     public Integer getIdReservation() {
         return this.idReservation;
     }

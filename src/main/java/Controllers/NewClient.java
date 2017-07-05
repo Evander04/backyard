@@ -79,21 +79,13 @@ public class NewClient {
     public List<Clients> findClientByName(String name){
         conect.open();
         List<Clients> list= new ArrayList<>(); 
-        findAll().forEach(cli->{
-             Clients c= new Clients();
-            if (cli.getName().contains(name)) {
-                c.setIdClient(cli.getIdClient());
-                c.setName(cli.getName());
-                c.setLastName(cli.getLastName());
-                c.setDocIdentity(cli.getDocIdentity());
-                c.setDocType(cli.getDocType());
-                c.setNationality(cli.getNationality());
-                c.setPhone(cli.getPhone());
-                c.setEmail(cli.getEmail());
-                c.setAddress(cli.getAddress());
-                list.add(c);
-            }
-        });
+        SQLQuery query= conect.getSession().createSQLQuery("select * from clients where name like '%"+name+"%' and erasedStatus=1");
+        query.addEntity(Clients.class);
+        for (Iterator i=query.list().iterator();i.hasNext();) {
+            Clients c= (Clients) i.next();
+            list.add(c);
+        }
+        conect.close();
         return list;
     }
     /*================CRUD====================*/

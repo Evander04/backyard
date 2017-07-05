@@ -58,5 +58,22 @@ public class NewRoom {
         return list;
     }
     
+    public Room findByName(String name) {
+        conect.open();
+        Room r= new Room();
+        findAll().forEach(ro->{
+            if (ro.getName().equals(name)) {
+                r.setIdRoom(ro.getIdRoom());
+                r.setCategory(ro.getCategory());
+                r.setName(ro.getName());
+                r.setCapacity(ro.getCapacity());
+                r.setTypeRoom(ro.getTypeRoom());
+                r.setStatusRoom(ro.getStatusRoom());
+                r.setPrice(ro.getPrice());
+            }
+        });
+        return r;
+    }
+    
     /*================CRUD====================*/
 }

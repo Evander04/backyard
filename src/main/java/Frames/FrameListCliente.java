@@ -10,6 +10,7 @@ import static Frames.FrameListUser.jTable1;
 import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Clients;
 import Pojo.Users;
+import Utils.GlobalVars;
 import Utils.Language;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -26,11 +27,13 @@ import javax.swing.table.TableColumnModel;
  * @author Steven
  */
 public class FrameListCliente extends javax.swing.JInternalFrame {
+
     NewClient newClient = new NewClient();
     int origin = 0;
     int selection = 0;
     DefaultTableModel model;
     
+
     /**
      * Creates new form FrameListTrabajador
      */
@@ -40,31 +43,42 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         origin = 0;
         setLenguage();
     }
-    public void loadData(){
-        model= (DefaultTableModel) this.jTable1.getModel();
+
+    public FrameListCliente(int origin) {
+        initComponents();
+        loadData();
+        origin = 0;
+        setLenguage();
+        this.origin = 3;
+    }
+
+    public void loadData() {
+        model = (DefaultTableModel) this.jTable1.getModel();
         newClient.findAll().forEach(e -> {
-            model.addRow(new Object[]{e.getName(), e.getLastName(),e.getDocIdentity(),e.getPhone()});
+            model.addRow(new Object[]{e.getName(), e.getLastName(), e.getDocIdentity(), e.getPhone()});
         });
     }
-    public void setLenguage(){
-         try {
+
+    public void setLenguage() {
+        try {
             Language l = new Language();
             FrameListCliente.this.setTitle(l.getFrameListClientTitulo());
-            this.jLabel1.setText(l.getLabelTipodeBusqueda()); 
-             JTableHeader th = jTable1.getTableHeader();
-             TableColumnModel tcm = th.getColumnModel();
-             TableColumn tc = tcm.getColumn(0);
-             tc.setHeaderValue(l.getColumnNombre());
-              TableColumn tc1 = tcm.getColumn(1);
-             tc1.setHeaderValue(l.getColumnApellido());
-              TableColumn tc2 = tcm.getColumn(2);
-             tc2.setHeaderValue(l.getColumnNacionalidad());
-              TableColumn tc3 = tcm.getColumn(3);
-             tc3.setHeaderValue(l.getColumnTelefono());
+            this.jLabel1.setText(l.getLabelTipodeBusqueda());
+            JTableHeader th = jTable1.getTableHeader();
+            TableColumnModel tcm = th.getColumnModel();
+            TableColumn tc = tcm.getColumn(0);
+            tc.setHeaderValue(l.getColumnNombre());
+            TableColumn tc1 = tcm.getColumn(1);
+            tc1.setHeaderValue(l.getColumnApellido());
+            TableColumn tc2 = tcm.getColumn(2);
+            tc2.setHeaderValue(l.getColumnNacionalidad());
+            TableColumn tc3 = tcm.getColumn(3);
+            tc3.setHeaderValue(l.getColumnTelefono());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,15 +218,31 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 fce.show();
                 break;
             case 1:
-                Clients c= newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
-                FrameCrearCliente fce1= new FrameCrearCliente(c);
+                Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                FrameCrearCliente fce1 = new FrameCrearCliente(c);
                 desktopPane.add(fce1);
                 Dimension desktopSize1 = desktopPane.getSize();
                 Dimension FrameSize1 = fce1.getSize();
                 fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
                 fce1.toFront();
-                jTable1.clearSelection();                
+                jTable1.clearSelection();
                 fce1.show();
+                break;
+            case 3:
+                if (this.jTable1.getSelectedRow() != -1) {
+                    Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                    GlobalVars.clients.add(client);
+                    JOptionPane.showMessageDialog(null, "Agregado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    FrameReservation fcr = new FrameReservation();
+                    desktopPane.add(fcr);
+                    Dimension desktopSize2 = desktopPane.getSize();
+                    Dimension FrameSize2 = fcr.getSize();
+                    fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
+                    fcr.show();
+                }
+                else{
+                JOptionPane.showMessageDialog(null, "Seleccione una fila","Error", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
         }
         this.dispose();
@@ -220,8 +250,10 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
-        origin = 1;
+        if (origin != 3) {
+            jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+            origin = 1;
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -232,13 +264,13 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
-            Language l= new Language();
+            Language l = new Language();
             DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
             if (this.jTable1.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
             } else {
-                Clients c= newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(),2).toString());
-                newClient.save(c,2);
+                Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                newClient.save(c, 2);
                 model.removeRow(this.jTable1.getSelectedRow());
                 cancel();
                 JOptionPane.showMessageDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
@@ -246,10 +278,10 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
- public void cancel() {
+    public void cancel() {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png")));
         origin = 0;
         jTable1.clearSelection();

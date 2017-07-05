@@ -71,5 +71,17 @@ public class NewCategory {
         });        
         return c;
     }
+     public Category findByCategoryId(int categoryId){        
+        Category c= new Category();
+        findAll().forEach(category->{
+            if (category.getIdCategory()==categoryId) {
+               c.setIdCategory(category.getIdCategory());
+               c.setCategoryType(category.getCategoryType());
+               c.setDescription(category.getDescription());
+               c.setErasedStatus(category.getErasedStatus());
+            }
+        });        
+        return c;
+    }
     /*================CRUD====================*/
 }

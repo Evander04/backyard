@@ -13,6 +13,8 @@ public class Reservation  implements java.io.Serializable {
 
 
      private Integer idReservation;
+     private Integer IdEmployee;
+     private Integer status;
      private Date registrationDate;
      private Date reservationDate;
      private Long rode;
@@ -39,6 +41,23 @@ public class Reservation  implements java.io.Serializable {
     public void setIdReservation(Integer idReservation) {
         this.idReservation = idReservation;
     }
+
+    public Integer getIdEmployee() {
+        return IdEmployee;
+    }
+
+    public void setIdEmployee(Integer IdEmployee) {
+        this.IdEmployee = IdEmployee;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+    
     public Date getRegistrationDate() {
         return this.registrationDate;
     }
