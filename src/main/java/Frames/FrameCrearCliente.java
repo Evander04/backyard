@@ -49,7 +49,6 @@ public class FrameCrearCliente extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Logger.getLogger(FrameCrearCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void setLanguage() {

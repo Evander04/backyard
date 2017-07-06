@@ -7,21 +7,34 @@ package Utils;
 
 
 import java.io.IOException;
-
 /**
  *
  * @author Evander R
  */
 public class Language {
-
+    
     ConfigFile cf= new ConfigFile();
     public final int config;
     public String var = "";
+    
 
     public Language() throws IOException {
         this.config = cf.findByID(1).getLanguage();
     }
-
+   //*****************************************************AUDIOS********************************************************************************************************* 
+    //aqui pones los nombre de los audios de la carpeta audios, correspondiente al idioma claro!!!
+    //si queres agregar un audio solo copias y pegas con el mause y tiene q ser en formato ".wav"
+    public String getSonidosBienvenido() {
+        switch (config) {
+            case 0:
+                var = ("bienvenidos");
+                break;
+            case 1:
+                var = ("79517_welcome");
+                break;
+        }
+        return var;
+    }
     // ***************************************************FRAME PRINCIPAL *****************************************************************************************************************
     public String getPrincipalTitulo() {
         switch (config) {
@@ -629,6 +642,17 @@ public class Language {
         }
         return var;
     }
+      public String getFrameListRoomTitulo() {
+      switch (config) {
+            case 0:
+                var = "Listar Habitación";
+                break;
+            case 1:
+                var = "List Room";
+                break;
+        }
+        return var;
+    }
 //============================================================Alertasxdxdxd===========================================================================
  public String getCamposVaciosOMalos() {
       switch (config) {
@@ -904,18 +928,85 @@ public String getColumnApellido() {
                 break;
         }
         return var;
-    } 
-      public String getColumnSalario() {
+    }
+          
+      public String getColumnTipoIdentifiacion() {
       switch (config) {
             case 0:
-                var = "Salario";
+                var = "Tipo de Identificación";
+                break;
+            case 1:
+                var = "Doc. Type";
+                break;
+        }
+        return var;
+    } 
+      public String getColumnTipoCuarto() {
+      switch (config) {
+            case 0:
+                var = "Tipo de Habitación";
+                break;
+            case 1:
+                var = "Type Room";
+                break;
+        }
+        return var;
+    } 
+      public String getColumnEstadoCuarto() {
+      switch (config) {
+            case 0:
+                var = "Estado de Habitación";
+                break;
+            case 1:
+                var = "Status Room";
+                break;
+        }
+        return var;
+    }
+    public String getColumnCapacidad() {
+      switch (config) {
+            case 0:
+                var = "Capacidad";
+                break;
+            case 1:
+                var = "Capacity";
+                break;
+        }
+        return var;
+    }
+    public String getColumnPrecio() {
+      switch (config) {
+            case 0:
+                var = "Precio";
+                break;
+            case 1:
+                var = "Price";
+                break;
+        }
+        return var;
+    }
+    public String getColumnDescripcion() {
+      switch (config) {
+            case 0:
+                var = "Descripción";
+                break;
+            case 1:
+                var = "Description";
+                break;
+        }
+        return var;
+    }
+    public String getColumnSalario() {
+      switch (config) {
+            case 0:
+                var = "Salrio";
                 break;
             case 1:
                 var = "Salary";
                 break;
         }
         return var;
-    } 
+    }
 //************************************************************BOTONES************************************************************
    public String getBotonGuardar() {
         switch (config) {
