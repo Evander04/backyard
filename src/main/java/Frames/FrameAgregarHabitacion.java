@@ -6,9 +6,11 @@
 package Frames;
 import Controllers.NewCategory;
 import Controllers.NewRoom;
+import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Category;
 import Pojo.Room;
 import Utils.Language;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javassist.CtMethod.ConstParameter.string;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Steven
@@ -23,8 +26,12 @@ import javax.swing.JOptionPane;
 public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     Map<String,String> mapCategory= new HashMap<>();
     Map<String,String> mapCategoryInverter= new HashMap<>();
+    NewRoom newroom = new NewRoom();
+    Room  roomrecieve = new Room();
+    boolean noExist = true;
+    int origin = 0;
     /**
-     * Creates new form FrameAgregarHabitacion
+    ne * Creates new form FrameAgregarHabitacion
      */
     public FrameAgregarHabitacion() {
         initComponents();
@@ -35,6 +42,28 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
         for (Category c : nc.findAll()) {
              this.jCBCategoria.addItem(mapCategory.get(String.valueOf(c.getCategoryType())));
         }
+       origin = 0; 
+    }
+    public FrameAgregarHabitacion(Room r) {
+        try {
+            this.roomrecieve = r;
+            Language l = new Language();
+            origin=1;
+            initComponents();
+            setLanguage();
+            loadData();
+            this.jBTGuardar.setText(l.getBotonActualizar());
+            this.jBTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(FrameAgregarHabitacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void loadData() {
+        this.jFTFCapacidad.setText(roomrecieve.getCapacity().toString());
+        this.jFTFPrecio.setText(roomrecieve.getPrice().toString());
+        this.jTextADescripcion.setText(roomrecieve.getDescription());
+        this.jCBTipo.setSelectedItem(roomrecieve.getTypeRoom());
+        this.jCBCategoria.setSelectedItem(roomrecieve.getCategory());
         
     }
     public void setLanguage() {
@@ -245,13 +274,17 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBTCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTCancelarActionPerformed
-        // TODO add your handling code here:
+        FrameListHabitacion flh = new FrameListHabitacion();
+        desktopPane.add(flh);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = flh.getSize();
+        flh.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        flh.show();
         this.dispose();
     }//GEN-LAST:event_jBTCancelarActionPerformed
 
     private void jBTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTGuardarActionPerformed
         try {
-            // TODO add your handling code here:
             Language l = new Language();
             if (validaNull()){
                 JOptionPane.showMessageDialog(null, l.getCamposVaciosOMalos(),l.getAlerta(), JOptionPane.ERROR_MESSAGE);
@@ -259,7 +292,9 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                 NewRoom nr = new NewRoom();
                 NewCategory nc= new NewCategory();
                 Room ro = new Room();
-                Category c=nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
+                 Category c =nc.findByCategoryType(Integer.parseInt(mapCategoryInverter.get(this.jCBCategoria.getSelectedItem().toString())));
+                switch (origin){
+                    case 0:        
                 ro.setCategory(c);
                 ro.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
                 ro.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
@@ -268,8 +303,24 @@ public class FrameAgregarHabitacion extends javax.swing.JInternalFrame {
                 ro.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
                 ro.setErasedStatus(true);
                 nr.save(ro, 0);
-                clearfield();
                 JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                clearfield();
+                this.dispose();
+                break;
+                
+                    case 1:
+                      roomrecieve.setCategory(c);
+                      roomrecieve.setCapacity(Integer.parseInt(this.jFTFCapacidad.getText()));
+                      roomrecieve.setPrice(Long.parseLong(this.jFTFPrecio.getText()));
+                      roomrecieve.setStatusRoom(0);
+                      roomrecieve.setDescription(this.jTextADescripcion.getText());
+                      roomrecieve.setTypeRoom(this.jCBTipo.getSelectedIndex()==0?false:true);
+                      roomrecieve.setErasedStatus(true);
+                      nr.save(roomrecieve, 1);
+                      JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                      this.dispose();
+                      break;
+                }
             }
         } catch (IOException ex) {
             Logger.getLogger(FrameAgregarHabitacion.class.getName()).log(Level.SEVERE, null, ex);

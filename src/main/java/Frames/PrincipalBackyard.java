@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 
@@ -29,7 +31,8 @@ import javax.swing.JDesktopPane;
  * @author Obed
  */
 public class PrincipalBackyard extends javax.swing.JFrame{
-
+    public Clip clip;
+    public String ruta = "../Audios/";
     FrameLogin l = new FrameLogin();
     Employee employee;
     BytesImage bm;
@@ -59,10 +62,20 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         return desktopPane;
     }
 
-    
+    public void sonidos(String archivo){
+        try{
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        }catch(Exception e){
+            
+        }
+    }
     public void setLanguage() {
         try {
             Language l = new Language();
+            //Aqui llamas el metodo y le pasas el metodo de los audios q queres reproducir
+            sonidos(l.getSonidosBienvenido());
             PrincipalBackyard.this.setTitle(l.getPrincipalTitulo());//Titulo del principal
             //Menu Nuevo
             this.fileMenu.setText(l.getNuevo());
@@ -99,7 +112,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
@@ -128,10 +140,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("jLabel1");
-        desktopPane.add(jLabel1);
-        jLabel1.setBounds(81, 36, 520, 410);
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -334,7 +342,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
 
     private void NuevaHabitacionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaHabitacionMenuItemActionPerformed
         // TODO add your handling code here:
-        FrameAgregarHabitacion fah = new FrameAgregarHabitacion();
+        FrameListHabitacion fah = new FrameListHabitacion();
         desktopPane.add(fah);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fah.getSize();
@@ -428,7 +436,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private javax.swing.JMenuItem jCanbiarIdioma;
     private javax.swing.JMenu jCentralEstadistica;
     private javax.swing.JMenu jConfiguraciones;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;
