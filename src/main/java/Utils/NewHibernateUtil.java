@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import java.sql.Connection;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;

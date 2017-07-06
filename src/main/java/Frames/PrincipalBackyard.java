@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -150,8 +151,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("jLabel1");
         desktopPane.add(jLabel1);
         jLabel1.setBounds(81, 36, 520, 410);
 
@@ -421,6 +420,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
                     break;
                 }
             }
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

@@ -170,6 +170,7 @@ public class FrameLogin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
                 }
             }
+        }
         } catch (IOException ex) {
             Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
         }

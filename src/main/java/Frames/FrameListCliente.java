@@ -238,7 +238,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 break;
             case 3:
                 if (this.jTable1.getSelectedRow() != -1) {
-                    Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                    Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());                    
                     GlobalVars.clients.add(client);
                     JOptionPane.showMessageDialog(null, "Agregado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     FrameReservation fcr = new FrameReservation();

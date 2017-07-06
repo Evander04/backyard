@@ -17,7 +17,8 @@ public class Reservation  implements java.io.Serializable {
      private Integer status;
      private Date registrationDate;
      private Date reservationDate;
-     private Long rode;
+     private Date dueDate;
+     private Long rode;     
      private Set detailreservationrooms = new HashSet(0);
      private Set detailreservationclients = new HashSet(0);
      private Set extrases = new HashSet(0);
@@ -53,7 +54,7 @@ public class Reservation  implements java.io.Serializable {
     public Integer getStatus() {
         return status;
     }
-
+    
     public void setStatus(Integer status) {
         this.status = status;
     }
@@ -72,6 +73,15 @@ public class Reservation  implements java.io.Serializable {
     public void setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
     }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+    
     public Long getRode() {
         return this.rode;
     }
