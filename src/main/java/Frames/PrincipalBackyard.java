@@ -135,6 +135,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
@@ -469,6 +470,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private javax.swing.JMenuItem jCanbiarIdioma;
     private javax.swing.JMenu jCentralEstadistica;
     private javax.swing.JMenu jConfiguraciones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;
