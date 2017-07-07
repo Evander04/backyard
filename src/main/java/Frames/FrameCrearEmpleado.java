@@ -10,6 +10,7 @@ import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Clients;
 import Pojo.Employee;
 import Utils.Language;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -61,6 +63,9 @@ public class FrameCrearEmpleado extends javax.swing.JInternalFrame {
     public void setLenguage(){
          try {
             Language l = new Language();
+            FrameCrearEmpleado.this.setFrameIcon(new ImageIcon(getClass().getResource("../icon32x32/adim.png")));   
+            this.jBtnGuardarEmpleado.setBackground(Color.WHITE);
+            this.jBtnCancelarCreacionEmpleado.setBackground(Color.WHITE);
             FrameCrearEmpleado.this.setTitle(l.getFrameCrearEmpleadoTitulo());
             this.jLabelPrimerNombre.setText(l.getLabelPrimerNombre());
             this.jLabelSegundoNombre.setText(l.getLabelSegundoNombre());

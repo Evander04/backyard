@@ -8,15 +8,18 @@ package Frames;
 import Controllers.LoginController;
 import Controllers.NewEmployee;
 import Controllers.NewUsers;
+import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Employee;
 import Pojo.Users;
 import Utils.GlobalVars;
 import Utils.Hash;
 import Utils.Language;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.Screen;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,14 +32,15 @@ public class FrameLogin extends javax.swing.JFrame {
     NewUsers newUser = new NewUsers();
     Hash h = new Hash();
     NewEmployee newEmployee = new NewEmployee();
-
+    int a = 100;
     /**
      * Creates new form NewJFrame
      */
     public FrameLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setLanguage();
-        this.setResizable(false);
+        this.setResizable(false);   
     }
 
     public void setLanguage() {
@@ -73,9 +77,13 @@ public class FrameLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelUsuario.setText("Usuario: ");
+        jLabelUsuario.setPreferredSize(new java.awt.Dimension(100, 17));
 
+        jLabelContraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelContraseña.setText("Contraseña: ");
+        jLabelContraseña.setPreferredSize(new java.awt.Dimension(100, 17));
 
         jBotonEntrar.setBackground(new java.awt.Color(255, 255, 255));
         jBotonEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -88,6 +96,8 @@ public class FrameLogin extends javax.swing.JFrame {
             }
         });
 
+        jCBMostrar.setBackground(new java.awt.Color(255, 255, 255));
+        jCBMostrar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jCBMostrar.setText("Mostrar");
         jCBMostrar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -102,8 +112,8 @@ public class FrameLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelUsuario)
-                    .addComponent(jLabelContraseña))
+                    .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -113,18 +123,18 @@ public class FrameLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCBMostrar))
                     .addComponent(jBotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelUsuario)
+                    .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelContraseña)
+                    .addComponent(jLabelContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCBMostrar)))

@@ -110,6 +110,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/users.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -123,7 +124,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Identificación", "Tipo de Identificación", "Nacionalidad", "Teléfono", "Dirección", "Email"
+                "Nombre", "Apellido", "Identificación", "Tipo Identificacion", "Nacionalidad", "Teléfono", "Dirección", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -134,6 +135,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -141,6 +143,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +151,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +159,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +178,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(547, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,45 +222,50 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        switch (origin) {
-            case 0:
-                FrameCrearCliente fce = new FrameCrearCliente();
-                desktopPane.add(fce);
-                Dimension desktopSize = desktopPane.getSize();
-                Dimension FrameSize = fce.getSize();
-                fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-                fce.toFront();
-                fce.show();
-                break;
-            case 1:
-                Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                FrameCrearCliente fce1 = new FrameCrearCliente(c);
-                desktopPane.add(fce1);
-                Dimension desktopSize1 = desktopPane.getSize();
-                Dimension FrameSize1 = fce1.getSize();
-                fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
-                fce1.toFront();
-                jTable1.clearSelection();
-                fce1.show();
-                break;
-            case 3:
-                if (this.jTable1.getSelectedRow() != -1) {
-                    Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());                    
-                    GlobalVars.clients.add(client);
-                    JOptionPane.showMessageDialog(null, "Agregado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    FrameReservation fcr = new FrameReservation();
-                    desktopPane.add(fcr);
-                    Dimension desktopSize2 = desktopPane.getSize();
-                    Dimension FrameSize2 = fcr.getSize();
-                    fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
-                    fcr.show();
-                }
-                else{
-                JOptionPane.showMessageDialog(null, "Seleccione una fila","Error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
+        try {
+            Language l  = new Language();
+            switch (origin) {
+                case 0:
+                    FrameCrearCliente fce = new FrameCrearCliente();
+                    desktopPane.add(fce);
+                    Dimension desktopSize = desktopPane.getSize();
+                    Dimension FrameSize = fce.getSize();
+                    fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+                    fce.toFront();
+                    fce.show();
+                    break;
+                case 1:
+                    Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                    FrameCrearCliente fce1 = new FrameCrearCliente(c);
+                    desktopPane.add(fce1);
+                    Dimension desktopSize1 = desktopPane.getSize();
+                    Dimension FrameSize1 = fce1.getSize();
+                    fce1.setLocation((desktopSize1.width - FrameSize1.width) / 2, (desktopSize1.height - FrameSize1.height) / 2);
+                    fce1.toFront();
+                    jTable1.clearSelection();
+                    fce1.show();
+                    break;
+                case 3:
+                    if (this.jTable1.getSelectedRow() != -1) {
+                        Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                        GlobalVars.clients.add(client);
+                        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                        FrameReservation fcr = new FrameReservation();
+                        desktopPane.add(fcr);
+                        Dimension desktopSize2 = desktopPane.getSize();
+                        Dimension FrameSize2 = fcr.getSize();
+                        fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
+                        fcr.show();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(),l.getError(), JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+            }
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

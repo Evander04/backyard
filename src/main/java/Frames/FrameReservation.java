@@ -11,6 +11,7 @@ import Controllers.NewDetailReservationClient;
 import Controllers.NewDetailReservationRoom;
 import Controllers.NewReservation;
 import Controllers.NewRoom;
+import static Frames.FrameListUser.jTable1;
 import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Category;
 import Pojo.Clients;
@@ -19,9 +20,11 @@ import Pojo.Detailreservationroom;
 import Pojo.Reservation;
 import Pojo.Room;
 import Utils.GlobalVars;
+import Utils.Language;
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +40,9 @@ import javax.persistence.Convert;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import org.jdesktop.swingx.calendar.DateSelectionModel;
 
 /**
@@ -60,22 +66,82 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     public FrameReservation() {
         initComponents();
         loadClients();
+        setLenguage();
 
     }
 
     public void mapa() {
-        mapCategory.put("0", "A");
-        mapCategory.put("1", "B");
-        mapCategory.put("2", "C");
-        mapCategory.put("3", "D");
-        mapCategory.put("4", "E");
-        mapCategory.put("5", "F");
-        mapStatus.put("0", "Disponible");
-        mapStatus.put("1", "Ocupada");
-        mapStatus.put("2", "Reservada");
-        this.jComboBox1.setSelectedIndex(0);
+        try {
+            Language l = new Language();
+            mapCategory.put("0", "A");
+            mapCategory.put("1", "B");
+            mapCategory.put("2", "C");
+            mapCategory.put("3", "D");
+            mapCategory.put("4", "E");
+            mapCategory.put("5", "F");
+            mapStatus.put("0", l.getEstadoDisponible());
+            mapStatus.put("1", l.getEstadoOcupado());
+            mapStatus.put("2", l.getEstadoReservada());
+            this.jComboBox1.setSelectedIndex(0);
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    public void setLenguage(){
+         try {
+            Language l = new Language();
+            FrameReservation.this.setTitle(l.getFrameCrearReservaTitulo());
+            //TadPane #1
+            this.jLabel4.setText(l.getlabeLAgregarCliente());
+            this.jXLabelFechaentrada.setText(l.getlabeLFechaEntrada());
+            this.jXLabelfechasalida.setText(l.getlabeLFechaSalida());
+            this.jTabbedPane1.setTitleAt(0, l.getTabPaneClientes());
+            this.jTabbedPane1.setTitleAt(1, l.getTabPaneHabitaciones());
+            this.jTabbedPane1.setTitleAt(2, l.getTabPaneConfirmacion());
+             JTableHeader th = jTable1.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnNombre());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnIdentificacion());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnTipo());
+             //TadPane #2tablet #1
+             JTableHeader th1 = jTable2.getTableHeader();
+             TableColumnModel tcm1 = th1.getColumnModel();
+             TableColumn tcc = tcm1.getColumn(0);
+             tcc.setHeaderValue(l.getColumnNombre());
+              TableColumn tcc1 = tcm1.getColumn(1);
+             tcc1.setHeaderValue(l.getColumnCategoria());
+              TableColumn tcc2 = tcm1.getColumn(2);
+             tcc2.setHeaderValue(l.getColumnTipo());
+             TableColumn tcc3 = tcm1.getColumn(3);
+             tcc3.setHeaderValue(l.getColumnCapacidad());
+             TableColumn tcc4 = tcm1.getColumn(4);
+             tcc4.setHeaderValue(l.getColumnPrecio());
+             TableColumn tcc5 = tcm1.getColumn(5);
+             tcc5.setHeaderValue(l.getColumnEstadoCuarto());
+             //TadPane #2 tablet #2
+             JTableHeader th2 = jTable3.getTableHeader();
+             TableColumnModel tcm2 = th2.getColumnModel();
+             TableColumn tcx = tcm2.getColumn(0);
+             tcx.setHeaderValue(l.getColumnNombre());
+              TableColumn tcx1 = tcm2.getColumn(1);
+             tcx1.setHeaderValue(l.getColumnCategoria());
+              TableColumn tcx2 = tcm2.getColumn(2);
+             tcx2.setHeaderValue(l.getColumnTipo());
+             TableColumn tcx3 = tcm2.getColumn(3);
+             tcx3.setHeaderValue(l.getColumnCapacidad());
+             TableColumn tcx4 = tcm2.getColumn(4);
+             tcx4.setHeaderValue(l.getColumnPrecio());
+             TableColumn tcx5 = tcm2.getColumn(5);
+             tcx5.setHeaderValue(l.getColumnEstadoCuarto());
+             //TadPane #3
+             this.jLabel3.setText(l.getFrameCrearReservaTitulo());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,9 +161,9 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXLabel1 = new org.jdesktop.swingx.JXLabel();
+        jXLabelFechaentrada = new org.jdesktop.swingx.JXLabel();
         jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jXLabel2 = new org.jdesktop.swingx.JXLabel();
+        jXLabelfechasalida = new org.jdesktop.swingx.JXLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -131,11 +197,12 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         setClosable(true);
         setForeground(java.awt.Color.white);
         setResizable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/trade_report_reports_documents_2351.png"))); // NOI18N
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
@@ -161,8 +228,10 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +239,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +247,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/refresh.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,62 +255,65 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel4.setText("Agregar Clientes");
 
-        jXLabel1.setText("Fecha de Entrada");
+        jXLabelFechaentrada.setText("Fecha de Entrada");
+        jXLabelFechaentrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jXLabel2.setText("Fecha de Salida");
+        jXLabelfechasalida.setText("Fecha de Salida");
+        jXLabelfechasalida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 439, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 448, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
-                .addGap(1, 1, 1))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton3)
+                        .addGap(1, 1, 1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jXDatePicker1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jXLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jXLabelFechaentrada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jXDatePicker2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jXLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(281, Short.MAX_VALUE))
+                            .addComponent(jXLabelfechasalida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jXLabelFechaentrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jXLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jXLabelfechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -247,6 +321,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("1.-Clientes", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,6 +340,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jScrollPane1.setViewportView(jTable2);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoría", "Tipo", "Estado" }));
@@ -297,8 +374,10 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable3.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jScrollPane3.setViewportView(jTable3);
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +385,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel2.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +413,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(266, 266, 266)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 233, Short.MAX_VALUE))
+                        .addGap(0, 241, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -363,6 +443,10 @@ public class FrameReservation extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("2.-Habitaciones", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon64x64/person-icon_31846.png"))); // NOI18N
 
         textCountClient.setText("jLabel4");
@@ -370,6 +454,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         textCount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon64x64/yellow_double-room_icon-icons.com_59563.png"))); // NOI18N
 
         textCountRoom.setText("jLabel4");
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/trade_report_reports_documents_2351.png"))); // NOI18N
         jLabel3.setText("Reserva:");
@@ -417,7 +503,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 .addComponent(textCount, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(textCountRoom)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(textCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(textCountDays)
@@ -456,6 +542,9 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         calendar.setSelectionMode(org.jdesktop.swingx.calendar.DateSelectionModel.SelectionMode.SINGLE_INTERVAL_SELECTION);
         calendar.setVerifyInputWhenFocusTarget(false);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        buttonAccept.setBackground(new java.awt.Color(255, 255, 255));
         buttonAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ok_accept_15562.png"))); // NOI18N
         buttonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,8 +552,10 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonCancel.setBackground(new java.awt.Color(255, 255, 255));
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete_40623.png"))); // NOI18N
 
+        buttonSave.setBackground(new java.awt.Color(255, 255, 255));
         buttonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save_14949.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -514,7 +605,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(calendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -528,12 +619,201 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        Date date = this.jXDatePicker1.getDate();
+        Date date1 = this.jXDatePicker2.getDate();
+        if (date != null && date1 != null) {
+            //            String pattern = "yyyy-MM-dd";
+            //            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            int dias = (int) ((date1.getTime() - date.getTime()) / 86400000);
+            GlobalVars.setDays(dias);
+            GlobalVars.setDateReservation(date);
+            GlobalVars.setDateDue(date1);
+            //            JOptionPane.showMessageDialog(null,dias, "Error", JOptionPane.ERROR_MESSAGE);
+            this.calendar.setFlaggedDates(date, date1);
+            this.calendar.setFlaggedDayForeground(Color.BLUE);
+            this.calendar.setSelectionDate(date);
+            this.calendar.setSelectionInterval(date, date1);
+            this.calendar.setSelectionBackground(Color.ORANGE);
+
+        }
+
+        loadDashboard();
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void buttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAcceptActionPerformed
+        try {
+            Language l = new Language();
+            Reservation reserv= new Reservation();
+            reserv.setIdEmployee(GlobalVars.getEmployeeId());
+            reserv.setStatus(1);
+            reserv.setRegistrationDate(new Date());
+            reserv.setReservationDate(GlobalVars.getDateReservation());
+            reserv.setDueDate(GlobalVars.getDateDue());
+            reserv.setRode(GlobalVars.getRode());
+            newReserv.save(reserv,0);
+            reserv.setIdReservation(Integer.parseInt(this.textReservation.getText()));
+            GlobalVars.clients.forEach(c -> {
+                Detailreservationclient detail = new Detailreservationclient();
+                detail.setReservation(reserv);
+                detail.setTypeClient(c.getDocType());
+                detail.setClients(c);
+                newDetailC.save(detail,0);
+            });
+            GlobalVars.rooms.forEach(r->{
+                Detailreservationroom detail= new Detailreservationroom();
+                detail.setReservation(reserv);
+                detail.setRoom(r);
+                newDetailR.save(detail,0);
+            });
+            JOptionPane.showMessageDialog(null,l.getGuardarReserva(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buttonAcceptActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            Language l = new Language();
+            if (this.jTable3.getSelectedRow() != -1) {
+                Room r = newRoom.findByName(String.valueOf(this.jTable3.getValueAt(this.jTable3.getSelectedRow(), 0)));
+                GlobalVars.rooms.remove(GlobalVars.getIndex(r));
+                loadRooms();
+            } else {
+                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada() , l.getError(), JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            Language l = new Language();
+            if (this.jTable2.getSelectedRow() != -1) {
+                Room r = newRoom.findByName(String.valueOf(this.jTable2.getValueAt(this.jTable2.getSelectedRow(), 0)));
+                GlobalVars.rooms.add(r);
+                loadRooms();
+            } else {
+                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        try {
+            Language l = new Language();
+            DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
+            int count = model.getRowCount() - 1;
+            for (int i = count; i >= 0; i--) {
+                model.removeRow(i);
+            }
+            switch (this.jComboBox1.getSelectedIndex()) {
+                case 0:
+                    newRoom.findAll().forEach(r -> {
+                        Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                        if (ca.getCategoryType() == this.jComboBox2.getSelectedIndex()) {
+                            model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                                r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+                        }
+                    });
+                    break;
+                case 1:
+                    newRoom.findAll().forEach(r -> {
+                        Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                        int type = r.getTypeRoom() ? 1 : 0;
+                        if (type == this.jComboBox2.getSelectedIndex()) {
+                            model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                                r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+                        }
+                    });
+                    break;
+                case 2:
+                    newRoom.findAll().forEach(r -> {
+                        Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                        if (r.getStatusRoom() == this.jComboBox2.getSelectedIndex()) {
+                            model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                                r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+                        }
+                    });
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        try {
+            Language l = new Language();
+            this.jComboBox2.removeAllItems();
+            switch (this.jComboBox1.getSelectedIndex()) {
+                case 0:
+                    this.jComboBox2.addItem("A");
+                    this.jComboBox2.addItem("B");
+                    this.jComboBox2.addItem("C");
+                    this.jComboBox2.addItem("D");
+                    this.jComboBox2.addItem("E");
+                    this.jComboBox2.addItem("F");
+                    break;
+                case 1:
+                    this.jComboBox2.addItem(l.getEsTipoPublica());
+                    this.jComboBox2.addItem(l.getEsTipoPrivada());
+                    break;
+                case 2:
+                    this.jComboBox2.addItem(l.getEstadoDisponible());
+                    this.jComboBox2.addItem(l.getEstadoOcupado());
+                    this.jComboBox2.addItem(l.getEstadoReservada());
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            Language l = new Language();
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            if (jTable1.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                    model.setValueAt("Secundario", i, 2);
+                }
+                model.setValueAt("Principal", jTable1.getSelectedRow(), 2);
+                Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                GlobalVars.setPrincipal(c);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Language l = new Language();
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            if (jTable1.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
+            } else {
+                Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                model.removeRow(jTable1.getSelectedRow());
+                GlobalVars.clients.remove(client);
+                JOptionPane.showMessageDialog(null, l.getEliminocliente(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FrameListCliente fcc = new FrameListCliente(3);
@@ -545,193 +825,48 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        if (jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            model.removeRow(jTable1.getSelectedRow());
-            GlobalVars.clients.remove(client);
-            JOptionPane.showMessageDialog(null, "Se eliminó al cliente", "Bien", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        if (jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            for (int i = 0; i < jTable1.getRowCount(); i++) {
-                model.setValueAt("Secundario", i, 2);
-            }
-            model.setValueAt("Principal", jTable1.getSelectedRow(), 2);
-            Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 1).toString());                    
-            GlobalVars.setPrincipal(c);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        this.jComboBox2.removeAllItems();
-        switch (this.jComboBox1.getSelectedIndex()) {
-            case 0:
-                this.jComboBox2.addItem("A");
-                this.jComboBox2.addItem("B");
-                this.jComboBox2.addItem("C");
-                this.jComboBox2.addItem("D");
-                this.jComboBox2.addItem("E");
-                this.jComboBox2.addItem("F");
-                break;
-            case 1:
-                this.jComboBox2.addItem("Pública");
-                this.jComboBox2.addItem("Privada");
-                break;
-            case 2:
-                this.jComboBox2.addItem("Dispobible");
-                this.jComboBox2.addItem("Ocupada");
-                this.jComboBox2.addItem("Reservada");
-                break;
-        }
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-        DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
-        int count = model.getRowCount() - 1;
-        for (int i = count; i >= 0; i--) {
-            model.removeRow(i);
-        }
-        switch (this.jComboBox1.getSelectedIndex()) {
-            case 0:
-                newRoom.findAll().forEach(r -> {
-                    Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
-                    if (ca.getCategoryType() == this.jComboBox2.getSelectedIndex()) {
-                        model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
-                            r.getPrice(), r.getTypeRoom() ? "Privada" : "Pública", mapStatus.get(r.getStatusRoom().toString())});
-                    }
-                });
-                break;
-            case 1:
-                newRoom.findAll().forEach(r -> {
-                    Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
-                    int type = r.getTypeRoom() ? 1 : 0;
-                    if (type == this.jComboBox2.getSelectedIndex()) {
-                        model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
-                            r.getPrice(), r.getTypeRoom() ? "Privada" : "Pública", mapStatus.get(r.getStatusRoom().toString())});
-                    }
-                });
-                break;
-            case 2:
-                newRoom.findAll().forEach(r -> {
-                    Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
-                    if (r.getStatusRoom() == this.jComboBox2.getSelectedIndex()) {
-                        model.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
-                            r.getPrice(), r.getTypeRoom() ? "Privada" : "Pública", mapStatus.get(r.getStatusRoom().toString())});
-                    }
-                });
-                break;
-        }
-    }//GEN-LAST:event_jComboBox2ItemStateChanged
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (this.jTable2.getSelectedRow() != -1) {
-            Room r = newRoom.findByName(String.valueOf(this.jTable2.getValueAt(this.jTable2.getSelectedRow(), 0)));
-            GlobalVars.rooms.add(r);
-            loadRooms();
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (this.jTable3.getSelectedRow() != -1) {
-            Room r = newRoom.findByName(String.valueOf(this.jTable3.getValueAt(this.jTable3.getSelectedRow(), 0)));
-            GlobalVars.rooms.remove(GlobalVars.getIndex(r));
-            loadRooms();
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        Date date = this.jXDatePicker1.getDate();
-        Date date1 = this.jXDatePicker2.getDate();
-        if (date != null && date1 != null) {
-//            String pattern = "yyyy-MM-dd";
-//            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-            int dias = (int) ((date1.getTime() - date.getTime()) / 86400000);
-            GlobalVars.setDays(dias);
-            GlobalVars.setDateReservation(date);
-            GlobalVars.setDateDue(date1);
-            //            JOptionPane.showMessageDialog(null,dias, "Error", JOptionPane.ERROR_MESSAGE);            
-            this.calendar.setFlaggedDates(date, date1);
-            this.calendar.setFlaggedDayForeground(Color.BLUE);
-            this.calendar.setSelectionDate(date);
-            this.calendar.setSelectionInterval(date, date1);
-            this.calendar.setSelectionBackground(Color.ORANGE);
-
-        }
-
-        loadDashboard();
-
-    }//GEN-LAST:event_jTabbedPane1StateChanged
-
-    private void buttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAcceptActionPerformed
-        Reservation reserv= new Reservation();
-        reserv.setIdEmployee(GlobalVars.getEmployeeId());
-        reserv.setStatus(1);
-        reserv.setRegistrationDate(new Date());
-        reserv.setReservationDate(GlobalVars.getDateReservation());
-        reserv.setDueDate(GlobalVars.getDateDue());
-        reserv.setRode(GlobalVars.getRode());
-        newReserv.save(reserv,0);
-        reserv.setIdReservation(Integer.parseInt(this.textReservation.getText()));
-        GlobalVars.clients.forEach(c -> {
-            Detailreservationclient detail = new Detailreservationclient();      
-            detail.setReservation(reserv);
-            detail.setTypeClient(c.getDocType());
-            detail.setClients(c);
-            newDetailC.save(detail,0);
-        });
-        GlobalVars.rooms.forEach(r->{
-            Detailreservationroom detail= new Detailreservationroom();            
-            detail.setReservation(reserv);
-            detail.setRoom(r);
-            newDetailR.save(detail,0);
-        });
-        JOptionPane.showMessageDialog(null,"Reservación guardada correctamente", "Funcionó esta mierda", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_buttonAcceptActionPerformed
     public void loadClients() {
-        mapa();
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        DefaultTableModel model2 = (DefaultTableModel) this.jTable2.getModel();
-        GlobalVars.clients.forEach(c -> {
-            if (model.getRowCount() < 1) {
-                model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Principal"});
-                GlobalVars.setPrincipal(c);
-            } else {
-                model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Secundario"});
-            }
-
-        });
-        newRoom.findAll().forEach(r -> {
-            Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
-            model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
-                r.getPrice(), r.getTypeRoom() ? "Privada" : "Pública", mapStatus.get(r.getStatusRoom().toString())});
-
-        });
+        try {
+            Language l = new Language();
+            mapa();
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) this.jTable2.getModel();
+            GlobalVars.clients.forEach(c -> {
+                if (model.getRowCount() < 1) {
+                    model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Principal"});
+                    GlobalVars.setPrincipal(c);
+                } else {
+                    model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Secundario"});
+                }
+                
+            });
+            newRoom.findAll().forEach(r -> {
+                Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                    r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+                
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void loadRooms() {
-        DefaultTableModel model2 = (DefaultTableModel) this.jTable3.getModel();
-        int count = model2.getRowCount() - 1;
-        for (int i = count; i >= 0; i--) {
-            model2.removeRow(i);
+        try {
+            Language l = new Language();
+            DefaultTableModel model2 = (DefaultTableModel) this.jTable3.getModel();
+            int count = model2.getRowCount() - 1;
+            for (int i = count; i >= 0; i--) {
+                model2.removeRow(i);
+            }
+            GlobalVars.rooms.forEach(r -> {
+                Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                    r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+            });
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
-        GlobalVars.rooms.forEach(r -> {
-            Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
-            model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
-                r.getPrice(), r.getTypeRoom() ? "Privada" : "Pública", mapStatus.get(r.getStatusRoom().toString())});
-        });
     }
 
     public void loadDashboard() {
@@ -784,8 +919,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable3;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
-    private org.jdesktop.swingx.JXLabel jXLabel1;
-    private org.jdesktop.swingx.JXLabel jXLabel2;
+    private org.jdesktop.swingx.JXLabel jXLabelFechaentrada;
+    private org.jdesktop.swingx.JXLabel jXLabelfechasalida;
     private javax.swing.JLabel textCount;
     private javax.swing.JLabel textCount1;
     private javax.swing.JLabel textCountClient;
