@@ -60,8 +60,21 @@ public class NewReservation {
         return list;
     }
     
-   public void m(){
-       
+   public Reservation findByNo(int no){
+       conect.open();
+       Reservation r= new Reservation();
+       findAll().forEach(re->{
+           if (re.getIdReservation()==no) {
+              r.setIdReservation(re.getIdReservation());
+              r.setIdEmployee(re.getIdEmployee());
+              r.setReservationDate(re.getReservationDate());
+              r.setRegistrationDate(re.getRegistrationDate());
+              r.setDueDate(re.getDueDate());
+              r.setRode(re.getRode());
+              r.setStatus(re.getStatus());
+           }
+       });
+       return r;
    }
     /*================CRUD====================*/
 }

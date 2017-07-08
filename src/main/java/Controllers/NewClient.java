@@ -88,5 +88,16 @@ public class NewClient {
         conect.close();
         return list;
     }
+     public Clients findClientById(int id){
+        conect.open();
+       Clients c= new Clients();
+       findAll().forEach(cl->{
+           if (cl.getIdClient()==id) {
+               c.setIdClient(cl.getIdClient());
+               c.setName(cl.getName());
+           }
+       });
+       return c;
+    }
     /*================CRUD====================*/
 }

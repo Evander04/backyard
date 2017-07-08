@@ -32,14 +32,16 @@ import javax.swing.UIManager;
  *
  * @author Obed
  */
-public class PrincipalBackyard extends javax.swing.JFrame{
+public class PrincipalBackyard extends javax.swing.JFrame {
+
     public Clip clip;
     public String ruta = "../Audios/";
     FrameLogin l = new FrameLogin();
     Employee employee;
     BytesImage bm;
-     Image img = new ImageIcon(getClass().getResource("../icon32x32/20170619_1713587385.jpg")).getImage();
-     BufferedImage bfi = null; //20170619_1713587385
+    Image img = new ImageIcon(getClass().getResource("../icon32x32/20170619_1713587385.jpg")).getImage();
+    BufferedImage bfi = null; //20170619_1713587385
+
     /**
      * Creates new form NewMDIApplication
      */
@@ -53,7 +55,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         loadData();
 
     }
-    
+
     public JDesktopPane getDesktopPane() {
         return desktopPane;
     }
@@ -71,7 +73,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
                 break;
             case 1:
                 type = "Supervisor";
-                this.menuBar.remove(this.jCentralEstadistica);                
+                this.menuBar.remove(this.jCentralEstadistica);
                 this.fileMenu.remove(this.NuevoEmpleadoMenuItem);
                 this.jConfiguraciones.remove(this.jUsuario);
                 break;
@@ -83,22 +85,23 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         this.textInfo.setText(label);
     }
 
-    public void sonidos(String archivo){
-        try{
+    public void sonidos(String archivo) {
+        try {
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
             clip.start();
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
+
     public void setLanguage() {
         try {
             Language l = new Language();
             //Aqui llamas el metodo y le pasas el metodo de los audios q queres reproducir
             sonidos(l.getSonidosBienvenido());
-            ConfigFile cf = new ConfigFile(); 
-            String language = cf.findByID(1).getLanguage() == 0?l.getCambiarIdioma()+"(Español)":l.getCambiarIdioma()+"(English)";
+            ConfigFile cf = new ConfigFile();
+            String language = cf.findByID(1).getLanguage() == 0 ? l.getCambiarIdioma() + "(Español)" : l.getCambiarIdioma() + "(English)";
             PrincipalBackyard.this.setTitle(l.getPrincipalTitulo());//Titulo del principal
             //Menu Nuevo
             this.fileMenu.setText(l.getNuevo());
@@ -264,6 +267,11 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         GenerarReportesMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon24x24/invoice_78456.png"))); // NOI18N
         GenerarReportesMenuItem.setMnemonic('y');
         GenerarReportesMenuItem.setText("Facturar");
+        GenerarReportesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarReportesMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(GenerarReportesMenuItem);
 
         menuBar.add(editMenu);
@@ -324,7 +332,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirMenuItemActionPerformed
-        FrameLogin frame= new FrameLogin();
+        FrameLogin frame = new FrameLogin();
         frame.show();
         this.dispose();
     }//GEN-LAST:event_SalirMenuItemActionPerformed
@@ -415,6 +423,15 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_jCanbiarIdiomaActionPerformed
 
+    private void GenerarReportesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarReportesMenuItemActionPerformed
+        FrameBill fae = new FrameBill();
+        desktopPane.add(fae);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = fae.getSize();
+        fae.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        fae.show();
+    }//GEN-LAST:event_GenerarReportesMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -431,7 +448,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
                     break;
                 }
             }
-         UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
