@@ -135,7 +135,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
@@ -165,8 +164,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
-        desktopPane.add(jLabel1);
-        jLabel1.setBounds(81, 36, 520, 410);
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -434,7 +431,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
                     break;
                 }
             }
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+         UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -470,7 +467,6 @@ public class PrincipalBackyard extends javax.swing.JFrame{
     private javax.swing.JMenuItem jCanbiarIdioma;
     private javax.swing.JMenu jCentralEstadistica;
     private javax.swing.JMenu jConfiguraciones;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;

@@ -283,25 +283,68 @@ public class Language {
         }
         return var;
     }
-     public String getlabelBuscarCliente() {
+     public String getlabeLFechaEntrada() {
         switch (config) {
             case 0:
-                var = "Buscar Cliente:";
+                var = "Fecha de Entrada";
                 break;
             case 1:
-                var = "Search Customer:";
+                var = "Entry Date";
                 break;
         }
         return var;
     }
-    
-      public String getTabPanePrivada() {
-      switch (config) {
+    public String getlabeLFechaSalida() {
+        switch (config) {
             case 0:
-                var = "PRIVADA";
+                var = "Fecha de Salida";
                 break;
             case 1:
-                var = "PRIVATE";
+                var = "Departure Date";
+                break;
+        }
+        return var;
+    }
+    public String getlabeLAgregarCliente() {
+        switch (config) {
+            case 0:
+                var = "Agregar Clientes";
+                break;
+            case 1:
+                var = "Add Customers";
+                break;
+        }
+        return var;
+    }
+      public String getTabPaneClientes() {
+      switch (config) {
+            case 0:
+                var = "1- Clientes";
+                break;
+            case 1:
+                var = "1- Customers";
+                break;
+        }
+        return var;
+    }
+      public String getTabPaneHabitaciones() {
+      switch (config) {
+            case 0:
+                var = "2- Habitaciones";
+                break;
+            case 1:
+                var = "2- Rooms";
+                break;
+        }
+        return var;
+    }
+     public String getTabPaneConfirmacion() {
+      switch (config) {
+            case 0:
+                var = "3- Confirmación";
+                break;
+            case 1:
+                var = "3- Confirmation";
                 break;
         }
         return var;
@@ -719,6 +762,17 @@ public class Language {
         }
         return var;
     }
+    public String getfilanoselcecionada() {
+      switch (config) {
+            case 0:
+                var = "Seleccione una fila";
+                break;
+            case 1:
+                var = "Select a row";
+                break;
+        }
+        return var;
+    }
     public String getGuardadocorrecto() {
       switch (config) {
             case 0:
@@ -780,7 +834,85 @@ public class Language {
                 var = "Credenciales incorrectas";
                 break;
             case 1:
-                var = "Bad credentials";
+                var = "Wrong credentials";
+                break;
+        }
+        return var;
+    }
+    public String getGuardarReserva() {
+      switch (config) {
+            case 0:
+                var = "Reservación guardada correctamente";
+                break;
+            case 1:
+                var = "Reservation saved correctly";
+                break;
+        }
+        return var;
+    }  
+//===============================================================================Combo BOX==========================================================================================
+public String getEstadoDisponible() {
+      switch (config) {
+            case 0:
+                var = "Disponible";
+                break;
+            case 1:
+                var = "Available";
+                break;
+        }
+        return var;
+    } 
+public String getEstadoOcupado() {
+      switch (config) {
+            case 0:
+                var = "Ocupada";
+                break;
+            case 1:
+                var = "Occupied";
+                break;
+        }
+        return var;
+    } 
+public String getEstadoReservada() {
+      switch (config) {
+            case 0:
+                var = "Reservada";
+                break;
+            case 1:
+                var = "Reserved";
+                break;
+        }
+        return var;
+    } 
+public String getEsTipoPublica() {
+      switch (config) {
+            case 0:
+                var = "Publica";
+                break;
+            case 1:
+                var = "Public";
+                break;
+        }
+        return var;
+    }
+public String getEsTipoPrivada() {
+      switch (config) {
+            case 0:
+                var = "Privada";
+                break;
+            case 1:
+                var = "Private";
+                break;
+        }
+        return var;
+    }
+public String getEliminocliente() {
+      switch (config) {
+            case 0:
+                var = "Se eliminó al cliente";
+                break;
+            case 1:
+                var = "Customer deleted";
                 break;
         }
         return var;
@@ -1003,6 +1135,17 @@ public String getColumnApellido() {
                 break;
             case 1:
                 var = "Salary";
+                break;
+        }
+        return var;
+    }
+    public String getColumnCategoria() {
+      switch (config) {
+            case 0:
+                var = "Categoria";
+                break;
+            case 1:
+                var = "Category";
                 break;
         }
         return var;

@@ -63,8 +63,9 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLTipo.setText("Tipo :");
+        jLTipo.setPreferredSize(new java.awt.Dimension(100, 17));
 
         jCBTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCBTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
@@ -74,13 +75,15 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
             }
         });
 
-        jLDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLDescripcion.setText("Descripción:");
+        jLDescripcion.setPreferredSize(new java.awt.Dimension(100, 17));
 
         jTextADescripcion.setColumns(20);
         jTextADescripcion.setRows(5);
         jScrollPane1.setViewportView(jTextADescripcion);
 
+        jBTGuardar.setBackground(new java.awt.Color(255, 255, 255));
         jBTGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save.png"))); // NOI18N
         jBTGuardar.setText("Guardar");
@@ -90,6 +93,7 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
             }
         });
 
+        jBTCancelar.setBackground(new java.awt.Color(255, 255, 255));
         jBTCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBTCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jBTCancelar.setText("Cancelar");
@@ -106,21 +110,18 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addComponent(jLDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(54, 54, 54)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addGap(77, 77, 77)
                         .addComponent(jBTGuardar)
-                        .addGap(32, 32, 32)
+                        .addGap(70, 70, 70)
                         .addComponent(jBTCancelar)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -129,7 +130,7 @@ public class FrameAgregarCategoria extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLTipo)
+                    .addComponent(jLTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCBTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

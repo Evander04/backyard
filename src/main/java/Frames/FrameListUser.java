@@ -94,6 +94,7 @@ public class FrameListUser extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/users.png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,15 +271,20 @@ public class FrameListUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-        if (this.jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada", "Error", JOptionPane.ERROR);
-        } else {
-            Users u = newUser.findByUserName(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
-            newUser.save(u, 2);
-            model.removeRow(this.jTable1.getSelectedRow());
-            cancel();
-            JOptionPane.showMessageDialog(null, "Eliminado Correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Language l = new Language();
+            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            if (this.jTable1.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, l.getfilanoafectada(), l.getError(), JOptionPane.ERROR);
+            } else {
+                Users u = newUser.findByUserName(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                newUser.save(u, 2);
+                model.removeRow(this.jTable1.getSelectedRow());
+                cancel();
+                JOptionPane.showMessageDialog(null, l.getELIMINADO(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameListUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
 

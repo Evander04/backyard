@@ -89,6 +89,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
         jBtnDelete = new javax.swing.JButton();
 
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ic_hotel_128_28520.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -125,10 +126,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
@@ -142,6 +140,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -149,6 +148,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jBtnADD.setBackground(new java.awt.Color(255, 255, 255));
         jBtnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/add.png"))); // NOI18N
         jBtnADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +156,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jBtnCancel.setBackground(new java.awt.Color(255, 255, 255));
         jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel.png"))); // NOI18N
         jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +164,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jBtnDelete.setBackground(new java.awt.Color(255, 255, 255));
         jBtnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete.png"))); // NOI18N
         jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
