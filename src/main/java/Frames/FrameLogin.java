@@ -18,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -212,6 +213,7 @@ public class FrameLogin extends javax.swing.JFrame {
                     break;
                 }
             }
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

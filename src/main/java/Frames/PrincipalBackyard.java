@@ -47,10 +47,10 @@ public class PrincipalBackyard extends javax.swing.JFrame{
         initComponents();
         desktopPane.setBorder(new BackGround());
         setLanguage();
-      //  this.NuevaCategoriaMenuItem.setVisible(false);
+        this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
-    //    loadData();
+        loadData();
 
     }
     
@@ -434,7 +434,7 @@ public class PrincipalBackyard extends javax.swing.JFrame{
                     break;
                 }
             }
-//            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
