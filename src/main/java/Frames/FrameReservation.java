@@ -58,10 +58,11 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     NewCategory newCat = new NewCategory();
     NewRoom newRoom = new NewRoom();
     NewReservation newReserv = new NewReservation();
-    NewDetailReservationClient newDetailC= new NewDetailReservationClient();
-    NewDetailReservationRoom newDetailR= new NewDetailReservationRoom();
+    NewDetailReservationClient newDetailC = new NewDetailReservationClient();
+    NewDetailReservationRoom newDetailR = new NewDetailReservationRoom();
     Map<String, String> mapCategory = new HashMap<>();
     Map<String, String> mapStatus = new HashMap<>();
+    boolean noExist = true;
 
     public FrameReservation() {
         initComponents();
@@ -87,8 +88,9 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void setLenguage(){
-         try {
+
+    public void setLenguage() {
+        try {
             Language l = new Language();
             FrameReservation.this.setTitle(l.getFrameCrearReservaTitulo());
             //TadPane #1
@@ -98,50 +100,51 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             this.jTabbedPane1.setTitleAt(0, l.getTabPaneClientes());
             this.jTabbedPane1.setTitleAt(1, l.getTabPaneHabitaciones());
             this.jTabbedPane1.setTitleAt(2, l.getTabPaneConfirmacion());
-             JTableHeader th = jTable1.getTableHeader();
-             TableColumnModel tcm = th.getColumnModel();
-             TableColumn tc = tcm.getColumn(0);
-             tc.setHeaderValue(l.getColumnNombre());
-              TableColumn tc1 = tcm.getColumn(1);
-             tc1.setHeaderValue(l.getColumnIdentificacion());
-              TableColumn tc2 = tcm.getColumn(2);
-             tc2.setHeaderValue(l.getColumnTipo());
-             //TadPane #2tablet #1
-             JTableHeader th1 = jTable2.getTableHeader();
-             TableColumnModel tcm1 = th1.getColumnModel();
-             TableColumn tcc = tcm1.getColumn(0);
-             tcc.setHeaderValue(l.getColumnNombre());
-              TableColumn tcc1 = tcm1.getColumn(1);
-             tcc1.setHeaderValue(l.getColumnCategoria());
-              TableColumn tcc2 = tcm1.getColumn(2);
-             tcc2.setHeaderValue(l.getColumnTipo());
-             TableColumn tcc3 = tcm1.getColumn(3);
-             tcc3.setHeaderValue(l.getColumnCapacidad());
-             TableColumn tcc4 = tcm1.getColumn(4);
-             tcc4.setHeaderValue(l.getColumnPrecio());
-             TableColumn tcc5 = tcm1.getColumn(5);
-             tcc5.setHeaderValue(l.getColumnEstadoCuarto());
-             //TadPane #2 tablet #2
-             JTableHeader th2 = jTable3.getTableHeader();
-             TableColumnModel tcm2 = th2.getColumnModel();
-             TableColumn tcx = tcm2.getColumn(0);
-             tcx.setHeaderValue(l.getColumnNombre());
-              TableColumn tcx1 = tcm2.getColumn(1);
-             tcx1.setHeaderValue(l.getColumnCategoria());
-              TableColumn tcx2 = tcm2.getColumn(2);
-             tcx2.setHeaderValue(l.getColumnTipo());
-             TableColumn tcx3 = tcm2.getColumn(3);
-             tcx3.setHeaderValue(l.getColumnCapacidad());
-             TableColumn tcx4 = tcm2.getColumn(4);
-             tcx4.setHeaderValue(l.getColumnPrecio());
-             TableColumn tcx5 = tcm2.getColumn(5);
-             tcx5.setHeaderValue(l.getColumnEstadoCuarto());
-             //TadPane #3
-             this.jLabel3.setText(l.getFrameCrearReservaTitulo());
+            JTableHeader th = jTable1.getTableHeader();
+            TableColumnModel tcm = th.getColumnModel();
+            TableColumn tc = tcm.getColumn(0);
+            tc.setHeaderValue(l.getColumnNombre());
+            TableColumn tc1 = tcm.getColumn(1);
+            tc1.setHeaderValue(l.getColumnIdentificacion());
+            TableColumn tc2 = tcm.getColumn(2);
+            tc2.setHeaderValue(l.getColumnTipo());
+            //TadPane #2tablet #1
+            JTableHeader th1 = jTable2.getTableHeader();
+            TableColumnModel tcm1 = th1.getColumnModel();
+            TableColumn tcc = tcm1.getColumn(0);
+            tcc.setHeaderValue(l.getColumnNombre());
+            TableColumn tcc1 = tcm1.getColumn(1);
+            tcc1.setHeaderValue(l.getColumnCategoria());
+            TableColumn tcc2 = tcm1.getColumn(2);
+            tcc2.setHeaderValue(l.getColumnTipo());
+            TableColumn tcc3 = tcm1.getColumn(3);
+            tcc3.setHeaderValue(l.getColumnCapacidad());
+            TableColumn tcc4 = tcm1.getColumn(4);
+            tcc4.setHeaderValue(l.getColumnPrecio());
+            TableColumn tcc5 = tcm1.getColumn(5);
+            tcc5.setHeaderValue(l.getColumnEstadoCuarto());
+            //TadPane #2 tablet #2
+            JTableHeader th2 = jTable3.getTableHeader();
+            TableColumnModel tcm2 = th2.getColumnModel();
+            TableColumn tcx = tcm2.getColumn(0);
+            tcx.setHeaderValue(l.getColumnNombre());
+            TableColumn tcx1 = tcm2.getColumn(1);
+            tcx1.setHeaderValue(l.getColumnCategoria());
+            TableColumn tcx2 = tcm2.getColumn(2);
+            tcx2.setHeaderValue(l.getColumnTipo());
+            TableColumn tcx3 = tcm2.getColumn(3);
+            tcx3.setHeaderValue(l.getColumnCapacidad());
+            TableColumn tcx4 = tcm2.getColumn(4);
+            tcx4.setHeaderValue(l.getColumnPrecio());
+            TableColumn tcx5 = tcm2.getColumn(5);
+            tcx5.setHeaderValue(l.getColumnEstadoCuarto());
+            //TadPane #3
+            this.jLabel3.setText(l.getFrameCrearReservaTitulo());
         } catch (IOException ex) {
             Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -626,53 +629,90 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        Date date = this.jXDatePicker1.getDate();
-        Date date1 = this.jXDatePicker2.getDate();
-        if (date != null && date1 != null) {
-            //            String pattern = "yyyy-MM-dd";
-            //            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-            int dias = (int) ((date1.getTime() - date.getTime()) / 86400000);
-            GlobalVars.setDays(dias);
-            GlobalVars.setDateReservation(date);
-            GlobalVars.setDateDue(date1);
-            //            JOptionPane.showMessageDialog(null,dias, "Error", JOptionPane.ERROR_MESSAGE);
-            this.calendar.setFlaggedDates(date, date1);
-            this.calendar.setFlaggedDayForeground(Color.BLUE);
-            this.calendar.setSelectionDate(date);
-            this.calendar.setSelectionInterval(date, date1);
-            this.calendar.setSelectionBackground(Color.ORANGE);
+        try {
+            Date date = this.jXDatePicker1.getDate();
+            Date date1 = this.jXDatePicker2.getDate();
+            Language l = new Language();
 
+            DefaultTableModel model2 = (DefaultTableModel) this.jTable2.getModel();
+            if (date != null && date1 != null) {
+                //            String pattern = "yyyy-MM-dd";
+                //            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+                int dias = (int) ((date1.getTime() - date.getTime()) / 86400000);
+                GlobalVars.setDays(dias);
+                GlobalVars.setDateReservation(date);
+                GlobalVars.setDateDue(date1);
+                //            JOptionPane.showMessageDialog(null,dias, "Error", JOptionPane.ERROR_MESSAGE);
+                this.calendar.setFlaggedDates(date, date1);
+                this.calendar.setFlaggedDayForeground(Color.BLUE);
+                this.calendar.setSelectionDate(date);
+                this.calendar.setSelectionInterval(date, date1);
+                this.calendar.setSelectionBackground(Color.ORANGE);
+                if (date.after(date1)) {
+                    this.jTabbedPane1.setSelectedIndex(0);
+                    JOptionPane.showMessageDialog(null, "Fechas incoherentes", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if (GlobalVars.clients.size() < 1) {
+                    this.jTabbedPane1.setSelectedIndex(0);
+                    JOptionPane.showMessageDialog(null, "Seleccione clientes", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            switch (this.jTabbedPane1.getSelectedIndex()) {
+                case 0:
+                    break;
+                case 1:
+                    if (date != null && date1 != null) {
+                        int count = model2.getRowCount() - 1;
+                        for (int i = count; i >= 0; i--) {
+                            model2.removeRow(i);
+                        }
+                        newRoom.getRooms(date, date1).forEach(r -> {
+                            Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
+                            model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
+                                r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
+
+                        });
+                    } else {
+                        this.jTabbedPane1.setSelectedIndex(0);
+                        JOptionPane.showMessageDialog(null, "Selecciones rango de fecha", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 2:
+                    break;
+            }
+
+            loadDashboard();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        loadDashboard();
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void buttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAcceptActionPerformed
         try {
             Language l = new Language();
-            Reservation reserv= new Reservation();
+            Reservation reserv = new Reservation();
             reserv.setIdEmployee(GlobalVars.getEmployeeId());
             reserv.setStatus(1);
             reserv.setRegistrationDate(new Date());
             reserv.setReservationDate(GlobalVars.getDateReservation());
             reserv.setDueDate(GlobalVars.getDateDue());
             reserv.setRode(GlobalVars.getRode());
-            newReserv.save(reserv,0);
+            newReserv.save(reserv, 0);
             reserv.setIdReservation(Integer.parseInt(this.textReservation.getText()));
             GlobalVars.clients.forEach(c -> {
                 Detailreservationclient detail = new Detailreservationclient();
                 detail.setReservation(reserv);
                 detail.setTypeClient(c.getDocType());
                 detail.setClients(c);
-                newDetailC.save(detail,0);
+                newDetailC.save(detail, 0);
             });
-            GlobalVars.rooms.forEach(r->{
-                Detailreservationroom detail= new Detailreservationroom();
+            GlobalVars.rooms.forEach(r -> {
+                Detailreservationroom detail = new Detailreservationroom();
                 detail.setReservation(reserv);
                 detail.setRoom(r);
-                newDetailR.save(detail,0);
+                newDetailR.save(detail, 0);
             });
-            JOptionPane.showMessageDialog(null,l.getGuardarReserva(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, l.getGuardarReserva(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -686,7 +726,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 GlobalVars.rooms.remove(GlobalVars.getIndex(r));
                 loadRooms();
             } else {
-                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada() , l.getError(), JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException ex) {
             Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
@@ -698,8 +738,19 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             Language l = new Language();
             if (this.jTable2.getSelectedRow() != -1) {
                 Room r = newRoom.findByName(String.valueOf(this.jTable2.getValueAt(this.jTable2.getSelectedRow(), 0)));
-                GlobalVars.rooms.add(r);
-                loadRooms();
+                GlobalVars.rooms.forEach(ro -> {
+                    if (ro.getIdRoom()==r.getIdRoom()) {
+                       noExist=false;
+                    }
+                });
+                if (noExist) {
+                    GlobalVars.rooms.add(r);
+                    loadRooms();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"La habitación ya se agregó", l.getError(), JOptionPane.ERROR_MESSAGE);
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
             }
@@ -830,7 +881,7 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             Language l = new Language();
             mapa();
             DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
-            DefaultTableModel model2 = (DefaultTableModel) this.jTable2.getModel();
+            DefaultTableModel model2 = (DefaultTableModel) this.jTable3.getModel();
             GlobalVars.clients.forEach(c -> {
                 if (model.getRowCount() < 1) {
                     model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Principal"});
@@ -838,13 +889,13 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 } else {
                     model.addRow(new Object[]{c.getName(), c.getDocIdentity(), "Secundario"});
                 }
-                
+
             });
-            newRoom.findAll().forEach(r -> {
+            GlobalVars.rooms.forEach(r -> {
                 Category ca = newCat.findByCategoryId(r.getCategory().getIdCategory());
                 model2.addRow(new Object[]{r.getName(), mapCategory.get(ca.getCategoryType().toString()), r.getCapacity(),
                     r.getPrice(), r.getTypeRoom() ? l.getEsTipoPrivada() : l.getEsTipoPublica(), mapStatus.get(r.getStatusRoom().toString())});
-                
+
             });
         } catch (IOException ex) {
             Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
@@ -871,14 +922,14 @@ public class FrameReservation extends javax.swing.JInternalFrame {
 
     public void loadDashboard() {
         float countMoney = 0;
-        int reservation = 2;
+        int reservation = 1;
         for (Room r : GlobalVars.rooms) {
             countMoney += r.getPrice() * GlobalVars.getDays();
         }
         for (Reservation r : newReserv.findAll()) {
             reservation++;
-        }        
-        GlobalVars.setRode((long)countMoney);
+        }
+        GlobalVars.setRode((long) countMoney);
         this.textReservation.setText(String.valueOf(reservation));
         this.textMoney.setText(String.valueOf(countMoney));
         this.textCountClient.setText(String.valueOf(GlobalVars.clients.size()));

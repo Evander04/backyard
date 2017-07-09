@@ -33,7 +33,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     int selection = 0;
     DefaultTableModel model;
     String[] arrayType = new String[]{"Cedula", "Pasaporte"};
-    
+    boolean noExist = true;
 
     /**
      * Creates new form FrameListTrabajador
@@ -56,7 +56,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
     public void loadData() {
         model = (DefaultTableModel) this.jTable1.getModel();
         newClient.findAll().forEach(e -> {
-            model.addRow(new Object[]{e.getName(), e.getLastName(),e.getDocIdentity(),arrayType[Boolean.compare(e.getDocType(), false)],e.getNationality(),e.getPhone(),e.getAddress(),e.getEmail()});
+            model.addRow(new Object[]{e.getName(), e.getLastName(), e.getDocIdentity(), arrayType[Boolean.compare(e.getDocType(), false)], e.getNationality(), e.getPhone(), e.getAddress(), e.getEmail()});
         });
     }
 
@@ -64,26 +64,26 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
         try {
             Language l = new Language();
             FrameListCliente.this.setTitle(l.getFrameListClientTitulo());
-            this.jLabel1.setText(l.getLabelTipodeBusqueda()); 
-             JTableHeader th = jTable1.getTableHeader();
-             TableColumnModel tcm = th.getColumnModel();
-             TableColumn tc = tcm.getColumn(0);
-             tc.setHeaderValue(l.getColumnNombre());
-              TableColumn tc1 = tcm.getColumn(1);
-             tc1.setHeaderValue(l.getColumnApellido());
-              TableColumn tc2 = tcm.getColumn(2);
-             tc2.setHeaderValue(l.getColumnIdentificacion());
-             TableColumn tc3 = tcm.getColumn(3);
-             tc3.setHeaderValue(l.getColumnTipoIdentifiacion());
-              TableColumn tc4 = tcm.getColumn(4);
-             tc4.setHeaderValue(l.getColumnNacionalidad());
-               TableColumn tc5 = tcm.getColumn(5);
-             tc5.setHeaderValue(l.getColumnTelefono());
-               TableColumn tc6 = tcm.getColumn(6);
-             tc6.setHeaderValue(l.getColumnDireccion());
-               TableColumn tc7 = tcm.getColumn(7);
-             tc7.setHeaderValue(l.getColumnEmail());
-             
+            this.jLabel1.setText(l.getLabelTipodeBusqueda());
+            JTableHeader th = jTable1.getTableHeader();
+            TableColumnModel tcm = th.getColumnModel();
+            TableColumn tc = tcm.getColumn(0);
+            tc.setHeaderValue(l.getColumnNombre());
+            TableColumn tc1 = tcm.getColumn(1);
+            tc1.setHeaderValue(l.getColumnApellido());
+            TableColumn tc2 = tcm.getColumn(2);
+            tc2.setHeaderValue(l.getColumnIdentificacion());
+            TableColumn tc3 = tcm.getColumn(3);
+            tc3.setHeaderValue(l.getColumnTipoIdentifiacion());
+            TableColumn tc4 = tcm.getColumn(4);
+            tc4.setHeaderValue(l.getColumnNacionalidad());
+            TableColumn tc5 = tcm.getColumn(5);
+            tc5.setHeaderValue(l.getColumnTelefono());
+            TableColumn tc6 = tcm.getColumn(6);
+            tc6.setHeaderValue(l.getColumnDireccion());
+            TableColumn tc7 = tcm.getColumn(7);
+            tc7.setHeaderValue(l.getColumnEmail());
+
         } catch (IOException ex) {
             Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -223,7 +223,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Language l  = new Language();
+            Language l = new Language();
             switch (origin) {
                 case 0:
                     FrameCrearCliente fce = new FrameCrearCliente();
@@ -233,6 +233,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                     fce.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
                     fce.toFront();
                     fce.show();
+                    this.dispose();
                     break;
                 case 1:
                     Clients c = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
@@ -244,25 +245,36 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                     fce1.toFront();
                     jTable1.clearSelection();
                     fce1.show();
+                    this.dispose();
                     break;
                 case 3:
                     if (this.jTable1.getSelectedRow() != -1) {
                         Clients client = newClient.findClientByDoc(model.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                        GlobalVars.clients.add(client);
-                        JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
-                        FrameReservation fcr = new FrameReservation();
-                        desktopPane.add(fcr);
-                        Dimension desktopSize2 = desktopPane.getSize();
-                        Dimension FrameSize2 = fcr.getSize();
-                        fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
-                        fcr.show();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(),l.getError(), JOptionPane.ERROR_MESSAGE);
+                        GlobalVars.clients.forEach(cli -> {
+                            if (client.getIdClient() == cli.getIdClient()) {
+                                noExist = false;
+                            }
+                        });
+                        if (noExist) {
+                            GlobalVars.clients.add(client);
+                            JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+                            FrameReservation fcr = new FrameReservation();
+                            desktopPane.add(fcr);
+                            Dimension desktopSize2 = desktopPane.getSize();
+                            Dimension FrameSize2 = fcr.getSize();
+                            fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
+                            fcr.show();
+                            this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Cliente ya existe", l.getError(), JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
                     }
                     break;
             }
-            this.dispose();
+            
         } catch (IOException ex) {
             Logger.getLogger(FrameListCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

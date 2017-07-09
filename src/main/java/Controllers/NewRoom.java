@@ -9,6 +9,7 @@ import Pojo.Category;
 import Pojo.Room;
 import Utils.NewHibernateUtil;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.SQLQuery;
@@ -19,7 +20,10 @@ import org.hibernate.Transaction;
  * @author Evander R
  */
 public class NewRoom {
-     NewHibernateUtil conect = new NewHibernateUtil();
+
+    NewHibernateUtil conect = new NewHibernateUtil();
+    NewReservation newReserv = new NewReservation();
+    boolean noExist=true;
     public NewRoom() {
     }
 
@@ -47,21 +51,21 @@ public class NewRoom {
 
     public List<Room> findAll() {
         conect.open();
-        List<Room> list= new ArrayList<>();
-        SQLQuery query= conect.getSession().createSQLQuery("select * from Room where erasedStatus=1");
+        List<Room> list = new ArrayList<>();
+        SQLQuery query = conect.getSession().createSQLQuery("select * from Room where erasedStatus=1");
         query.addEntity(Room.class);
-        for (Iterator i=query.list().iterator();i.hasNext();) {
-            Room c= (Room) i.next();
+        for (Iterator i = query.list().iterator(); i.hasNext();) {
+            Room c = (Room) i.next();
             list.add(c);
         }
         conect.close();
         return list;
     }
-    
+
     public Room findByName(String name) {
         conect.open();
-        Room r= new Room();
-        findAll().forEach(ro->{
+        Room r = new Room();
+        findAll().forEach(ro -> {
             if (ro.getName().equals(name)) {
                 r.setIdRoom(ro.getIdRoom());
                 r.setCategory(ro.getCategory());
@@ -74,6 +78,38 @@ public class NewRoom {
         });
         return r;
     }
-    
+
+    public List<Room> getRooms(Date init, Date finish) {
+        conect.open();
+        List<Room> list =new ArrayList<>();
+        findAll().forEach(r -> {            
+            getRoomsOc(init, finish).forEach(re -> {
+                if (r.getIdRoom() == re.getIdRoom()) {
+                   noExist=false;
+                }
+            });
+            if (noExist) {
+                list.add(r);
+            }
+            noExist=true;
+        });
+        
+        return list;
+    }
+
+    public List<Room> getRoomsOc(Date init, Date finish) {
+        conect.open();
+        List<Room> list = new ArrayList<>();
+        SQLQuery query = conect.getSession().createSQLQuery("call roomsAvailable(?,?)");
+        query.setParameter(0, init);
+        query.setParameter(1, finish);
+        query.addEntity(Room.class);
+        for (Iterator i = query.list().iterator(); i.hasNext();) {
+            Room c = (Room) i.next();
+            list.add(c);
+        }
+        conect.close();
+        return list;
+    }
     /*================CRUD====================*/
 }
