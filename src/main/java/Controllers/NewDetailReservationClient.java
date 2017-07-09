@@ -22,7 +22,7 @@ import org.hibernate.Transaction;
 public class NewDetailReservationClient {
 
     NewHibernateUtil conect = new NewHibernateUtil();
-    NewClient newClient= new NewClient();
+    
     public NewDetailReservationClient() {
     }
 
@@ -62,6 +62,7 @@ public class NewDetailReservationClient {
     
     public Clients findByReservation(int idReservation){
         conect.open();
+        NewClient newClient= new NewClient();
         Clients e= new Clients();
         findAll().forEach(dr->{
              if (dr.getReservation().getIdReservation()==idReservation) {

@@ -6,6 +6,7 @@
 package Utils;
 
 import Pojo.Clients;
+import Pojo.Reservation;
 import Pojo.Room;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +29,8 @@ public class GlobalVars {
     public static Date dateDue;
     public static int days;
     public static long rode;
-
+    public static Reservation reservation;
+    
     public GlobalVars() {
     }
 
@@ -44,6 +46,15 @@ public class GlobalVars {
         return j;
     }
 
+    public static Reservation getReservation() {
+        return reservation;
+    }
+
+    public static void setReservation(Reservation reservation) {
+        GlobalVars.reservation = reservation;
+    }
+
+    
     public static void setPrincipal(Clients c) {
         clients.forEach(cli->{
             if (cli.getIdClient()==c.getIdClient()) {

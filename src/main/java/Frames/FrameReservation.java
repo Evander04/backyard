@@ -63,11 +63,14 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     Map<String, String> mapCategory = new HashMap<>();
     Map<String, String> mapStatus = new HashMap<>();
     boolean noExist = true;
-
+    
     public FrameReservation() {
         initComponents();
         loadClients();
         setLenguage();
+        if (GlobalVars.clients.size()>1 || GlobalVars.rooms.size()>1) {
+            JOptionPane.showMessageDialog(null,"Usted tiene una reservación pendiente", title, HEIGHT);
+        }
 
     }
 
@@ -402,9 +405,9 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,11 +416,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)
                         .addGap(0, 241, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jScrollPane1))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(226, 226, 226)
@@ -557,6 +557,11 @@ public class FrameReservation extends javax.swing.JInternalFrame {
 
         buttonCancel.setBackground(new java.awt.Color(255, 255, 255));
         buttonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete_40623.png"))); // NOI18N
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelActionPerformed(evt);
+            }
+        });
 
         buttonSave.setBackground(new java.awt.Color(255, 255, 255));
         buttonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save_14949.png"))); // NOI18N
@@ -713,6 +718,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 newDetailR.save(detail, 0);
             });
             JOptionPane.showMessageDialog(null, l.getGuardarReserva(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
+            resetAll();
+            this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(FrameReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -876,6 +883,15 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        resetAll();
+    }//GEN-LAST:event_buttonCancelActionPerformed
+    public void resetAll(){
+        GlobalVars.clients= new ArrayList<>();
+        GlobalVars.rooms=new ArrayList<>();
+        GlobalVars.setDays(0);        
+        this.dispose();        
+    }
     public void loadClients() {
         try {
             Language l = new Language();

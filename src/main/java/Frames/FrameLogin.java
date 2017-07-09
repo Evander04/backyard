@@ -14,9 +14,11 @@ import Pojo.Users;
 import Utils.GlobalVars;
 import Utils.Hash;
 import Utils.Language;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import java.awt.Dimension;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.Screen;
@@ -34,6 +36,7 @@ public class FrameLogin extends javax.swing.JFrame {
     Hash h = new Hash();
     NewEmployee newEmployee = new NewEmployee();
     int a = 100;
+
     /**
      * Creates new form NewJFrame
      */
@@ -41,7 +44,7 @@ public class FrameLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setLanguage();
-        this.setResizable(false);   
+        this.setResizable(false);
     }
 
     public void setLanguage() {
@@ -161,27 +164,27 @@ public class FrameLogin extends javax.swing.JFrame {
     private void jBotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonEntrarActionPerformed
         try {
             Language l = new Language();
-        if (this.TextUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, l.getDUsuario(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        } else if (this.TextPass.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, l.getDContraseña(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
-        } else {
-            if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
-                setGlobalVars();
-                PrincipalBackyard pb = new PrincipalBackyard();
-                pb.show();
-                this.dispose();
+            if (this.TextUser.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, l.getDUsuario(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+            } else if (this.TextPass.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, l.getDContraseña(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
             } else {
                 if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
-                    
+                    setGlobalVars();
                     PrincipalBackyard pb = new PrincipalBackyard();
                     pb.show();
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+                    if (logController.access(this.TextUser.getText(), this.TextPass.getText())) {
+
+                        PrincipalBackyard pb = new PrincipalBackyard();
+                        pb.show();
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, l.getCredencialesIncorectas(), l.getAlerta(), JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
-        }
         } catch (IOException ex) {
             Logger.getLogger(FrameLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -198,11 +201,11 @@ public class FrameLogin extends javax.swing.JFrame {
 
     public void setGlobalVars() {
         Employee e = newEmployee.findEmployeeByUser(this.TextUser.getText());
-        Users u= newUser.findByUserName(this.TextUser.getText());
-        GlobalVars gv= new GlobalVars();
+        Users u = newUser.findByUserName(this.TextUser.getText());
+        GlobalVars gv = new GlobalVars();
         gv.setUserId(u.getIdUser());
         gv.setUserName(u.getUserName());
-        gv.setNameEmployee(e.getFirstName()+" "+e.getSurname());
+        gv.setNameEmployee(e.getFirstName() + " " + e.getSurname());
         gv.setEmployeeId(e.getIdEmployee());
         gv.setTypeEmployee(e.getTypeEmployee());
     }
@@ -223,6 +226,9 @@ public class FrameLogin extends javax.swing.JFrame {
                     break;
                 }
             }
+            Properties props = new Properties();
+            props.put("logoString", "BACKYARD");
+            McWinLookAndFeel.setCurrentTheme(props);
             UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FrameLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
