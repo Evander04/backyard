@@ -11,7 +11,11 @@ import Pojo.Bill;
 import Pojo.Clients;
 import Pojo.Reservation;
 import Utils.GlobalVars;
+import Utils.Language;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,7 +35,19 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         initComponents();
         loadData();
     }
-
+    public void setLenguage(){
+         try {
+            Language l = new Language();
+           this.jLabel1.setText(l.getLabelNombre());
+           this.jLabel3.setText(l.getLabelresrva());
+           this.jLabel5.setText(l.getLabelestadia());
+           this.jLabel7.setText(l.getLabelMonto());
+           this.jButton1.setText(l.getBotonaceptar());
+           this.jButton2.setText(l.getBotonCancelar());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,23 +70,32 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cash_icon-icons.com_51090 (1).png"))); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nombre:");
 
         textNombre.setText("jLabel2");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Reservación:");
 
         textReservation.setText("jLabel2");
 
         textDays.setText("jLabel2");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Estadía:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Monto");
 
         textAmount.setText("jLabel2");
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ok_accept_15562.png"))); // NOI18N
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +103,8 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel_stop_exit_1583.png"))); // NOI18N
         jButton2.setText("jButton1");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +131,7 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
                     .addComponent(textDays)
                     .addComponent(textReservation)
                     .addComponent(textNombre))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +152,7 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(textAmount))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -147,21 +174,30 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        Bill b = new Bill();
-        b.setIdEmployee(GlobalVars.getEmployeeId());
-        b.setIdReservation(r.getIdReservation());
-        b.setDepartureDate(new Date());
-        b.setRode(r.getRode());
-        newBill.save(b,0);
-        JOptionPane.showMessageDialog(null, "Facturación realizada con éxito", "Error", JOptionPane.ERROR_MESSAGE);
-        this.dispose();
+        try {
+            Language l = new Language();
+            Bill b = new Bill();
+            b.setIdEmployee(GlobalVars.getEmployeeId());
+            b.setIdReservation(r.getIdReservation());
+            b.setDepartureDate(new Date());
+            b.setRode(r.getRode());
+            newBill.save(b,0);
+            JOptionPane.showMessageDialog(null, "Facturación realizada con éxito",l.getEXITO() , JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameBillFinish.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        GlobalVars.setReservation(new Reservation());
-        JOptionPane.showMessageDialog(null, "Facturación no realizada", "Error", JOptionPane.ERROR_MESSAGE);
-        this.dispose();
+        try {
+            Language l = new Language();
+            GlobalVars.setReservation(new Reservation());
+            JOptionPane.showMessageDialog(null, "Facturación no realizada",l.getError() , JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameBillFinish.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void loadData() {

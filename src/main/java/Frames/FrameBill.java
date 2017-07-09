@@ -9,15 +9,23 @@ import Controllers.NewBill;
 import Controllers.NewClient;
 import Controllers.NewDetailReservationClient;
 import Controllers.NewReservation;
+import static Frames.FrameListUser.jTable1;
 import static Frames.PrincipalBackyard.desktopPane;
 import Pojo.Bill;
 import Pojo.Clients;
 import Pojo.Reservation;
 import Utils.GlobalVars;
+import Utils.Language;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -35,9 +43,33 @@ public class FrameBill extends javax.swing.JInternalFrame {
      */
     public FrameBill() {
         initComponents();
-        loadData();
+       loadData();
+       setLenguage();
     }
-
+public void setLenguage(){
+         try {
+            Language l = new Language();
+            FrameBill.this.setTitle(l.getFrameBillTitulo());
+           // this.jlabelTipodeBusqueda.setText(l.getLabelTipodeBusqueda()); 
+           this.buttonAccept.setText(l.getBotonaceptar());
+             JTableHeader th = tableReservation.getTableHeader();
+             TableColumnModel tcm = th.getColumnModel();
+             TableColumn tc = tcm.getColumn(0);
+             tc.setHeaderValue(l.getColumnNoReservacion());
+              TableColumn tc1 = tcm.getColumn(1);
+             tc1.setHeaderValue(l.getColumnCliente());
+              TableColumn tc2 = tcm.getColumn(2);
+             tc2.setHeaderValue(l.getColumnEstadia());
+              TableColumn tc3 = tcm.getColumn(3);
+             tc3.setHeaderValue(l.getlabeLFechaEntrada());
+              TableColumn tc4 = tcm.getColumn(4);
+             tc4.setHeaderValue(l.getlabeLFechaSalida());
+              TableColumn tc5 = tcm.getColumn(5);
+             tc5.setHeaderValue(l.getLabelMonto());
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +88,9 @@ public class FrameBill extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Factura");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/business-color_money-coins_icon-icons.com_53446.png"))); // NOI18N
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tableReservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,8 +108,12 @@ public class FrameBill extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableReservation.setSelectionBackground(new java.awt.Color(255, 153, 0));
         jScrollPane1.setViewportView(tableReservation);
 
+        buttonAccept.setBackground(new java.awt.Color(255, 255, 255));
+        buttonAccept.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ok_accept_15562.png"))); // NOI18N
         buttonAccept.setText("aceptar");
         buttonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,17 +127,17 @@ public class FrameBill extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(695, Short.MAX_VALUE)
-                .addComponent(buttonAccept)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(192, 192, 192)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonAccept)
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,8 +147,8 @@ public class FrameBill extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(buttonAccept)
                 .addContainerGap())
         );
@@ -129,18 +168,23 @@ public class FrameBill extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAcceptActionPerformed
-        if (this.tableReservation.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "seleccione fila", title, JOptionPane.ERROR);
-        } else {
-            Reservation r = newReserv.findByNo(Integer.parseInt(String.valueOf(this.tableReservation.getValueAt(this.tableReservation.getSelectedRow(), 0))));
-            GlobalVars.setReservation(r);
-            FrameBillFinish fcr = new FrameBillFinish();
-            desktopPane.add(fcr);
-            Dimension desktopSize2 = desktopPane.getSize();
-            Dimension FrameSize2 = fcr.getSize();
-            fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
-            fcr.show();
-            this.dispose();
+        try {
+            Language l = new Language();
+            if (this.tableReservation.getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null,l.getfilanoselcecionada() , title, JOptionPane.ERROR);
+            } else {
+                Reservation r = newReserv.findByNo(Integer.parseInt(String.valueOf(this.tableReservation.getValueAt(this.tableReservation.getSelectedRow(), 0))));
+                GlobalVars.setReservation(r);
+                FrameBillFinish fcr = new FrameBillFinish();
+                desktopPane.add(fcr);
+                Dimension desktopSize2 = desktopPane.getSize();
+                Dimension FrameSize2 = fcr.getSize();
+                fcr.setLocation((desktopSize2.width - FrameSize2.width) / 2, (desktopSize2.height - FrameSize2.height) / 2);
+                fcr.show();
+                this.dispose();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrameBill.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonAcceptActionPerformed
 
