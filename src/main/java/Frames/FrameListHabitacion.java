@@ -32,6 +32,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
     int selection = 0;
     DefaultTableModel model;
     String[] arrayType = new String[]{"Publica", "Privada"};
+    String[] arrayStatus = new String[]{"Disponible", "Ocupada","Reservada"};
     /**
      * Creates new form FrameListHabitacion
      */
@@ -44,7 +45,7 @@ public class FrameListHabitacion extends javax.swing.JInternalFrame {
     public void loadData(){
         model= (DefaultTableModel) this.jTable1.getModel();
         newroom.findAll().forEach(e -> {
-            model.addRow(new Object[]{ arrayType[Boolean.compare(e.getTypeRoom(), false)], e.getStatusRoom(),e.getCapacity(),e.getPrice(),e.getDescription()});
+            model.addRow(new Object[]{ arrayType[Boolean.compare(e.getTypeRoom(), false)],arrayStatus[e.getStatusRoom()],e.getCapacity(),e.getPrice(),e.getDescription()});
         });
     }
     public void setLenguage(){
