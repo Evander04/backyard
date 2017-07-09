@@ -12,6 +12,8 @@ import Utils.BytesImage;
 import Utils.ConfigFile;
 import Utils.GlobalVars;
 import Utils.Language;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -448,7 +451,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
                     break;
                 }
             }
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+         Properties props = new Properties();
+         props.put("logoString", "BACKYARD");
+         McWinLookAndFeel.setCurrentTheme(props);
+         UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
