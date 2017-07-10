@@ -7,6 +7,7 @@ package Frames;
 
 import Controllers.NewBill;
 import Controllers.NewClient;
+import Controllers.NewReservation;
 import Pojo.Bill;
 import Pojo.Clients;
 import Pojo.Reservation;
@@ -27,6 +28,7 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
     NewClient newClient = new NewClient();
     Reservation r;
     NewBill newBill = new NewBill();
+    NewReservation newReserv= new NewReservation();
 
     /**
      * Creates new form FrameBillFinish
@@ -75,11 +77,13 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/adim.png"))); // NOI18N
         jLabel1.setText("Nombre:");
 
         textNombre.setText("jLabel2");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/calendar.png"))); // NOI18N
         jLabel3.setText("Reservación:");
 
         textReservation.setText("jLabel2");
@@ -87,16 +91,18 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         textDays.setText("jLabel2");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ic_hotel_128_28520.png"))); // NOI18N
         jLabel5.setText("Estadía:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/business-color_money-coins_icon-icons.com_53446.png"))); // NOI18N
         jLabel7.setText("Monto");
 
         textAmount.setText("jLabel2");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ok_accept_15562.png"))); // NOI18N
-        jButton1.setText("jButton1");
+        jButton1.setText("Facturar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -104,8 +110,8 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/cancel_stop_exit_1583.png"))); // NOI18N
-        jButton2.setText("jButton1");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete_40623.png"))); // NOI18N
+        jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -182,7 +188,9 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
             b.setDepartureDate(new Date());
             b.setRode(r.getRode());
             newBill.save(b,0);
-            JOptionPane.showMessageDialog(null, "Facturación realizada con éxito",l.getEXITO() , JOptionPane.ERROR_MESSAGE);
+            r.setStatus(2);
+            newReserv.save(r,1);
+            JOptionPane.showMessageDialog(null, "Facturación realizada con éxito",l.getEXITO() , JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(FrameBillFinish.class.getName()).log(Level.SEVERE, null, ex);
@@ -193,7 +201,7 @@ public class FrameBillFinish extends javax.swing.JInternalFrame {
         try {
             Language l = new Language();
             GlobalVars.setReservation(new Reservation());
-            JOptionPane.showMessageDialog(null, "Facturación no realizada",l.getError() , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Facturación no realizada",l.getError() , JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(FrameBillFinish.class.getName()).log(Level.SEVERE, null, ex);

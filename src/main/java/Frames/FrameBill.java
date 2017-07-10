@@ -121,7 +121,7 @@ public void setLenguage(){
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Reservación", "Cliente", "Fecha Entrada", "Fecha Salida", " " }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,7 +171,7 @@ public void setLenguage(){
         try {
             Language l = new Language();
             if (this.tableReservation.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null,l.getfilanoselcecionada() , title, JOptionPane.ERROR);
+                JOptionPane.showMessageDialog(null,l.getfilanoselcecionada() ,"Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 Reservation r = newReserv.findByNo(Integer.parseInt(String.valueOf(this.tableReservation.getValueAt(this.tableReservation.getSelectedRow(), 0))));
                 GlobalVars.setReservation(r);

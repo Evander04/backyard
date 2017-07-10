@@ -74,6 +74,8 @@ public class NewRoom {
                 r.setTypeRoom(ro.getTypeRoom());
                 r.setStatusRoom(ro.getStatusRoom());
                 r.setPrice(ro.getPrice());
+                r.setDescription(ro.getDescription());
+                r.setErasedStatus(ro.getErasedStatus());
             }
         });
         return r;

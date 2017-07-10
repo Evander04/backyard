@@ -258,7 +258,7 @@ public class FrameListCliente extends javax.swing.JInternalFrame {
                         if (noExist) {
                             GlobalVars.clients.add(client);
                             JOptionPane.showMessageDialog(null, l.getGuardadocorrecto(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
-                            FrameReservation fcr = new FrameReservation();
+                            FrameReservation fcr = new FrameReservation(0);
                             desktopPane.add(fcr);
                             Dimension desktopSize2 = desktopPane.getSize();
                             Dimension FrameSize2 = fcr.getSize();

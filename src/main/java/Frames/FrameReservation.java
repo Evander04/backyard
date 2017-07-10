@@ -63,15 +63,16 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     Map<String, String> mapCategory = new HashMap<>();
     Map<String, String> mapStatus = new HashMap<>();
     boolean noExist = true;
-    
-    public FrameReservation() {
+
+    public FrameReservation(int origin) {
         initComponents();
         loadClients();
         setLenguage();
-        if (GlobalVars.clients.size()>1 || GlobalVars.rooms.size()>1) {
-            JOptionPane.showMessageDialog(null,"Usted tiene una reservación pendiente", title, HEIGHT);
+        if (origin == 1) {
+            if (GlobalVars.clients.size() > 0 || GlobalVars.rooms.size() > 0) {
+                JOptionPane.showMessageDialog(null, "Usted tiene una reservación pendiente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-
     }
 
     public void mapa() {
@@ -119,11 +120,11 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             TableColumn tcc1 = tcm1.getColumn(1);
             tcc1.setHeaderValue(l.getColumnCategoria());
             TableColumn tcc2 = tcm1.getColumn(2);
-            tcc2.setHeaderValue(l.getColumnTipo());
+            tcc2.setHeaderValue(l.getColumnCapacidad());
             TableColumn tcc3 = tcm1.getColumn(3);
-            tcc3.setHeaderValue(l.getColumnCapacidad());
+            tcc3.setHeaderValue(l.getColumnPrecio());
             TableColumn tcc4 = tcm1.getColumn(4);
-            tcc4.setHeaderValue(l.getColumnPrecio());
+            tcc4.setHeaderValue(l.getColumnTipo());
             TableColumn tcc5 = tcm1.getColumn(5);
             tcc5.setHeaderValue(l.getColumnEstadoCuarto());
             //TadPane #2 tablet #2
@@ -683,6 +684,14 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                     }
                     break;
                 case 2:
+                    if (!(GlobalVars.clients.size() > 0)) {
+                        this.jTabbedPane1.setSelectedIndex(0);
+                        JOptionPane.showMessageDialog(null, "Ingreso por lo menos un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    if (!(GlobalVars.rooms.size() > 0)) {
+                        this.jTabbedPane1.setSelectedIndex(0);
+                        JOptionPane.showMessageDialog(null, "Ingreso por lo menos una habitación", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     break;
             }
 
@@ -715,6 +724,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 Detailreservationroom detail = new Detailreservationroom();
                 detail.setReservation(reserv);
                 detail.setRoom(r);
+                r.setStatusRoom(0);
+                newRoom.save(r, 1);
                 newDetailR.save(detail, 0);
             });
             JOptionPane.showMessageDialog(null, l.getGuardarReserva(), l.getEXITO(), JOptionPane.INFORMATION_MESSAGE);
@@ -731,6 +742,8 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             if (this.jTable3.getSelectedRow() != -1) {
                 Room r = newRoom.findByName(String.valueOf(this.jTable3.getValueAt(this.jTable3.getSelectedRow(), 0)));
                 GlobalVars.rooms.remove(GlobalVars.getIndex(r));
+                r.setStatusRoom(0);
+                newRoom.save(r, 1);
                 loadRooms();
             } else {
                 JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
@@ -745,19 +758,24 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             Language l = new Language();
             if (this.jTable2.getSelectedRow() != -1) {
                 Room r = newRoom.findByName(String.valueOf(this.jTable2.getValueAt(this.jTable2.getSelectedRow(), 0)));
-                GlobalVars.rooms.forEach(ro -> {
-                    if (ro.getIdRoom()==r.getIdRoom()) {
-                       noExist=false;
+                if (r.getStatusRoom() == 0) {
+                    GlobalVars.rooms.forEach(ro -> {
+                        if (ro.getIdRoom() == r.getIdRoom()) {
+                            noExist = false;
+                        }
+                    });
+                    if (noExist) {
+                        GlobalVars.rooms.add(r);
+                        loadRooms();
+                        r.setStatusRoom(1);
+                        newRoom.save(r, 1);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La habitación ya se agregó", l.getError(), JOptionPane.ERROR_MESSAGE);
                     }
-                });
-                if (noExist) {
-                    GlobalVars.rooms.add(r);
-                    loadRooms();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Otro usuario está utilizando esta habitación", l.getError(), JOptionPane.ERROR_MESSAGE);
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"La habitación ya se agregó", l.getError(), JOptionPane.ERROR_MESSAGE);
-                }
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, l.getfilanoselcecionada(), l.getError(), JOptionPane.ERROR_MESSAGE);
             }
@@ -886,12 +904,17 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         resetAll();
     }//GEN-LAST:event_buttonCancelActionPerformed
-    public void resetAll(){
-        GlobalVars.clients= new ArrayList<>();
-        GlobalVars.rooms=new ArrayList<>();
-        GlobalVars.setDays(0);        
-        this.dispose();        
+    public void resetAll() {
+        GlobalVars.clients = new ArrayList<>();
+        GlobalVars.rooms.forEach(r -> {
+            r.setStatusRoom(0);
+            newRoom.save(r, 1);
+        });
+        GlobalVars.rooms = new ArrayList<>();
+        GlobalVars.setDays(0);
+        this.dispose();
     }
+
     public void loadClients() {
         try {
             Language l = new Language();

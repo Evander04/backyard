@@ -342,7 +342,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
     private void NuevaReservaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaReservaMenuItemActionPerformed
         // TODO add your handling code here:
-        FrameReservation fcr = new FrameReservation();
+        FrameReservation fcr = new FrameReservation(1);
         desktopPane.add(fcr);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = fcr.getSize();

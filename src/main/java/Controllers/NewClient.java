@@ -101,6 +101,7 @@ public class NewClient {
             if (cl.getIdClient() == id) {
                 c.setIdClient(cl.getIdClient());
                 c.setName(cl.getName());
+                c.setLastName(cl.getLastName());
             }
         });
         return c;
