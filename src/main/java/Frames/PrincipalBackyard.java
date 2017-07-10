@@ -55,7 +55,7 @@ public class PrincipalBackyard extends javax.swing.JFrame {
         this.NuevaCategoriaMenuItem.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(false);
-        loadData();
+       // loadData();
 
     }
 
@@ -387,9 +387,15 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirMenuItemActionPerformed
-        FrameLogin frame = new FrameLogin();
-        frame.show();
-        this.dispose();
+        try {
+            Language l = new Language();
+            sonidos(l.getSonidosDespedida());
+            FrameLogin frame = new FrameLogin();
+            frame.show();
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBackyard.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SalirMenuItemActionPerformed
 
     private void NuevaReservaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaReservaMenuItemActionPerformed
