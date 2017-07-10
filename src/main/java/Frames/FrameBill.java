@@ -85,6 +85,7 @@ public void setLenguage(){
         buttonAccept = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        buttonAccept1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Factura");
@@ -114,7 +115,7 @@ public void setLenguage(){
         buttonAccept.setBackground(new java.awt.Color(255, 255, 255));
         buttonAccept.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         buttonAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/ok_accept_15562.png"))); // NOI18N
-        buttonAccept.setText("aceptar");
+        buttonAccept.setText("Aceptar");
         buttonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAcceptActionPerformed(evt);
@@ -122,6 +123,16 @@ public void setLenguage(){
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Reservación", "Cliente", "Fecha Entrada", "Fecha Salida", " " }));
+
+        buttonAccept1.setBackground(new java.awt.Color(255, 255, 255));
+        buttonAccept1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonAccept1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/delete_40623.png"))); // NOI18N
+        buttonAccept1.setText("Cancelar");
+        buttonAccept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAccept1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,7 +148,9 @@ public void setLenguage(){
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonAccept)
-                .addGap(43, 43, 43))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonAccept1)
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +162,9 @@ public void setLenguage(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(buttonAccept)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonAccept)
+                    .addComponent(buttonAccept1))
                 .addContainerGap())
         );
 
@@ -188,6 +203,10 @@ public void setLenguage(){
         }
     }//GEN-LAST:event_buttonAcceptActionPerformed
 
+    private void buttonAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAccept1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAccept1ActionPerformed
+
     public void loadData() {
         DefaultTableModel model = (DefaultTableModel) this.tableReservation.getModel();
         newReserv.findAll().forEach(r -> {
@@ -203,6 +222,7 @@ public void setLenguage(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAccept;
+    private javax.swing.JButton buttonAccept1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

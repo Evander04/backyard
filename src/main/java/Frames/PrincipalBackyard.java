@@ -141,6 +141,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         NuevoEmpleadoMenuItem = new javax.swing.JMenuItem();
@@ -170,6 +175,53 @@ public class PrincipalBackyard extends javax.swing.JFrame {
 
         desktopPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(217, 226, 243));
+        jPanel1.setForeground(new java.awt.Color(217, 226, 243));
+
+        jLabel1.setText("Habitaciones de salida:");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel2.setText("3");
+
+        jLabel3.setText("Reservaciones de hoy:");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel4.setText("3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(jPanel1);
+        jPanel1.setBounds(0, 0, 180, 70);
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -451,10 +503,10 @@ public class PrincipalBackyard extends javax.swing.JFrame {
                     break;
                 }
             }
-         Properties props = new Properties();
-         props.put("logoString", "BACKYARD");
-         McWinLookAndFeel.setCurrentTheme(props);
-         UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+            Properties props = new Properties();
+            props.put("logoString", "BACKYARD");
+            McWinLookAndFeel.setCurrentTheme(props);
+            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(PrincipalBackyard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -490,6 +542,11 @@ public class PrincipalBackyard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jCanbiarIdioma;
     private javax.swing.JMenu jCentralEstadistica;
     private javax.swing.JMenu jConfiguraciones;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jReport;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jUsuario;
