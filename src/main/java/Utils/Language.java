@@ -35,6 +35,17 @@ public class Language {
         }
         return var;
     }
+    public String getSonidosDespedida() {
+        switch (config) {
+            case 0:
+                var = ("Adios");
+                break;
+            case 1:
+                var = ("GoodBye");
+                break;
+        }
+        return var;
+    }
     // ***************************************************FRAME PRINCIPAL *****************************************************************************************************************
     public String getPrincipalTitulo() {
         switch (config) {
