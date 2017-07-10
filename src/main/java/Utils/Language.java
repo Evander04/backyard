@@ -629,6 +629,28 @@ public class Language {
         }
         return var;
     }
+     public String getLabelresrva() {
+      switch (config) {
+            case 0:
+                var = "Reserva:";
+                break;
+            case 1:
+                var = "Reservation:";
+                break;
+        }
+        return var;
+    }
+     public String getLabelestadia() {
+      switch (config) {
+            case 0:
+                var = "Estadía:";
+                break;
+            case 1:
+                var = "Stay:";
+                break;
+        }
+        return var;
+    }
 //=========================================================Frame Agregar Extra=========================================================
    public String getFrameAgregarCategoria() {
       switch (config) {
@@ -692,6 +714,17 @@ public class Language {
                 break;
             case 1:
                 var = "List Room";
+                break;
+        }
+        return var;
+    }
+      public String getFrameBillTitulo() {
+      switch (config) {
+            case 0:
+                var = "Factura";
+                break;
+            case 1:
+                var = "Bill";
                 break;
         }
         return var;
@@ -929,6 +962,17 @@ public String getColumnNombre() {
         }
         return var;
     } 
+public String getColumnNoReservacion() {
+      switch (config) {
+            case 0:
+                var = "Numero de Reserva";
+                break;
+            case 1:
+                var = "Reservation Number";
+                break;
+        }
+        return var;
+    } 
 public String getColumnApellido() {
       switch (config) {
             case 0:
@@ -1150,6 +1194,28 @@ public String getColumnApellido() {
         }
         return var;
     }
+    public String getColumnCliente() {
+      switch (config) {
+            case 0:
+                var = "Cliente";
+                break;
+            case 1:
+                var = "Customer";
+                break;
+        }
+        return var;
+    }
+     public String getColumnEstadia() {
+      switch (config) {
+            case 0:
+                var = "Estadia";
+                break;
+            case 1:
+                var = "Stay";
+                break;
+        }
+        return var;
+    }
 //************************************************************BOTONES************************************************************
    public String getBotonGuardar() {
         switch (config) {
@@ -1158,6 +1224,17 @@ public String getColumnApellido() {
                 break;
             case 1:
                 var = "Save";
+                break;
+        }
+        return var;
+    }
+   public String getBotonaceptar() {
+        switch (config) {
+            case 0:
+                var = "Aceptar";
+                break;
+            case 1:
+                var = "Agree";
                 break;
         }
         return var;

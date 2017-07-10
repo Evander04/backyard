@@ -134,11 +134,11 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             TableColumn tcx1 = tcm2.getColumn(1);
             tcx1.setHeaderValue(l.getColumnCategoria());
             TableColumn tcx2 = tcm2.getColumn(2);
-            tcx2.setHeaderValue(l.getColumnTipo());
+            tcx2.setHeaderValue(l.getColumnCapacidad());
             TableColumn tcx3 = tcm2.getColumn(3);
-            tcx3.setHeaderValue(l.getColumnCapacidad());
+            tcx3.setHeaderValue(l.getColumnPrecio());
             TableColumn tcx4 = tcm2.getColumn(4);
-            tcx4.setHeaderValue(l.getColumnPrecio());
+            tcx4.setHeaderValue(l.getColumnTipo());
             TableColumn tcx5 = tcm2.getColumn(5);
             tcx5.setHeaderValue(l.getColumnEstadoCuarto());
             //TadPane #3
