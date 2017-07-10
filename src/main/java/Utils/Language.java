@@ -655,7 +655,7 @@ public class Language {
    public String getFrameAgregarCategoria() {
       switch (config) {
             case 0:
-                var = "CATEGORIA";
+                var = "CATEGORÍA";
                 break;
             case 1:
                 var = "CATEGORY";
@@ -965,7 +965,7 @@ public String getColumnNombre() {
 public String getColumnNoReservacion() {
       switch (config) {
             case 0:
-                var = "Numero de Reserva";
+                var = "Número de Reserva";
                 break;
             case 1:
                 var = "Reservation Number";
@@ -1175,7 +1175,7 @@ public String getColumnApellido() {
     public String getColumnSalario() {
       switch (config) {
             case 0:
-                var = "Salrio";
+                var = "Salario";
                 break;
             case 1:
                 var = "Salary";
@@ -1186,7 +1186,7 @@ public String getColumnApellido() {
     public String getColumnCategoria() {
       switch (config) {
             case 0:
-                var = "Categoria";
+                var = "Categoría";
                 break;
             case 1:
                 var = "Category";
@@ -1208,7 +1208,7 @@ public String getColumnApellido() {
      public String getColumnEstadia() {
       switch (config) {
             case 0:
-                var = "Estadia";
+                var = "Estadía";
                 break;
             case 1:
                 var = "Stay";
