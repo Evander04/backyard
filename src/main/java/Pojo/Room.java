@@ -13,6 +13,7 @@ public class Room  implements java.io.Serializable {
 
      private Integer idRoom;
      private Category category;
+     private String name;
      private Integer capacity;
      private Long price;
      private Integer statusRoom;
@@ -49,6 +50,15 @@ public class Room  implements java.io.Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public Integer getCapacity() {
         return this.capacity;
     }

@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import java.sql.Connection;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -18,7 +19,6 @@ import org.hibernate.SessionFactory;
 public class NewHibernateUtil {
 
     private static final SessionFactory sessionFactory;
-    private static SessionFactory factor;
     private static Session session;
     static {
         try {
@@ -36,20 +36,15 @@ public class NewHibernateUtil {
         return sessionFactory;
     }
     
-    public static void open(){
-        factor=NewHibernateUtil.getSessionFactory();       
-        session=factor.openSession();
+    public static void open(){        
+        session=getSessionFactory().openSession();
     }
     
     public static void close(){
        session.close();
-       factor.close();
+       //getSessionFactory().close();
     }
-
-    public static SessionFactory getFactor() {
-        return factor;
-    }
-
+    
     public static Session getSession() {
         return session;
     }

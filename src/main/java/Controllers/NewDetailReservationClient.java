@@ -6,6 +6,7 @@
 package Controllers;
 
 import Pojo.Category;
+import Pojo.Clients;
 import Pojo.Detailreservationclient;
 import Utils.NewHibernateUtil;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import org.hibernate.Transaction;
 public class NewDetailReservationClient {
 
     NewHibernateUtil conect = new NewHibernateUtil();
-
+    
     public NewDetailReservationClient() {
     }
 
@@ -58,6 +59,21 @@ public class NewDetailReservationClient {
         conect.close();
         return list;
     }
-
+    
+    public Clients findByReservation(int idReservation){
+        conect.open();
+        NewClient newClient= new NewClient();
+        Clients e= new Clients();
+        findAll().forEach(dr->{
+             if (dr.getReservation().getIdReservation()==idReservation) {
+                 if (dr.getTypeClient()) {
+                     Clients c=newClient.findClientById(dr.getClients().getIdClient());
+                     e.setIdClient(c.getIdClient());
+                     e.setName(c.getName());
+                 }
+            }
+        });
+        return e;
+    }
     /*================CRUD====================*/
 }

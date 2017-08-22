@@ -28,7 +28,8 @@ public class Employee  implements java.io.Serializable {
     public Employee() {
     }
 
-    public Employee(String firstName, String secondName, String surname, String secondSurname, String docIdentity, String phone, String address, Long salary, String email, Integer typeEmployee, Boolean erasedStatus, Set userses) {
+    public Employee(int idEmployee, String firstName, String secondName, String surname, String secondSurname, String docIdentity, String phone, String address, Long salary, String email, Integer typeEmployee, Boolean erasedStatus, Set userses) {
+       this.idEmployee = idEmployee;
        this.firstName = firstName;
        this.secondName = secondName;
        this.surname = surname;

@@ -11,6 +11,9 @@
         <property name="idReservation" type="java.lang.Integer">
             <column name="IdReservation" />
         </property>
+        <property name="IdEmployee" type="java.lang.Integer">
+            <column name="IdEmployee" />
+        </property>
         <property name="departureDate" type="date">
             <column name="departureDate" length="10" />
         </property>

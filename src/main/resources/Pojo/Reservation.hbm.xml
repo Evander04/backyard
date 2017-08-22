@@ -14,6 +14,15 @@
         <property name="reservationDate" type="date">
             <column name="reservationDate" length="10" />
         </property>
+        <property name="dueDate" type="date">
+            <column name="dueDate" length="10" />
+        </property>
+        <property name="IdEmployee" type="java.lang.Integer">
+            <column name="IdEmployee" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
         <property name="rode" type="java.lang.Long">
             <column name="rode" precision="10" scale="0" />
         </property>

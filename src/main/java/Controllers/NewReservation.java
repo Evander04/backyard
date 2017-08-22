@@ -8,6 +8,7 @@ package Controllers;
 import Pojo.Category;
 import Pojo.Reservation;
 import Utils.NewHibernateUtil;
+import com.mysql.jdbc.CallableStatement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -48,6 +49,7 @@ public class NewReservation {
     public List<Reservation> findAll() {
         conect.open();
         List<Reservation> list= new ArrayList<>();
+        String sql="call ";
         SQLQuery query= conect.getSession().createSQLQuery("select * from Reservation");
         query.addEntity(Reservation.class);
         for (Iterator i=query.list().iterator();i.hasNext();) {
@@ -58,5 +60,21 @@ public class NewReservation {
         return list;
     }
     
+   public Reservation findByNo(int no){
+       conect.open();
+       Reservation r= new Reservation();
+       findAll().forEach(re->{
+           if (re.getIdReservation()==no) {
+              r.setIdReservation(re.getIdReservation());
+              r.setIdEmployee(re.getIdEmployee());
+              r.setReservationDate(re.getReservationDate());
+              r.setRegistrationDate(re.getRegistrationDate());
+              r.setDueDate(re.getDueDate());
+              r.setRode(re.getRode());
+              r.setStatus(re.getStatus());
+           }
+       });
+       return r;
+   }
     /*================CRUD====================*/
 }

@@ -7,6 +7,7 @@ package Controllers;
 
 import Pojo.Category;
 import Pojo.Clients;
+import Pojo.Reservation;
 import Utils.NewHibernateUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,8 +22,11 @@ import org.hibernate.Transaction;
 public class NewClient {
 
     NewHibernateUtil conect = new NewHibernateUtil();
+    
+
     public NewClient() {
     }
+
     /*=================CRUD 0: crea uno nuevo 1: actualiza 2:borra=================*/
     public void save(Clients client, int selection) {
         conect.open();
@@ -47,16 +51,77 @@ public class NewClient {
 
     public List<Clients> findAll() {
         conect.open();
-        List<Clients> list= new ArrayList<>();
-        SQLQuery query= conect.getSession().createSQLQuery("select * from Clients where erasedStatus=1");
+        List<Clients> list = new ArrayList<>();
+        SQLQuery query = conect.getSession().createSQLQuery("select * from Clients where erasedStatus=1");
         query.addEntity(Clients.class);
-        for (Iterator i=query.list().iterator();i.hasNext();) {
-            Clients c= (Clients) i.next();
+        for (Iterator i = query.list().iterator(); i.hasNext();) {
+            Clients c = (Clients) i.next();
             list.add(c);
         }
         conect.close();
         return list;
     }
-    
+
+    public Clients findClientByDoc(String docIdentity) {
+        conect.open();
+        Clients c = new Clients();
+        findAll().forEach(cli -> {
+            if (cli.getDocIdentity().equals(docIdentity)) {
+                c.setIdClient(cli.getIdClient());
+                c.setName(cli.getName());
+                c.setLastName(cli.getLastName());
+                c.setDocIdentity(cli.getDocIdentity());
+                c.setDocType(cli.getDocType());
+                c.setNationality(cli.getNationality());
+                c.setPhone(cli.getPhone());
+                c.setEmail(cli.getEmail());
+                c.setAddress(cli.getAddress());
+            }
+        });
+        return c;
+    }
+
+    public List<Clients> findClientByName(String name) {
+        conect.open();
+        List<Clients> list = new ArrayList<>();
+        SQLQuery query = conect.getSession().createSQLQuery("select * from clients where name like '%" + name + "%' and erasedStatus=1");
+        query.addEntity(Clients.class);
+        for (Iterator i = query.list().iterator(); i.hasNext();) {
+            Clients c = (Clients) i.next();
+            list.add(c);
+        }
+        conect.close();
+        return list;
+    }
+
+    public Clients findClientById(int id) {
+        conect.open();
+        Clients c = new Clients();
+        findAll().forEach(cl -> {
+            if (cl.getIdClient() == id) {
+                c.setIdClient(cl.getIdClient());
+                c.setName(cl.getName());
+                c.setLastName(cl.getLastName());
+            }
+        });
+        return c;
+    }
+
+    public Clients findClientByReservation(Reservation r) {
+        conect.open();
+        Clients c = new Clients();
+        NewDetailReservationClient detail = new NewDetailReservationClient();
+        detail.findAll().forEach(d -> {
+            if (d.getReservation().getIdReservation() == r.getIdReservation()) {
+                if (d.getTypeClient()) {
+                    Clients cc= findClientById(d.getClients().getIdClient());
+                    c.setIdClient(cc.getIdClient());
+                    c.setName(cc.getName());
+                    c.setLastName(cc.getLastName());
+                }
+            }
+        });
+        return c;
+    }
     /*================CRUD====================*/
 }
