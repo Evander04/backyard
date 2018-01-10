@@ -25,6 +25,7 @@ public class Hash {
         for (int i = 0; i < bytesResult.length; i++) {
             sb.append(Integer.toString((bytesResult[i] & 0xff) + 0x100, 16).substring(1));
         }
+        System.out.println("probando cherry pick");
         return sb.toString();
 
     }
