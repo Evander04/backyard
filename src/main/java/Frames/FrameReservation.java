@@ -198,7 +198,6 @@ public class FrameReservation extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         buttonAccept = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
-        buttonSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -564,9 +563,6 @@ public class FrameReservation extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonSave.setBackground(new java.awt.Color(255, 255, 255));
-        buttonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon32x32/save_14949.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -576,16 +572,13 @@ public class FrameReservation extends javax.swing.JInternalFrame {
                 .addComponent(buttonAccept)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonSave)
                     .addComponent(buttonCancel)
                     .addComponent(buttonAccept))
                 .addContainerGap())
@@ -981,7 +974,6 @@ public class FrameReservation extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonAccept;
     private javax.swing.JButton buttonCancel;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton buttonSave;
     private org.jdesktop.swingx.JXMonthView calendar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

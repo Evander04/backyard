@@ -16,6 +16,7 @@ import Utils.Hash;
 import Utils.Language;
 import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
@@ -97,6 +98,12 @@ public class FrameLogin extends javax.swing.JFrame {
         jBotonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonEntrarActionPerformed(evt);
+            }
+        });
+
+        TextPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextPassKeyPressed(evt);
             }
         });
 
@@ -198,6 +205,15 @@ public class FrameLogin extends javax.swing.JFrame {
             this.TextPass.setEchoChar('*');
         }
     }//GEN-LAST:event_jCBMostrarItemStateChanged
+
+    private void TextPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPassKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             setGlobalVars();
+            PrincipalBackyard pb = new PrincipalBackyard();
+            pb.show();
+            this.dispose();
+        }
+    }//GEN-LAST:event_TextPassKeyPressed
 
     public void setGlobalVars() {
         Employee e = newEmployee.findEmployeeByUser(this.TextUser.getText());

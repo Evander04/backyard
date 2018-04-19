@@ -79,11 +79,15 @@ public class PrincipalBackyard extends javax.swing.JFrame {
                 this.menuBar.remove(this.jCentralEstadistica);
                 this.fileMenu.remove(this.NuevoEmpleadoMenuItem);
                 this.jConfiguraciones.remove(this.jUsuario);
+                this.menuBar.remove(this.jReport);
                 break;
             case 2:
                 type = "Gerente";
+                this.menuBar.remove(this.jCentralEstadistica);
+                 this.menuBar.remove(this.jReport);
                 break;
         }
+        this.fileMenu.remove(this.NuevoExtraMenuItem);
         String label = GlobalVars.getNameEmployee() + "(" + type + ")";
         this.textInfo.setText(label);
     }

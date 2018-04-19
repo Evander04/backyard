@@ -204,7 +204,7 @@ public void setLenguage(){
     }//GEN-LAST:event_buttonAcceptActionPerformed
 
     private void buttonAccept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAccept1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_buttonAccept1ActionPerformed
 
     public void loadData() {
